@@ -12,7 +12,7 @@ router.post (
     '/',
     asyncHandler(async (req, res, next) => {
         const { credential, password } = req.body;
-        
+
         const user =  await User.login({ credential, password});
 
         if (!user) {
@@ -30,6 +30,15 @@ router.post (
         });
     }),
 );
+
+// Logging out
+router.delete(
+    '/',
+    (_req, res) => {
+      res.clearCookie('token');
+      return res.json({ message: 'success' });
+    }
+  );
 
 
 
