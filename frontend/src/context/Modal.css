@@ -1,3 +1,10 @@
+/* remove default styling */
+ul {
+  margin: 0;
+}
+
+/* remove default styling */
+
 #modal {
     position: fixed;
     top: 0;
@@ -19,6 +26,74 @@
   }
 
   #modal-content {
+    height: 350px;
+    width: 500px;
+    border-radius: 5px;
     position: absolute;
-    background-color:white;
+    background-color: rgba(235, 235, 235);
+    display:flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .modal {
+    border-radius: 3px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+  }
+
+  .labels {
+    width: 150px;
+    margin-bottom: 10px;
+  }
+
+  .inputs {
+    background-color: rgba(235, 235, 235);
+    border: none;
+    border-bottom: 1px solid;
+    width: 150px;
+    height: 25px;
+    margin-bottom: 14px;
+    padding: 5px;
+    width: 250px;
+  }
+
+  .modalButts {
+    background-color: #292929;
+    padding: 5px;
+    color: #292929;
+    width: 260px;
+    height: 35px;
+    padding: 5px;
+    text-align: center;
+    border-radius: 3px;
+    border: none;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 10px;
+    color: rgba(235, 235, 235);
+
+  }
+
+  .modal-title {
+    color: #292929;
+    padding: 0;
+    margin: 0;
+    margin-top:10px;
+    margin-bottom: 10px;
+  }
+
+
+  .loggedButts {
+    color: #292929;
+    font-size: 15px;
+    font-weight: bold;
+  }
+
+  .profile-dropdown {
+    list-style: none;
   }

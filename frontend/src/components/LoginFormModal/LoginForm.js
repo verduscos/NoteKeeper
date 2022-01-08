@@ -17,35 +17,35 @@ function LoginForm() {
         const data = await res.json();
         if (data && data.errors) setErrors(data.errors);
       }
-    );
+      );
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} class='modal'>
+      {/* <h2 class='modal-title'>Log In!</h2> */}
       <ul>
         {errors.map((error, idx) => (
           <li key={idx}>{error}</li>
         ))}
       </ul>
-      <label>
-        Username or Email
         <input
           type="text"
           value={credential}
           onChange={(e) => setCredential(e.target.value)}
+          className='inputs'
+          placeholder='Username or Email'
           required
         />
-      </label>
-      <label>
-        Password
         <input
           type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
+          className='inputs'
+          placeholder='Password'
           required
         />
-      </label>
-      <button id='test' type="submit">Log In</button>
+
+      <button className="modalButts" type="submit">Log In</button>
     </form>
   );
 }

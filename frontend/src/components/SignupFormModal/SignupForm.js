@@ -24,49 +24,46 @@ function SignupForm() {
         return setErrors(['Confirm Password field must be the same as the Password field']);
     }
     return (
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className='modal'>
+          <h2 class='modal-title'>Sign Up!</h2>
           <ul>
             {errors.map((error, idx) => (
               <li key={idx}>{error}</li>
             ))}
           </ul>
-          <label>
-            Username
             <input
               type="text"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
+              className='inputs'
+              placeholder="Username"
               required
             />
-          </label>
-          <label>
-            Email
             <input
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
+              className='inputs'
+              placeholder="Email"
               required
             />
-          </label>
-          <label>
-            Password
             <input
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
+              className='inputs'
+              placeholder="Password"
               required
             />
-          </label>
-          <label>
-            Confirm Password
             <input
               type="password"
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
+              className='inputs'
+              placeholder="Confirm Password"
               required
             />
-          </label>
-          <button id='test' type="submit">Signup</button>
+          <button className="modalButts" type="submit">Sign Up</button>
         </form>
       );
     }
