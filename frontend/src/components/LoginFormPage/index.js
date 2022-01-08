@@ -31,7 +31,7 @@ function LoginFormPage() {
         {errors.map((error, idx) => <li key={idx}>{error}</li>)}
       </ul>
       <label>
-        Username or Email
+        Username osasfdr Ema
         <input
           type="text"
           value={credential}
@@ -48,7 +48,7 @@ function LoginFormPage() {
           required
         />
       </label>
-      <button type="submit">Log In</button>
+      <button id="test" type="submit"> In</button>
     </form>
   );
 }
