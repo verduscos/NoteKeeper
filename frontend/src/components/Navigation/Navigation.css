@@ -69,18 +69,27 @@ li > * {
     transition-duration: .2s;
 }
 
-#signup {
+#signupButt {
     transition-duration: .2s;
+    color: #292929;
     width: 100px;
     padding: 5px;
     text-align: center;
     border-radius: 3px;
+    border: none;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
 }
 
-#loginButt:hover,
-#signup:hover
+#loginButt:hover
 {
     background-color: rgb(235, 235, 235);
     color: #292929;
 
+}
+#signupButt:hover {
+    border: solid 1px rgb(180, 180, 180);
+    color: rgb(180, 180, 180);
+    background-color: #292929;
 }
