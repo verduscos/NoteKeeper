@@ -7,7 +7,7 @@ function Homepage() {
         <div id='body'>
             <h1 id='hompage-h1'>Tame your work, organize your life</h1>
             <h3 id='homepage-text'>Remember everything and tackle any project with your notes, tasks, and schedule all in one place.</h3>
-            <Link id='homepageButt' to='/signup'>Sign up for free</Link>
+            <Link id='homepageButt' to='/signup'>Join now for free</Link>
             <div id='img-text-container'>
                 <img src="https://evernote.com/c/assets/homepage-repackaging/task_hero_image@2x__en.png?b8ddc3599750b793" className='homepage-img' alt="" />
                 <div id='text-container'>
