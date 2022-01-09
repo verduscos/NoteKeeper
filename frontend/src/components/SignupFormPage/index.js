@@ -29,7 +29,7 @@ const handleSubmit = (e) => {
     return setErrors(['Confirm Password field must be the same as the Password field']);
 }
     return (
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} id='signupPage'>
             <ul>
                 {errors.map((error, idx) => <li key={idx}>{error}</li>)}
             </ul>
