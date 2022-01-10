@@ -6,7 +6,9 @@ export const getNotes = () => async (dispatch) => {
     const response = await csrfFetch('/api/mynotes', {
         method: 'GET',
     })
-    dispatch
+    const data = await response.json();
+    dispatch(getNotes());
+    return data;
 }
 
 const initialState = { notes: null };
@@ -22,3 +24,5 @@ const notesReducer = (state = initialState, action) => {
     }
 
 }
+
+export default notesReducer;
