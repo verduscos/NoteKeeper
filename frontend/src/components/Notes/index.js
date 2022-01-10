@@ -4,15 +4,15 @@ import { useDispatch, useSelector } from 'react-redux';
 
 
 function Notes() {
+    const currentUser = useSelector(state => state.session.user);
     const dispatch = useDispatch()
     // const [loaded, setLoaded] = useState();
     const [notes, setNotes] = useState=([])
 
     const userNotes = useSelector(state => state.notes.notes);
-    console.log(userNotes)
 
     useEffect(() => {
-        dispatch(sessionActions.getNotesThunk())
+        dispatch(sessionActions.getNotesThunk(currentUser.id))
         //adding loaded is not chaning anything atm, fixed loading issue with '?'
 
     }, [dispatch])

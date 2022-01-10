@@ -8,10 +8,15 @@ const { handleValidationErrors } = require('../../utils/validation');;
 
 const router = express.Router();
 
-router.get("/", asyncHandler(async(req, res) => {
-  console.log('INSIDE ROUTE')
-  const notes = await Note.findAll();
-  console.log(notes)
+// Get all notes
+router.get("/:userId", asyncHandler(async(req, res) => {
+  const id = req.params.userId;
+  const notes = await Note.findAll({
+    where: {
+      userId: id
+    }
+  });
+
   return res.json(notes);
   }));
 

@@ -7,8 +7,8 @@ const getNotes = (notes) => ({
     payload: notes
 })
 
-export const getNotesThunk = () => async (dispatch) => {
-    const response = await csrfFetch('/api/mynotes', {
+export const getNotesThunk = (userId) => async (dispatch) => {
+    const response = await csrfFetch(`/api/mynotes/${userId}`, {
         method: 'GET',
     })
     const data = await response.json();
