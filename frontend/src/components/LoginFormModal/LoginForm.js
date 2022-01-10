@@ -20,7 +20,13 @@ function LoginForm() {
       );
   };
 
+  const handleDemo = (e) => {
+    e.preventDefault();
+    return dispatch(sessionActions.demo());
+  }
+
   return (
+    <>
     <form onSubmit={handleSubmit} class='modal'>
       <h2 class='modal-title'>Log In!</h2>
       <ul>
@@ -47,6 +53,10 @@ function LoginForm() {
 
       <button className="modalButts" type="submit">Log In</button>
     </form>
+    <form onSubmit={handleDemo}>
+          <button type='submit'>Demo</button>
+    </form>
+    </>
   );
 }
 
