@@ -28,7 +28,6 @@
 }
 
   #signupPageButt {
-      /* background-color: blue; */
       border: 1px solid black;
       border-radius: 3px;
       padding: 10px;
@@ -37,6 +36,7 @@
       border: none;
       background-color: #00a82d;
       color: #fff;
+      cursor: pointer;
 
   }
 
