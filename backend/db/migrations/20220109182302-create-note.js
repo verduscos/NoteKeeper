@@ -25,11 +25,10 @@ module.exports = {
       },
       notebookId: {
         type: Sequelize.INTEGER,
-        //CANNOT MIGRATE WITH REFERENCE
-        // references: {
-        //   model: 'Notebook'
-        // },
-        allowNull: false
+        references: {
+          model: 'Notebooks'
+        },
+        allowNull: true
       },
       createdAt: {
         allowNull: false,
