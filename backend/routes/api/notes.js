@@ -12,6 +12,7 @@ router.get("/", asyncHandler(async(req, res) => {
   console.log('INSIDE ROUTE')
   const notes = await Note.findAll();
   console.log(notes)
+  return res.json(notes);
   }));
 
 module.exports = router;

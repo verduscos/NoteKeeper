@@ -7,9 +7,12 @@ function Notes() {
     const dispatch = useDispatch()
     const [notes, setNotes] = useState=([])
 
-    useEffect(() => {
+    const userNotes = useSelector(state => state.notes);
 
-    }, [sessionActions.getNotes])
+    useEffect(() => {
+        dispatch(sessionActions.getNotesThunk())
+    }, [dispatch])
+
 
     return (
         <h1>Notes</h1>

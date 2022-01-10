@@ -2,13 +2,17 @@ import { csrfFetch } from "./csrf"
 
 const GET_NOTES = 'mynotes/getNotes';
 
-export const getNotes = () => async (dispatch) => {
+const getNotes = (notes) => ({
+    type: GET_NOTES,
+    payload: notes
+})
+
+export const getNotesThunk = () => async (dispatch) => {
     const response = await csrfFetch('/api/mynotes', {
         method: 'GET',
     })
     const data = await response.json();
-    dispatch(getNotes());
-    return data;
+    dispatch(getNotes(data));
 }
 
 const initialState = { notes: null };
