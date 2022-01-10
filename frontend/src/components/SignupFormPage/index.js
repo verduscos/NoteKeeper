@@ -4,7 +4,8 @@ import './SignupForm.css';
 import '../../context/Modal.css'
 import LoginFormModal from '../LoginFormModal';
 import { useDispatch, useSelector } from 'react-redux';
-import { Redirect } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
+
 
 function SignupFormPage() {
 const dispatch = useDispatch();
@@ -32,8 +33,9 @@ const handleSubmit = (e) => {
 }
     return (
         <div id='sigupformpage'>
+            <Link id='back-arrow' to='/'><i class="fas fa-arrow-left"></i></Link>
             <form onSubmit={handleSubmit} id='signupPage'>
-                <h1 id='signup-title'>NoteKeeper</h1>
+                <Link id='signup-title' to='/'>NoteKeeper</Link>
                 <p id='signup-text'>Remember everthing important.</p>
                 <ul>
                     {errors.map((error, idx) => <li key={idx}>{error}</li>)}
@@ -59,11 +61,11 @@ const handleSubmit = (e) => {
                     value={password}
                     onChange={(e) => setPassowrd(e.target.value)}
                     required
-                    placeholder='Passoword'
+                    placeholder='Password'
                     className='inputssignup'
                     />
                     <input
-                    type='passowrd'
+                    type='password'
                     value={confirmPassword}
                     onChange={(e) => setConfirmPassword(e.target.value)}
                     required
@@ -71,8 +73,8 @@ const handleSubmit = (e) => {
                     className='inputssignup'
                     />
                 <button id='signupPageButt' type="submit">Continue</button>
-                {/* <p>Already a member?</p> */}
-                {/* <LoginFormModal /> */}
+                <p>Already a member?</p>
+                <LoginFormModal className='test' />
             </form>
         </div>
     )

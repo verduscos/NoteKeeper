@@ -53,9 +53,24 @@
   #signup-title {
       margin: 0;
       font-size: 45px;
+      text-decoration: none;
+      color: black;
   }
 
   #signup-text {
       margin-bottom: 50px;
       font-size: 18px;
   }
+
+#back-arrow {
+    color: rgb(73, 73, 73);
+    position: absolute;
+    top: 45px;
+    left: 45px;
+    font-size: 25px;
+    transition: .2s;
+}
+
+#back-arrow:hover {
+    color:gray;
+}

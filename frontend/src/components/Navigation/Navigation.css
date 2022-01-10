@@ -56,7 +56,7 @@ li > * {
     font-size: 23px;
 }
 
-#loginButt {
+#signupButt {
     color: rgb(235, 235, 235);
     font-weight: bold;
     border: 1px solid rgb(235, 235, 235);
@@ -67,9 +67,10 @@ li > * {
     border-radius: 3px;
     cursor: pointer;
     transition-duration: .2s;
+    /* color: blue; */
 }
 
-#signupButt {
+#loginButt {
     transition-duration: .2s;
     color: #292929;
     width: 100px;
@@ -80,16 +81,17 @@ li > * {
     font-size: 16px;
     font-weight: bold;
     cursor: pointer;
+    border:solid 1px transparent;
 }
 
-#loginButt:hover
+#signupButt:hover
 {
     background-color: rgb(235, 235, 235);
     color: #292929;
 
 }
-#signupButt:hover {
-    border: solid 1px rgb(180, 180, 180);
-    color: rgb(180, 180, 180);
-    background-color: #292929;
+#loginButt:hover {
+    /* border: solid 1px rgb(180, 180, 180); */
+    color: rgb(78, 78, 78);
+    /* background-color: #292929; */
 }
