@@ -74,3 +74,8 @@
 #back-arrow:hover {
     color:gray;
 }
+
+.errors{
+    margin:10px 0px 20px 0px;
+    list-style: none;
+}

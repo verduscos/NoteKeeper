@@ -98,3 +98,8 @@ ul {
   .profile-dropdown {
     list-style: none;
   }
+
+  .errors{
+    margin:10px 0px 20px 0px;
+    list-style: none;
+}

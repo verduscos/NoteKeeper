@@ -24,7 +24,7 @@ function LoginForm() {
     <>
     <form onSubmit={handleSubmit} class='modal'>
       <h2 class='modal-title'>Log In!</h2>
-      <ul>
+      <ul className="errors">
         {errors.map((error, idx) => (
           <li key={idx}>{error}</li>
         ))}

@@ -37,7 +37,7 @@ const handleSubmit = (e) => {
             <form onSubmit={handleSubmit} id='signupPage'>
                 <Link id='signup-title' to='/'>NoteKeeper</Link>
                 <p id='signup-text'>Remember everthing important.</p>
-                <ul>
+                <ul className='errors'>
                     {errors.map((error, idx) => <li key={idx}>{error}</li>)}
                 </ul>
                     <input
