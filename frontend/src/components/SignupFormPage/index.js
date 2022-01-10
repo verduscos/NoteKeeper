@@ -17,7 +17,7 @@ const [confirmPassword, setConfirmPassword] = useState('');
 const [errors, setErrors] = useState([])
 
 //if a session exists, redirect
-if (sessionUser) return <Redirect to='/' />;
+if (sessionUser) return <Redirect to='/mynotes' />;
 
 const handleSubmit = (e) => {
     e.preventDefault();
