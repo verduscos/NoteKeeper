@@ -20,4 +20,21 @@ router.get("/:userId", asyncHandler(async(req, res) => {
   return res.json(notes);
   }));
 
+
+  // Create a note
+router.post('/', asyncHandler(async(req, res) => {
+  const { title, body, userId, notebookId} = req.body;
+  // console.log(req.params)
+  console.log(title)
+  console.log(body)
+  console.log('IM IN THE ROUTE')
+  await db.Note.create({
+    title:'test',
+    body:'test',
+    userId: 1,
+    notebookId: 1
+  })
+  res.json({});
+}))
+
 module.exports = router;
