@@ -43,21 +43,27 @@ function Notes() {
     // EDIT
     const handleEdit = async (e, noteId) => {
         e.preventDefault();
-        const payload = 'DID THIS WORK YET!?'
+        console.log('INSIDE HANDLE')
+        const payload = {
+            id: noteId,
+            body: 'NEW EDIT'
+        }
+        console.log(payload)
         dispatch(sessionActions.editNoteThunk(payload, noteId))
         return
     }
 
     //GET A NOTE
-    const handleSingleNote = (e, noteId) => {
-        e.preventDefault();
-        dispatch(sessionActions.getSingleNoteThunk(currentUser.id, noteId))
-    }
+    // const handleSingleNote = (e, noteId) => {
+    //     e.preventDefault();
+    //     dispatch(sessionActions.getSingleNoteThunk(currentUser.id, noteId))
+    // }
 
 
 
     useEffect(() => {
         dispatch(sessionActions.getNotesThunk(currentUser.id))
+
         //adding loaded is not chaning anything atm, fixed loading issue with '?'
 
     }, [dispatch])

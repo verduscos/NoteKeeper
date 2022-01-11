@@ -74,12 +74,12 @@ export const createNoteThunk = (payload) => async (dispatch) => {
     }
 }
 
-export const editNoteThunk = (payload, noteId) => async (dispatch) => {
+export const editNoteThunk = (test, noteId) => async (dispatch) => {
     console.log('IN THUNK')
     const response = await csrfFetch(`/api/mynotes/notes/${noteId}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload)
+        body: JSON.stringify(test)
     })
 
     if (response.ok) {
@@ -92,22 +92,30 @@ export const editNoteThunk = (payload, noteId) => async (dispatch) => {
 const initialState = { notes: null };
 
 const notesReducer = (state = initialState, action) => {
-    let newState;
     switch (action.type) {
         case GET_NOTES: {
             return {...state, notes: action.payload}
         }
-        //pretty sure this return is wrong, check googles
         case CREATE_NOTE: {
-            return {...state, notes: action.payload.note};
+            console.log('REDUCER')
+            const newState = { ...state};
+            newState.notes = {
+                ...newState.notes,
+                [action.note.id]: action.note,
+            };
+            return newState
         }
         case EDIT_NOTE: {
-            return {...state, notes: action.payload}
+            const newState = {...state};
+            newState.notes = {
+                ...newState.notes,
+                [action.note.id]: action.note
+            }
+            return {...newState}
         };
         case REMOVE_NOTE: {
             return {...state, note:action.payload}
         }
-
         default:
             return state;
     }

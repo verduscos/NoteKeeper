@@ -1,6 +1,5 @@
 const express = require('express');
 const asyncHandler = require('express-async-handler');
-// const { db } = require('../../config');
 
 const { Note } = require('../../db/models');
 const { handleValidationErrors } = require('../../utils/validation');;
@@ -10,14 +9,13 @@ const router = express.Router();
 
 //Find one note
 router.get('/:userId/notes/:noteId', asyncHandler(async (req, res) =>  {
-  console.log('INSIDE ROUTE')
-
-  let { userId, noteId } = req.params;
+  let { noteId } = req.params;
   let id = parseInt(noteId);
 
   const note = await Note.findByPk(id)
 return res.json(note)
 }));
+
 
 // Get all notes
 router.get("/:userId", asyncHandler(async(req, res) => {
@@ -47,13 +45,25 @@ router.post('/', asyncHandler(async(req, res) => {
 
 }))
 
+
 // Edit a note
 router.put('/notes/:noteId', asyncHandler(async (req, res) => {
-  console.log('asdfjlasdfjkl')
+  console.log('INSIDE ROUTE')
+  console.log(req.params)
+  const { noteId } = req.params;
   const { body } = req.body;
-  console.log(body);
-  // res.json({})
+
+  const note = await Note.findByPk(noteId);
+  await note.update({
+    body
+  })
+  await note.save();
+
+  console.log(note)
+  console.log(body, noteId);
+return
 }))
+
 
 //DELETE
 router.delete('/notes/:noteId', asyncHandler(async (req, res) => {
