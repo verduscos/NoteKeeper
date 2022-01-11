@@ -26,7 +26,7 @@ function App() {
           <Route path="/signup">
             <SignupFormPage />
           </Route>
-          <Route path="/mynotes">
+          <Route path="/mynotes/notes">
             <Notes />
           </Route>
         </Switch>
