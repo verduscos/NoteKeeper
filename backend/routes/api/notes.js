@@ -48,8 +48,6 @@ router.post('/', asyncHandler(async(req, res) => {
 
 // Edit a note
 router.put('/notes/:noteId', asyncHandler(async (req, res) => {
-  console.log('INSIDE ROUTE')
-  console.log(req.params)
   const { noteId } = req.params;
   const { body } = req.body;
 
@@ -59,8 +57,6 @@ router.put('/notes/:noteId', asyncHandler(async (req, res) => {
   })
   await note.save();
 
-  console.log(note)
-  console.log(body, noteId);
 return
 }))
 

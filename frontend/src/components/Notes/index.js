@@ -46,7 +46,7 @@ function Notes() {
         console.log('INSIDE HANDLE')
         const payload = {
             id: noteId,
-            body: 'NEW EDIT'
+            body: 'TESTING EDIT'
         }
         console.log(payload)
         dispatch(sessionActions.editNoteThunk(payload, noteId))
