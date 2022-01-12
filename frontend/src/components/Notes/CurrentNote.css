@@ -1,10 +1,11 @@
 #mynotes-container {
     /* background-color: red; */
     display: flex;
-    width: 1200px;
-    margin: 0 auto;
-    justify-content: space-between;
-    align-items: flex-start;
+    /* width: 1200px; */
+    /* margin: 0 auto; */
+    justify-content: center;
+    align-items: center;
+    justify-content: space-around;
 
 }
 
@@ -42,8 +43,18 @@
     height: 500px;
 }
 
-#displayNote {
+.displayNote {
     background-color: rgb(241, 241, 241);
     height: 500px;
     width: 750px;
+}
+
+
+#createNote {
+    height: 25px;
+    margin-bottom: 10px;
+}
+
+#create-form {
+    background-color: gray;
 }

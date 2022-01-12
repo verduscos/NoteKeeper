@@ -74,15 +74,18 @@ function Notes() {
         </Route> */}
 
 
-            <form>
-            <input onChange={(e) => {
+            <form id='create-form'>
+                <h1>Create a new note</h1>
+            <input  onChange={(e) => {
                 setTitle(e.target.value);
             }}
+            id='createNote'
             type='text' value={title} placeholder='Title'/>
             <input onChange={(e) => {
                 setBody(e.target.value);
             }}
-            type='text' value={body} placeholder='Note'/>
+            className='displayNote'
+            type='text' value={body} placeholder='Start writing...'/>
             <button onClick={(e) => {
                 handleCreate(e)
             }}>Create</button>

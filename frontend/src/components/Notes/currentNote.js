@@ -12,13 +12,11 @@ function CurrentNote() {
     const userNotes = useSelector(state => state.notes.notes)
 
     const  { noteId } = params;
-    const  { title, body } = userNotes?.find(note =>
-        note.id === +noteId
-        )
 
 
-    const [currtitle, setcurrTitle] = useState(title);
-    const [currentNote, setCurrentNote] = useState(body);
+
+    const [currtitle, setcurrTitle] = useState('');
+    const [currentNote, setCurrentNote] = useState('');
 
 
 
@@ -49,14 +47,21 @@ function CurrentNote() {
     useEffect(() => {
         dispatch(sessionActions.getNotesThunk(currentUser?.id))
         // dispatch(sessionActions.removeNoteThunk(noteId))
-    }, [dispatch])
+
+        const  { title, body } = userNotes?.find(note =>
+            note.id === +noteId
+            )
+
+            setcurrTitle(title)
+setCurrentNote(body)
+    }, [dispatch, noteId])
 
 
     return (
         <div>
             <h1>{currtitle}</h1>
             <form>
-                <input id='displayNote'
+                <input className='displayNote'
                 onChange={(e) => {
                     setCurrentNote(e.target.value)
                 }}
