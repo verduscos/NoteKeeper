@@ -8,6 +8,7 @@ import Homepage from "./components/Homepage";
 import Footer from './components/Footer';
 import Notes from "./components/Notes";
 import CurrentNote from "./components/Notes/currentNote";
+import Create from "./components/Notes/Create";
 
 function App() {
   const dispatch = useDispatch();
@@ -31,9 +32,13 @@ function App() {
           <Route  path="/mynotes/notes">
             <Notes />
           </Route>
+          <Route exact path="/mynotes/notes/new">
+            <Create />
+          </Route>
           <Route exact path="/mynotes/notes/:noteId">
             <CurrentNote />
           </Route>
+
         </Switch>
         </>
       )}

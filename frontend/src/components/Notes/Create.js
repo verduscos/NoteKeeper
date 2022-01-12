@@ -28,7 +28,7 @@ function Create() {
     return (
         <>
         <h1>CREATE NOTE</h1>
-                <form>
+                {/* <form>
             <input onChange={(e) => {
                 setTitle(e.target.value);
             }}
@@ -40,7 +40,7 @@ function Create() {
             <button onClick={(e) => {
                 handleCreate(e)
             }}>Create</button>
-        </form>
+        </form> */}
         </>
     )
 }

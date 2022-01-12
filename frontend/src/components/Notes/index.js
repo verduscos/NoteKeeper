@@ -22,11 +22,6 @@ function Notes() {
 
     const userNotes = useSelector(state => state.notes.notes);
 
-    // CREATE
-    // const handleTest = (e) => {
-    //     e.preventDefault();
-    //     return <h1>aslkfdjsklfajlsdkfj</h1>
-    // }
     const handleCreate = (e) => {
         e.preventDefault();
 
@@ -71,29 +66,15 @@ function Notes() {
 
         </div>
 
-        {/* <h2>Create note:</h2> */}
-        {/* <form>
-            <input onChange={(e) => {
-                setTitle(e.target.value);
-            }}
-            type='text' value={title} placeholder='Title'/>
-            <input onChange={(e) => {
-                setBody(e.target.value);
-            }}
-            type='text' value={body} placeholder='Note'/>
-            <button onClick={(e) => {
-                handleCreate(e)
-            }}>Create</button>
-        </form> */}
         <Route exact path='/mynotes/notes/:noteId'>
             <CurrentNote />
         </Route>
-        <Route exact path='/mynotes/notes/new'>
+        {/* <Route exact path='/mynotes/notes/new'>
             <Create />
-        </Route>
+        </Route> */}
 
-                {/* <h2>Create note:</h2> */}
-        {/* <form>
+
+            <form>
             <input onChange={(e) => {
                 setTitle(e.target.value);
             }}
@@ -105,11 +86,7 @@ function Notes() {
             <button onClick={(e) => {
                 handleCreate(e)
             }}>Create</button>
-                        {/* <button onClick={(e) => {
-                handleTest(e)
-            }}>Test</button> */}
-        {/* </form> */}
-            <Link to='/mynotes/notes/new'>Create new note</Link>
+        </form>
         </div>
         </>
     )
