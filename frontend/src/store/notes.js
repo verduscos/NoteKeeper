@@ -93,11 +93,11 @@ const initialState = { notes: null };
 
 const notesReducer = (state = initialState, action) => {
     switch (action.type) {
-        //WORKING
+        // WORKING
         case GET_NOTES: {
             return {...state, notes: action.payload}
         }
-        //WORKING
+        // WORKING
         case CREATE_NOTE: {
             const newState = { ...state};
             newState.notes = [
@@ -106,24 +106,7 @@ const notesReducer = (state = initialState, action) => {
             ];
             return newState
         }
-
-        //NOT WORKING
-        // case EDIT_NOTE: {
-        //     const newState = { ...state };
-        //     newState.entries = { ...newState.entries, [action.note.id]: action.note };
-        //     return newState;
-        //   };
-        // NOT WORKING
-        case REMOVE_NOTE: {
-            const newState = {...state};
-            newState.notes.forEach((note, i, arr) => {
-                if (note.id === action.payload.id) {
-                    arr[i] = undefined;
-                }
-            })
-            // newState.notes[action.payload.noteId] = undefined;
-            return newState
-        }
+        // WORKING
         case EDIT_NOTE: {
             const newState = { ...state};
             newState.notes.forEach((note, i ,arr) => {
@@ -133,7 +116,21 @@ const notesReducer = (state = initialState, action) => {
             })
             return newState;
           }
-
+        // NOT WORKING
+        // case REMOVE_NOTE: {
+        //     const newState = {...state};
+            // newState.notes.forEach((note, i, arr) => {
+            //     if (note.id === action.noteId) {
+            //        newState.notes.splice(i, 1, 0);
+            //     }
+            // })
+            // for (let i = 0; i < newState.notes; i++) {
+            //     if (newState.notes.id[i] === action.payload.id) {
+            //          newState.notes.splice(i, 1, 0);
+            //     }
+            // }
+            // return newState
+        // }
 
         default:
             return state;

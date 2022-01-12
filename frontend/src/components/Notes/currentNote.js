@@ -1,4 +1,4 @@
-import { React, useState } from 'react';
+import React, {  useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import * as sessionActions from '../../store/notes';
 import { useParams } from 'react-router-dom';
@@ -13,7 +13,8 @@ function CurrentNote() {
     const  { noteId } = params;
 
     const userNotes = useSelector(state => state.notes.notes)
-    const [body, setBody] = useState('')
+    const [title, setTitle] = useState('');
+    const [body, setBody] = useState('');
     console.log(body)
 
 
@@ -37,10 +38,20 @@ function CurrentNote() {
             // DELETE
     const handleDelete = async (e, id) => {
         e.preventDefault();
+        // let deleted = await;
 
         dispatch(sessionActions.removeNoteThunk(id))
+        dispatch(sessionActions.getNotesThunk(currentUser.id))
         return
     }
+
+    useEffect(() => {
+        dispatch(sessionActions.getNotesThunk(currentUser.id))
+        dispatch(sessionActions.removeNoteThunk(currentNote.id))
+
+        //adding loaded is not chaning anything atm, fixed loading issue with '?'
+
+    }, [dispatch])
 
 
     return (
