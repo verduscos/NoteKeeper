@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import * as sessionActions from '../../store/notes';
 import { useDispatch, useSelector } from 'react-redux';
-
+import CurrentNote from './currentNote';
+import { Link, Route } from 'react-router-dom';
 
 function Notes() {
     const currentUser = useSelector(state => state.session.user);
@@ -78,7 +79,11 @@ function Notes() {
         <h1>Notes</h1>
         {userNotes?.map(note => (
             <>
-            <div onClick={(e) => {
+            <div>
+                <Link to={`/mynotes/notes/${note.id}`}>{note.title}</Link>
+            </div>
+
+            {/* <div onClick={(e) => {
                 setDisplayNote(note.body)
             }}
             value={note.id}>TITLE: {note.title}</div>
@@ -87,11 +92,12 @@ function Notes() {
             )}>Delete</button>
                         <button onClick={(e) => (
                 handleEdit(e, note.id)
-            )}>Edit</button>
+            )}>Edit</button> */}
             </>
         ))}
-        <h2>Current note:</h2>
-        <p>{displayNote}</p>
+        {/* <CurrentNote /> */}
+        {/* <h2>Current note:</h2>
+        <p>{displayNote}</p> */}
         <h2>Create note:</h2>
         <form>
             <input onChange={(e) => {
@@ -106,6 +112,9 @@ function Notes() {
                 handleCreate(e)
             }}>Create</button>
         </form>
+        <Route exact path='/mynotes/notes/:noteId'>
+            <CurrentNote />
+        </Route>
         </>
     )
 // }

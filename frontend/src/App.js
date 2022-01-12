@@ -7,6 +7,7 @@ import Navigation from "./components/Navigation";
 import Homepage from "./components/Homepage";
 import Footer from './components/Footer';
 import Notes from "./components/Notes";
+import CurrentNote from "./components/Notes/currentNote";
 
 function App() {
   const dispatch = useDispatch();
@@ -26,8 +27,12 @@ function App() {
           <Route path="/signup">
             <SignupFormPage />
           </Route>
-          <Route path="/mynotes/notes">
+          <Route  path="/mynotes/notes">
             <Notes />
+            {/* <CurrentNote /> */}
+          </Route>
+          <Route exact path="/mynotes/notes/:noteId">
+            <CurrentNote />
           </Route>
         </Switch>
       )}

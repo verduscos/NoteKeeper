@@ -51,7 +51,7 @@ router.post('/', asyncHandler(async(req, res) => {
 router.patch('/notes/:noteId', asyncHandler(async (req, res) => {
   const { noteId } = req.params;
   const { body } = req.body;
-
+  console.log('INSIDE ORUTE')
   const note = await Note.findByPk(noteId);
   await note.update({
     body
