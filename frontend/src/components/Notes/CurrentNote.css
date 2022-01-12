@@ -4,7 +4,7 @@
     /* width: 1200px; */
     /* margin: 0 auto; */
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
     justify-content: space-around;
 
 }
@@ -16,6 +16,8 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    padding: 0;
+    margin: 0;
 
 }
 
@@ -49,12 +51,41 @@
     width: 750px;
 }
 
+#edit-form {
+        /* background-color: gray; */
+        display: flex;
+        flex-direction: column;
 
-#createNote {
+}
+
+
+#createNote-title {
     height: 25px;
     margin-bottom: 10px;
+    width: 200px;
+    border-radius: 5px;
+    border: 2px solid gray;
 }
 
 #create-form {
-    background-color: gray;
+    /* background-color: gray; */
+    display: flex;
+    flex-direction: column;
+}
+
+
+.butts {
+    width: 200px;
+    height: 30px;
+    border-radius: 5px;
+    border: 2px solid gray;
+    margin: 0 auto;
+    margin-top: 10px;
+}
+
+.title-container {
+    /* background-color: red; */
+    height: 120px;
+    border: 1px solid gray;
+    padding: 10px;
 }

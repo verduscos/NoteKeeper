@@ -75,12 +75,17 @@ function Notes() {
 
 
             <form id='create-form'>
-                <h1>Create a new note</h1>
-            <input  onChange={(e) => {
+                <div className='title-container'>
+                    <h1>Create a new note</h1>
+
+                <input  onChange={(e) => {
                 setTitle(e.target.value);
             }}
-            id='createNote'
+            required
+            id='createNote-title'
             type='text' value={title} placeholder='Title'/>
+                </div>
+
             <input onChange={(e) => {
                 setBody(e.target.value);
             }}
@@ -88,7 +93,9 @@ function Notes() {
             type='text' value={body} placeholder='Start writing...'/>
             <button onClick={(e) => {
                 handleCreate(e)
-            }}>Create</button>
+            }}
+            className='butts'
+            >Create</button>
         </form>
         </div>
         </>

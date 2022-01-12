@@ -2,6 +2,7 @@ import React, {  useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import * as sessionActions from '../../store/notes';
 import { useParams, Redirect } from 'react-router-dom';
+import './CurrentNote.css';
 
 
 
@@ -32,6 +33,7 @@ function CurrentNote() {
             console.log(payload)
             dispatch(sessionActions.editNoteThunk(payload, noteId));
             // <Redirect to='/mynotes/notes' />;
+            window.alert('Your note has been saved!')
             return
         }
 
@@ -59,19 +61,28 @@ setCurrentNote(body)
 
     return (
         <div>
+            <form id='edit-form'>
+            <div className='title-container'>
+
             <h1>{currtitle}</h1>
-            <form>
-                <input className='displayNote'
+            </div>
+                <input
+                className='butts'
+                className='displayNote'
                 onChange={(e) => {
                     setCurrentNote(e.target.value)
                 }}
                 value={currentNote}
                 type="text"></input>
 
-                <button onClick={(e) => {
+                <button
+                className='butts'
+                onClick={(e) => {
                     handleEdit(e)
                 }}>Update</button>
-                                <button onClick={(e) => {
+                                <button
+                                className='butts'
+                                onClick={(e) => {
                     handleDelete(e, noteId)
                 }}>Delete</button>
             </form>
