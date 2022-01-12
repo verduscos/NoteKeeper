@@ -17,6 +17,19 @@ function Notes() {
     const [userId, setUserId] = useState(null);
     const [notebookId, setNotebookId] = useState(null);
     const [displayNote, setDisplayNote] = useState('')
+    const [errors, setErrors] = useState([]);
+
+
+    const handleErrors = (e) => {
+        const errors = [];
+
+        if (title.length < 4) errors.push('Title must be at least 4 characters long.');
+        if (!body.length) errors.push('You can\'t create an empty note!');
+
+        if (errors.length) setErrors(errors)
+    }
+
+
 
 
 
@@ -35,6 +48,7 @@ function Notes() {
 
         return
     }
+
 
 
 
@@ -74,7 +88,7 @@ function Notes() {
         </Route> */}
 
 
-            <form id='create-form'>
+            <form onSubmit={handleErrors} id='create-form'>
                 <div className='title-container'>
                     <h1>Create a new note</h1>
 
@@ -86,11 +100,15 @@ function Notes() {
             type='text' value={title} placeholder='Title'/>
                 </div>
 
+                <ul className='errors'>
+                    {errors.map((error, idx) => <li key={idx}>{error}</li>)}
+                </ul>
+
             <input onChange={(e) => {
                 setBody(e.target.value);
             }}
             className='displayNote'
-            type='text' value={body} placeholder='Start writing...'/>
+            type='texarea' value={body} placeholder='Start writing...'/>
             <button onClick={(e) => {
                 handleCreate(e)
             }}

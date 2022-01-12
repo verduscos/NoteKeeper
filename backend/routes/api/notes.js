@@ -3,10 +3,24 @@ const asyncHandler = require('express-async-handler');
 // const { requireAuth}
 
 const { Note } = require('../../db/models');
+const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');;
 
 
 const router = express.Router();
+
+
+// Note Creation Validation
+const validateNote = [
+  check('title')
+      .exists({ checkFalsy: true })
+      .isLength({ min: 4})
+      .withMessage('Title must be at least 4 characters.'),
+  check('body')
+      .exists({ checkFalsy: true })
+      .withMessage('You need to write something!'),
+  handleValidationErrors,
+];
 
 //Find one note
 router.get('/:userId/notes/:noteId', asyncHandler(async (req, res) =>  {
@@ -33,7 +47,7 @@ router.get("/:userId", asyncHandler(async(req, res) => {
 
 
   // Create a note
-router.post('/', asyncHandler(async(req, res) => {
+router.post('/', validateNote ,asyncHandler(async(req, res) => {
   const { title, body, userId, notebookId} = req.body;
 
   let newNote = await Note.create({

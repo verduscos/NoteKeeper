@@ -1,12 +1,13 @@
 import React, {  useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import * as sessionActions from '../../store/notes';
-import { useParams, Redirect } from 'react-router-dom';
+import { useParams, Redirect, useHistory } from 'react-router-dom';
 import './CurrentNote.css';
 
 
 
 function CurrentNote() {
+    const history = useHistory();
     const params = useParams();
     const dispatch = useDispatch();
     const currentUser = useSelector(state => state.session.user);
@@ -38,11 +39,22 @@ function CurrentNote() {
         }
 
     // DELETE
+    // const handleDelete = async (e, id) => {
+    //     e.preventDefault();
+
+    //     dispatch(sessionActions.removeNoteThunk(id))
+    //     dispatch(sessionActions.getNotesThunk(currentUser?.id))
+    //     return
+    // }
+
     const handleDelete = async (e, id) => {
         e.preventDefault();
 
-        dispatch(sessionActions.removeNoteThunk(id))
-        dispatch(sessionActions.getNotesThunk(currentUser?.id))
+        const res = await dispatch(sessionActions.removeNoteThunk(id))
+        // await dispatch(sessionActions.getNotesThunk(currentUser?.id))
+        if(res.id) history.push('mynotes/notes')
+
+
         return
     }
 
