@@ -1,5 +1,6 @@
 const express = require('express');
 const asyncHandler = require('express-async-handler');
+// const { requireAuth}
 
 const { Note } = require('../../db/models');
 const { handleValidationErrors } = require('../../utils/validation');;
@@ -35,19 +36,19 @@ router.get("/:userId", asyncHandler(async(req, res) => {
 router.post('/', asyncHandler(async(req, res) => {
   const { title, body, userId, notebookId} = req.body;
 
-  await Note.create({
+  let newNote = await Note.create({
     title,
     body,
     userId,
     notebookId
   })
-  return
+  return res.json(newNote);
 
 }))
 
 
 // Edit a note
-router.put('/notes/:noteId', asyncHandler(async (req, res) => {
+router.patch('/notes/:noteId', asyncHandler(async (req, res) => {
   const { noteId } = req.params;
   const { body } = req.body;
 
@@ -57,7 +58,7 @@ router.put('/notes/:noteId', asyncHandler(async (req, res) => {
   })
   await note.save();
 
-return
+  return res.json(note);
 }))
 
 
@@ -67,6 +68,7 @@ router.delete('/notes/:noteId', asyncHandler(async (req, res) => {
   const note = await Note.findByPk(noteId)
 
   await note.destroy();
+  return res.json(note);
 }))
 
 module.exports = router;

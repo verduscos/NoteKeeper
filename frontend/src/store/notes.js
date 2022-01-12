@@ -77,7 +77,7 @@ export const createNoteThunk = (payload) => async (dispatch) => {
 export const editNoteThunk = (payload, noteId) => async (dispatch) => {
     console.log('IN THUNK')
     const response = await csrfFetch(`/api/mynotes/notes/${noteId}`, {
-        method: 'PUT',
+        method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload)
     })
@@ -93,28 +93,43 @@ const initialState = { notes: null };
 
 const notesReducer = (state = initialState, action) => {
     switch (action.type) {
+        //WORKING
         case GET_NOTES: {
             return {...state, notes: action.payload}
         }
+        //WORKING
         case CREATE_NOTE: {
             const newState = { ...state};
-            newState.notes = {
+            newState.notes = [
                 ...newState.notes,
-                [action.payload.id]: action.payload,
-            };
+                 action.payload,
+            ];
             return newState
         }
+
+        //NOT WORKING
+        // case EDIT_NOTE: {
+        //     const newState = { ...state };
+        //     newState.entries = { ...newState.entries, [action.note.id]: action.note };
+        //     return newState;
+        //   };
+        // NOT WORKING
+        // case REMOVE_NOTE: {
+        //     const newState = {...state};
+        //     newState.notes[action.payload.noteId] = undefined;
+        //     return newState
+        // }
         case EDIT_NOTE: {
-            const newState = {...state};
-            newState.notes = {
-                ...newState.notes,
-                [action.note.id]: action.note
-            }
-            return {...newState}
-        };
-        case REMOVE_NOTE: {
-            return {...state, note:action.payload}
-        }
+            const newState = { ...state};
+            newState.notes.find(note => {
+                if (note.id === action.payload.id) {
+                    note = action.payload
+                }
+            })
+            return newState;
+          }
+
+
         default:
             return state;
     }
