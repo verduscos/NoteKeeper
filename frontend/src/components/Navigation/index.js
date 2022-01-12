@@ -14,9 +14,11 @@ function Navigation({ isLoaded }){
   const dispatch = useDispatch();
   const sessionUser = useSelector(state => state.session.user);
 
+  if (sessionUser) return <Redirect to='/mynotes/notes' />;
+
+
   const handleDemo = (e) => {
     e.preventDefault();
-    history.push('/mynotes/notes');
     // <Redirect to="/mynotes/notes" />
 
     return dispatch(sessionActions.demo());

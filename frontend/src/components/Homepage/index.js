@@ -1,8 +1,18 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './Homepage.css'
+import { useSelector } from 'react-redux'
+import { Redirect } from 'react-router-dom';
+
 
 function Homepage() {
+    // const sessionUser = useSelector(state => state.session.user);
+    // if (sessionUser) {
+    //     return <Redirect to='/mynotes/notes' />
+    // } else {
+    //     return <Redirect to='/' />
+    // }
+
     return (
         <div id='body'>
             <h1 id='hompage-h1'>Tame your work, organize your life</h1>

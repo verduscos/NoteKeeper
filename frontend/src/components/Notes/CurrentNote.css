@@ -1,0 +1,49 @@
+#mynotes-container {
+    /* background-color: red; */
+    display: flex;
+    width: 1200px;
+    margin: 0 auto;
+    justify-content: space-between;
+    align-items: flex-start;
+
+}
+
+#note-link-column {
+    /* background-color: gray; */
+    width: 250px;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+
+#note-link {
+    background-color: mintcream;
+    border-bottom: 1px solid gray;
+    height: 50px;
+    width: 200px;
+    font-size: 20px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    padding: 10px
+}
+
+#note-link {
+    text-decoration: none;
+    color: black;
+}
+
+
+#note-container {
+    border: solid 3px rgb(78, 78, 78);
+    overflow-y: auto;
+    height: 500px;
+}
+
+#displayNote {
+    background-color: rgb(241, 241, 241);
+    height: 500px;
+    width: 750px;
+}

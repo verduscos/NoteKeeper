@@ -3,6 +3,9 @@ import * as sessionActions from '../../store/notes';
 import { useDispatch, useSelector } from 'react-redux';
 import CurrentNote from './currentNote';
 import { Link, Route } from 'react-router-dom';
+import ProfileButton from '../Navigation/ProfileButton';
+import './CurrentNote.css'
+import Create from './Create';
 
 function Notes() {
     const currentUser = useSelector(state => state.session.user);
@@ -15,9 +18,15 @@ function Notes() {
     const [notebookId, setNotebookId] = useState(null);
     const [displayNote, setDisplayNote] = useState('')
 
+
+
     const userNotes = useSelector(state => state.notes.notes);
 
     // CREATE
+    // const handleTest = (e) => {
+    //     e.preventDefault();
+    //     return <h1>aslkfdjsklfajlsdkfj</h1>
+    // }
     const handleCreate = (e) => {
         e.preventDefault();
 
@@ -31,35 +40,6 @@ function Notes() {
 
         return
     }
-
-
-    // DELETE
-    const handleDelete = async (e, noteId) => {
-        e.preventDefault();
-
-        dispatch(sessionActions.removeNoteThunk(noteId))
-        return
-    }
-
-    // EDIT
-    const handleEdit = async (e, noteId) => {
-        e.preventDefault();
-        console.log('INSIDE HANDLE')
-        const payload = {
-            id: noteId,
-            body: 'TESTING EDIT',
-            userId
-        }
-        console.log(payload)
-        dispatch(sessionActions.editNoteThunk(payload, noteId))
-        return
-    }
-
-    //GET A NOTE
-    // const handleSingleNote = (e, noteId) => {
-    //     e.preventDefault();
-    //     dispatch(sessionActions.getSingleNoteThunk(currentUser.id, noteId))
-    // }
 
 
 
@@ -76,30 +56,23 @@ function Notes() {
 
         return (
         <>
-        <h1>Notes</h1>
-        {userNotes?.map(note => (
-            <>
-            <div>
-                <Link to={`/mynotes/notes/${note.id}`}>{note.title}</Link>
+        <ProfileButton user={currentUser}/>
+        <div id='mynotes-container'>
+        <div id='note-link-column'>
+            <h1>My Notes</h1>
+
+            <div id='note-container'>
+            {userNotes?.map(note => (
+                <div>
+                    <Link id='note-link'  to={`/mynotes/notes/${note.id}`}>{note.title}</Link>
+                </div>
+            ))}
             </div>
 
-            {/* <div onClick={(e) => {
-                setDisplayNote(note.body)
-            }}
-            value={note.id}>TITLE: {note.title}</div>
-            <button onClick={(e) => (
-                handleDelete(e, note.id)
-            )}>Delete</button>
-                        <button onClick={(e) => (
-                handleEdit(e, note.id)
-            )}>Edit</button> */}
-            </>
-        ))}
-        {/* <CurrentNote /> */}
-        {/* <h2>Current note:</h2>
-        <p>{displayNote}</p> */}
-        <h2>Create note:</h2>
-        <form>
+        </div>
+
+        {/* <h2>Create note:</h2> */}
+        {/* <form>
             <input onChange={(e) => {
                 setTitle(e.target.value);
             }}
@@ -111,13 +84,35 @@ function Notes() {
             <button onClick={(e) => {
                 handleCreate(e)
             }}>Create</button>
-        </form>
+        </form> */}
         <Route exact path='/mynotes/notes/:noteId'>
             <CurrentNote />
         </Route>
+        <Route exact path='/mynotes/notes/new'>
+            <Create />
+        </Route>
+
+                {/* <h2>Create note:</h2> */}
+        {/* <form>
+            <input onChange={(e) => {
+                setTitle(e.target.value);
+            }}
+            type='text' value={title} placeholder='Title'/>
+            <input onChange={(e) => {
+                setBody(e.target.value);
+            }}
+            type='text' value={body} placeholder='Note'/>
+            <button onClick={(e) => {
+                handleCreate(e)
+            }}>Create</button>
+                        {/* <button onClick={(e) => {
+                handleTest(e)
+            }}>Test</button> */}
+        {/* </form> */}
+            <Link to='/mynotes/notes/new'>Create new note</Link>
+        </div>
         </>
     )
-// }
 }
 
 export default Notes;

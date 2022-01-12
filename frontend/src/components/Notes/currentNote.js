@@ -1,7 +1,7 @@
 import React, {  useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import * as sessionActions from '../../store/notes';
-import { useParams } from 'react-router-dom';
+import { useParams, Redirect } from 'react-router-dom';
 
 
 
@@ -35,19 +35,18 @@ function CurrentNote() {
             return
         }
 
-            // DELETE
+    // DELETE
     const handleDelete = async (e, id) => {
         e.preventDefault();
-        // let deleted = await;
 
         dispatch(sessionActions.removeNoteThunk(id))
-        dispatch(sessionActions.getNotesThunk(currentUser.id))
+        dispatch(sessionActions.getNotesThunk(currentUser?.id))
         return
     }
 
     useEffect(() => {
-        dispatch(sessionActions.getNotesThunk(currentUser.id))
-        dispatch(sessionActions.removeNoteThunk(currentNote.id))
+        dispatch(sessionActions.getNotesThunk(currentUser?.id))
+        // dispatch(sessionActions.removeNoteThunk(currentNote?.id))
 
         //adding loaded is not chaning anything atm, fixed loading issue with '?'
 
@@ -56,8 +55,8 @@ function CurrentNote() {
 
     return (
         <div>
-            <h1>current selected note</h1>
-            <p>{currentNote?.body}</p>
+            <h1>{currentNote?.title}</h1>
+            <p id='displayNote'>{currentNote?.body}</p>
             <form>
                 <input onChange={(e) => {
                     setBody(e.target.value)

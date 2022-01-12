@@ -19,9 +19,10 @@ function App() {
   return (
     <>
       {isLoaded && (
+        <>
+        <Navigation isLoaded={isLoaded} />
         <Switch>
           <Route exact path="/">
-            <Navigation isLoaded={isLoaded} />
             <Homepage />
           </Route>
           <Route path="/signup">
@@ -29,12 +30,12 @@ function App() {
           </Route>
           <Route  path="/mynotes/notes">
             <Notes />
-            {/* <CurrentNote /> */}
           </Route>
           <Route exact path="/mynotes/notes/:noteId">
             <CurrentNote />
           </Route>
         </Switch>
+        </>
       )}
       <Footer />
     </>
