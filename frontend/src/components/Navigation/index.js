@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Redirect, useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import LoginFormModal from '../LoginFormModal'
@@ -8,12 +8,17 @@ import './Navigation.css';
 import * as sessionActions from "../../store/session";
 
 
+
 function Navigation({ isLoaded }){
+  let history = useHistory();
   const dispatch = useDispatch();
   const sessionUser = useSelector(state => state.session.user);
 
   const handleDemo = (e) => {
     e.preventDefault();
+    history.push('/mynotes/notes');
+    // <Redirect to="/mynotes/notes" />
+
     return dispatch(sessionActions.demo());
   }
 
