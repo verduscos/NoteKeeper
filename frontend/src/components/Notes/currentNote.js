@@ -21,15 +21,15 @@ function CurrentNote() {
     const [currentNote, setCurrentNote] = useState('');
     const [errors, setErrors] = useState([]);
 
-const checkErrors = (title, body) => {
-    const errors = [];
-    if (title.length < 4) errors.push('title errors');
-    if (!body.length) errors.push('body errors');
+// const checkErrors = (title, body) => {
+//     const errors = [];
+//     if (title.length < 4) errors.push('title errors');
+//     if (!body.length) errors.push('body errors');
 
-    setErrors(errors)
+//     setErrors(errors)
 
-    return errors;
-}
+//     return errors;
+// }
 
 
         // EDIT
@@ -45,9 +45,9 @@ const checkErrors = (title, body) => {
 
             setErrors([]);
 
-            if (currtitle.length > 4) {
-                return checkErrors(currtitle, currentNote)
-            } else {
+            // if (currtitle.length > 4) {
+            //     return checkErrors(currtitle, currentNote)
+            // } else {
 
 
             return dispatch(sessionActions.editNoteThunk(payload, noteId))
@@ -55,7 +55,7 @@ const checkErrors = (title, body) => {
                 const data = await res.json();
                 if (data && data.errors) setErrors(data.errors);
             })
-        }
+        // }
             // return
         }
 
