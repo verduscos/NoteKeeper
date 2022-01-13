@@ -19,8 +19,6 @@ function Navigation({ isLoaded }){
 
   const handleDemo = (e) => {
     e.preventDefault();
-    // <Redirect to="/mynotes/notes" />
-
     return dispatch(sessionActions.demo());
   }
 

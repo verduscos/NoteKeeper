@@ -16,6 +16,26 @@ function CurrentNote() {
     const [currtitle, setcurrTitle] = useState('');
     const [currentNote, setCurrentNote] = useState('');
     const [errors, setErrors] = useState([]);
+    const [updated, setUpdated] = useState(false);
+
+    let notifcation;
+    if (updated) {
+        notifcation = (
+            <div className='notification'>
+                <p>Note Updated! </p> <i id='notification-check' class="fas fa-check-square"></i>
+            </div>
+        )
+    } else {
+        notifcation = (
+            null
+        )
+    }
+
+    if (updated) {
+        setTimeout(() => {
+            setUpdated(false);
+        }, 2000)
+    }
 
 
     // EDIT
@@ -30,6 +50,7 @@ function CurrentNote() {
         }
 
         setErrors([]);
+        if (currtitle.length >= 4 && currentNote.length >= 1) setUpdated(true)
 
         return dispatch(sessionActions.editNoteThunk(payload, noteId))
         .catch(async (res) => {
@@ -65,6 +86,7 @@ function CurrentNote() {
             <div className='title-container'>
 
             <h1>{currtitle}</h1>
+            {notifcation}
             <input
                    value={currtitle}
                 className='butts'
