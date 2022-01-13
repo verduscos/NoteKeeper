@@ -73,8 +73,6 @@ const handleSubmit = (e) => {
                     className='inputssignup'
                     />
                 <button id='signupPageButt' type="submit">Continue</button>
-                <p>Already a member?</p>
-                <LoginFormModal className='test' />
             </form>
         </div>
     )
