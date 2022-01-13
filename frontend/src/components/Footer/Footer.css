@@ -16,4 +16,23 @@
     align-items: center;
 }
 
+#footer-links {
+    display: flex;
+    align-items: center;
+}
 
+#footer-links > * {
+    margin: 0 5px;
+}
+
+.footer-link {
+    color: rgb(175, 175, 175);
+    text-decoration: none;
+    font-size: 20px;
+    margin-left: 15px !important;
+    transition-duration: .2s;
+}
+
+.footer-link:hover {
+    color: rgb(211, 211, 211);
+}
