@@ -18,6 +18,20 @@ function Notes() {
     const [notebookId, setNotebookId] = useState(null);
     const [displayNote, setDisplayNote] = useState('')
     const [errors, setErrors] = useState([]);
+    const [created, setCreated] = useState(false);
+
+    let notifcation;
+    if (created) {
+        notifcation = (
+            <div className='notification'>
+                <p>Note Created! </p> <i id='notification-check' class="fas fa-check-square"></i>
+            </div>
+        )
+    } else {
+        notifcation = (
+            null
+        )
+    }
 
 
     const handleErrors = (e) => {
@@ -31,18 +45,23 @@ function Notes() {
         }
         setErrors([]);
 
-        // if (title.length < 4) {
+        if (title.length >= 4 && body.length >= 1) setCreated(true)
+
             return dispatch(sessionActions.createNoteThunk(payload))
             .catch(async (res) => {
                 const data = await res.json();
-                if (data && data.errors) setErrors(data.errors);
+                if (data && data.errors) setErrors(data.errors)
+
             })
-        // }
     }
 
 
 
-
+    if (created) {
+        setTimeout(() => {
+            setCreated(false);
+        }, 2000)
+    }
 
     const userNotes = useSelector(state => state.notes.notes);
 
@@ -76,6 +95,7 @@ function Notes() {
 
         return (
         <>
+           {notifcation}
         <ProfileButton user={currentUser}/>
         <div id='mynotes-container'>
         <div id='note-link-column'>
