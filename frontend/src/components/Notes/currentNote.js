@@ -1,7 +1,7 @@
 import React, {  useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import * as sessionActions from '../../store/notes';
-import { useParams, Redirect, useHistory } from 'react-router-dom';
+import { useParams, Redirect, useHistory, Link} from 'react-router-dom';
 import './CurrentNote.css';
 
 
@@ -110,15 +110,17 @@ setCurrentNote(body)
                     {errors.map((error, idx) => <li key={idx}>{error}</li>)}
                 </ul>
             </div>
-                <input
-                className='butts'
+                <textarea
+                // className='butts'
                 className='displayNote'
                 onChange={(e) => {
                     setCurrentNote(e.target.value)
                 }}
                 required
                 value={currentNote}
-                type="text"></input>
+                type="textarea"
+                cols='60' rows='8'
+                ></textarea>
 
                 <button
                 onClick={(e) => {
@@ -135,6 +137,7 @@ setCurrentNote(body)
                                 onClick={(e) => {
                     handleDelete(e, noteId)
                 }}>Delete</button>
+                <Link to='/mynotes/notes'>Back</Link>
             </form>
         </div>
     )

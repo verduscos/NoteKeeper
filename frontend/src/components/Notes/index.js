@@ -84,7 +84,7 @@ function Notes() {
             <div id='note-container'>
             {userNotes?.map(note => (
                 <div>
-                    <Link id='note-link'  to={`/mynotes/notes/${note.id}`}>{note.title}</Link>
+                    <Link id='note-links'  to={`/mynotes/notes/${note.id}`}>{note.title}</Link>
                 </div>
             ))}
             </div>
@@ -101,7 +101,7 @@ function Notes() {
 
             <form onSubmit={handleErrors} id='create-form'>
                 <div className='title-container'>
-                    <h1>Create a new note</h1>
+                    <h2>Create a new note</h2>
 
                 <input  onChange={(e) => {
                 setTitle(e.target.value);
@@ -115,11 +115,11 @@ function Notes() {
                     {errors.map((error, idx) => <li key={idx}>{error}</li>)}
                 </ul>
 
-            <input onChange={(e) => {
+            <textarea onChange={(e) => {
                 setBody(e.target.value);
             }}
             className='displayNote'
-            type='text' value={body} placeholder='Start writing...'/>
+            type='texarea' value={body} placeholder='Start writing...'/>
             <button
             className='butts'
             >Create</button>
