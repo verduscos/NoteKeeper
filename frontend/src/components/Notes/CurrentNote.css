@@ -58,8 +58,8 @@
 
 #edit-form {
         /* background-color: gray; */
-        display: flex;
-        flex-direction: column;
+        /* display: flex;
+        flex-direction: column; */
 
 }
 
@@ -74,8 +74,8 @@
 
 #create-form {
     /* background-color: gray; */
-    display: flex;
-    flex-direction: column;
+    /* display: flex;
+    flex-direction: column; */
 }
 
 
@@ -93,11 +93,4 @@
     height: 120px;
     border: 1px solid gray;
     padding: 10px;
-}
-
-
-#testing {
-    z-index: 100;
-    margin-bottom:  50px;
-    /* background-color: red; */
 }

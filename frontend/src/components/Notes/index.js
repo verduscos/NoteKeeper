@@ -119,7 +119,7 @@ function Notes() {
                 setBody(e.target.value);
             }}
             className='displayNote'
-            type='texarea' value={body} placeholder='Start writing...'/>
+            type='text' value={body} placeholder='Start writing...'/>
             <button
             className='butts'
             >Create</button>
