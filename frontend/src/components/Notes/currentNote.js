@@ -17,6 +17,7 @@ function CurrentNote() {
     const [currentNote, setCurrentNote] = useState('');
     const [errors, setErrors] = useState([]);
     const [updated, setUpdated] = useState(false);
+    const [deleted, setDeleted] = useState(false);
 
     let notifcation;
     if (updated) {
@@ -29,6 +30,19 @@ function CurrentNote() {
         notifcation = (
             null
         )
+    }
+
+    let deletion;
+    if (deleted) {
+        deletion = (
+            <div className='notification'>
+                <p>Note Deleted! </p> <i id='notification-check' class="fas fa-check-square"></i>
+            </div>
+        )
+    } else {
+        deletion = (
+            null
+            )
     }
 
     if (updated) {
@@ -62,11 +76,18 @@ function CurrentNote() {
     // DELETE
     const handleDelete = async (e, id) => {
         e.preventDefault();
+        setDeleted(true);
 
         const res = await dispatch(sessionActions.removeNoteThunk(id))
-        if(res.id) history.push('/mynotes/notes')
+        if (deleted) {
+           await setTimeout(() => {
+                setDeleted(false);
+            }, 5000)
+        }
+        if (res.id) history.push('/mynotes/notes')
         return
     }
+
 
     useEffect(() => {
         dispatch(sessionActions.getNotesThunk(currentUser?.id))
@@ -86,6 +107,7 @@ function CurrentNote() {
             <div className='title-container'>
 
             <h1>{currtitle}</h1>
+            {deletion}
             {notifcation}
             <input
                    value={currtitle}
