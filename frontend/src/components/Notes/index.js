@@ -21,12 +21,23 @@ function Notes() {
 
 
     const handleErrors = (e) => {
-        const errors = [];
+       e.preventDefault();
 
-        if (title.length < 4) errors.push('Title must be at least 4 characters long.');
-        if (!body.length) errors.push('You can\'t create an empty note!');
+       const payload = {
+           title,
+           body,
+           userId: currentUser.id,
+           notebookId
+        }
+        setErrors([]);
 
-        if (errors.length) setErrors(errors)
+        // if (title.length < 4) {
+            return dispatch(sessionActions.createNoteThunk(payload))
+            .catch(async (res) => {
+                const data = await res.json();
+                if (data && data.errors) setErrors(data.errors);
+            })
+        // }
     }
 
 
@@ -109,9 +120,7 @@ function Notes() {
             }}
             className='displayNote'
             type='texarea' value={body} placeholder='Start writing...'/>
-            <button onClick={(e) => {
-                handleCreate(e)
-            }}
+            <button
             className='butts'
             >Create</button>
         </form>

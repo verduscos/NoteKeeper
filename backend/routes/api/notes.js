@@ -3,8 +3,8 @@ const asyncHandler = require('express-async-handler');
 // const { requireAuth}
 
 const { Note } = require('../../db/models');
-const { check } = require('express-validator');
-const { handleValidationErrors } = require('../../utils/validation');;
+const { check, validationResult } = require('express-validator');
+const { handleValidationErrors } = require('../../utils/validation');
 
 
 const router = express.Router();
@@ -47,16 +47,23 @@ router.get("/:userId", asyncHandler(async(req, res) => {
 
 
   // Create a note
-router.post('/', validateNote ,asyncHandler(async(req, res) => {
-  const { title, body, userId, notebookId} = req.body;
+router.post('/', validateNote ,asyncHandler(async(req, res, next) => {
+  const { title, body, userId} = req.body;
 
-  let newNote = await Note.create({
+  let newNote = await Note.build({
     title,
     body,
-    userId,
-    notebookId
+    userId
   })
-  return res.json(newNote);
+
+  const validationErrors = validationResult(req);
+  if (validationErrors.isEmpty()) {
+    await newNote.save();
+    res.json(newNote);
+  } else {
+    const errors = validationErrors.array().map(err => err.msg);
+    res.json({errors});
+  }
 
 }))
 
