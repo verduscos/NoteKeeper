@@ -73,7 +73,7 @@ function CurrentNote() {
 
         const res = await dispatch(sessionActions.removeNoteThunk(id))
         // await dispatch(sessionActions.getNotesThunk(currentUser?.id))
-        if(res.id) history.push('mynotes/notes')
+        if(res.id) history.push('/mynotes/notes')
 
 
         return
