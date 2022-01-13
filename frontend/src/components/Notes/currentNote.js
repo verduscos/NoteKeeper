@@ -19,6 +19,8 @@ function CurrentNote() {
 
     const [currtitle, setcurrTitle] = useState('');
     const [currentNote, setCurrentNote] = useState('');
+    const [errors, setErrors] = useState([]);
+
 
 
 
@@ -28,14 +30,23 @@ function CurrentNote() {
             console.log('INSIDE HANDLE')
             const payload = {
                 id: noteId,
+                title: currtitle,
                 body: currentNote,
                 userId: currentUser.id
             }
-            console.log(payload)
-            dispatch(sessionActions.editNoteThunk(payload, noteId));
+
+            setErrors([]);
+
+            // console.log(payload)
+
+            // window.alert('Your note has been saved!')
+            return dispatch(sessionActions.editNoteThunk(payload, noteId))
             // <Redirect to='/mynotes/notes' />;
-            window.alert('Your note has been saved!')
-            return
+            .catch(async (res) => {
+                const data = await res.json();
+                if (data && data.errors) setErrors(data.errors);
+            })
+            // return
         }
 
     // DELETE
@@ -73,10 +84,20 @@ setCurrentNote(body)
 
     return (
         <div>
-            <form id='edit-form'>
+            <form onSubmit={handleEdit} id='edit-form'>
             <div className='title-container'>
 
             <h1>{currtitle}</h1>
+            <input
+                className='butts'
+                onChange={(e) => {
+                    setcurrTitle(e.target.value)
+                }}
+                value={currtitle}
+                type="text"></input>
+                  <ul className='errors'>
+                    {errors.map((error, idx) => <li key={idx}>{error}</li>)}
+                </ul>
             </div>
                 <input
                 className='butts'
@@ -84,14 +105,17 @@ setCurrentNote(body)
                 onChange={(e) => {
                     setCurrentNote(e.target.value)
                 }}
+                required
                 value={currentNote}
                 type="text"></input>
 
                 <button
                 className='butts'
-                onClick={(e) => {
-                    handleEdit(e)
-                }}>Update</button>
+               >Update</button>
+
+
+
+
                                 <button
                                 className='butts'
                                 onClick={(e) => {

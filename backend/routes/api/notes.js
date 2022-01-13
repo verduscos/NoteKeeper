@@ -69,17 +69,29 @@ router.post('/', validateNote ,asyncHandler(async(req, res, next) => {
 
 
 // Edit a note
-router.patch('/notes/:noteId', asyncHandler(async (req, res) => {
+router.patch('/notes/:noteId', validateNote, asyncHandler(async (req, res) => {
   const { noteId } = req.params;
-  const { body } = req.body;
+  const { title, body } = req.body;
   console.log('INSIDE ORUTE')
   const note = await Note.findByPk(noteId);
-  await note.update({
-    body
-  })
-  await note.save();
 
-  return res.json(note);
+
+
+  const validationErrors = validationResult(req.body);
+
+  if (validationErrors.isEmpty()) {
+    await note.update({
+      title,
+      body
+    })
+
+    return res.json(note);
+  } else {
+    const errors = validationErrors.array().map(err => err.msg);
+    res.json({errors});
+  }
+
+
 }))
 
 
