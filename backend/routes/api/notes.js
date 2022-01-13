@@ -69,7 +69,7 @@ router.post('/', validateNote ,asyncHandler(async(req, res, next) => {
 
 
 // Edit a note
-router.patch('/notes/:noteId', validateNote, asyncHandler(async (req, res) => {
+router.put('/notes/:noteId', validateNote, asyncHandler(async (req, res) => {
   const { noteId } = req.params;
   const { title, body } = req.body;
   console.log('INSIDE ORUTE')

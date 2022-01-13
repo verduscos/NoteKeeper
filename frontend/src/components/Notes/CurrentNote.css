@@ -49,6 +49,7 @@
     background-color: rgb(241, 241, 241);
     height: 500px;
     width: 750px;
+    z-index: -1;
     /* background-color: red;
     display: flex;
     align-items: flex-start; */
@@ -92,4 +93,11 @@
     height: 120px;
     border: 1px solid gray;
     padding: 10px;
+}
+
+
+#testing {
+    z-index: 100;
+    margin-bottom:  50px;
+    /* background-color: red; */
 }

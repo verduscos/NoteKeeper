@@ -21,13 +21,21 @@ function CurrentNote() {
     const [currentNote, setCurrentNote] = useState('');
     const [errors, setErrors] = useState([]);
 
+const checkErrors = (title, body) => {
+    const errors = [];
+    if (title.length < 4) errors.push('title errors');
+    if (!body.length) errors.push('body errors');
 
+    setErrors(errors)
+
+    return errors;
+}
 
 
         // EDIT
         const handleEdit = async (e) => {
             e.preventDefault();
-            console.log('INSIDE HANDLE')
+
             const payload = {
                 id: noteId,
                 title: currtitle,
@@ -37,15 +45,17 @@ function CurrentNote() {
 
             setErrors([]);
 
-            // console.log(payload)
+            if (currtitle.length > 4) {
+                return checkErrors(currtitle, currentNote)
+            } else {
 
-            // window.alert('Your note has been saved!')
+
             return dispatch(sessionActions.editNoteThunk(payload, noteId))
-            // <Redirect to='/mynotes/notes' />;
             .catch(async (res) => {
                 const data = await res.json();
                 if (data && data.errors) setErrors(data.errors);
             })
+        }
             // return
         }
 
@@ -89,13 +99,14 @@ setCurrentNote(body)
 
             <h1>{currtitle}</h1>
             <input
+                   value={currtitle}
                 className='butts'
                 onChange={(e) => {
                     setcurrTitle(e.target.value)
                 }}
-                value={currtitle}
+
                 type="text"></input>
-                  <ul className='errors'>
+                  <ul id='testing'>
                     {errors.map((error, idx) => <li key={idx}>{error}</li>)}
                 </ul>
             </div>
@@ -110,6 +121,9 @@ setCurrentNote(body)
                 type="text"></input>
 
                 <button
+                onClick={(e) => {
+                    handleEdit(e)
+                }}
                 className='butts'
                >Update</button>
 

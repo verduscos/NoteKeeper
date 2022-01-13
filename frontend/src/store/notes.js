@@ -77,7 +77,7 @@ export const createNoteThunk = (payload) => async (dispatch) => {
 export const editNoteThunk = (payload, noteId) => async (dispatch) => {
     console.log('IN THUNK')
     const response = await csrfFetch(`/api/mynotes/notes/${noteId}`, {
-        method: 'PATCH',
+        method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload)
     })
