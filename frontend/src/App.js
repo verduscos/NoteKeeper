@@ -31,11 +31,10 @@ function App() {
           </Route>
           <Route exact path="/mynotes/notes">
             <Notes />
-          </Route>
-          <Route exact path="/mynotes/notes/new">
             <Create />
           </Route>
           <Route exact path="/mynotes/notes/:noteId">
+            <Notes />
             <CurrentNote />
           </Route>
 

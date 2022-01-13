@@ -1,0 +1,42 @@
+#create-form {
+    /* background-color: gray; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 1000px;
+    margin:0 auto;
+}
+
+
+#createNote-title {
+    height: 25px;
+    margin-bottom: 10px;
+    width: 200px;
+    border-radius: 5px;
+    border: 2px solid gray;
+}
+
+
+.notification {
+    font-family: 'Roboto', sans-serif;
+    background-color: rgb(209, 209, 209);
+    color: black;
+    position: absolute;
+    right: 50%;
+    /* note sure why margin 0 auto doesnt work here */
+    transform: translate(50%, 50%);
+    top:15px;
+    width: 200px;
+    height: 75px;
+    border-radius: 15px;
+    text-align: center;
+    align-self: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+}
+#notification-check {
+    color: rgb(80, 206, 80);
+    margin-left: 10px;
+}

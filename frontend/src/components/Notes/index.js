@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import CurrentNote from './currentNote';
 import { Link, Route } from 'react-router-dom';
 import ProfileButton from '../Navigation/ProfileButton';
-import './CurrentNote.css'
+import './NoteList.css'
 import Create from './Create';
 
 function Notes() {
@@ -97,7 +97,6 @@ function Notes() {
         <>
            {notifcation}
         <ProfileButton user={currentUser}/>
-        <div id='mynotes-container'>
         <div id='note-link-column'>
             <h1>My Notes</h1>
 
@@ -107,19 +106,18 @@ function Notes() {
                     <Link id='note-links'  to={`/mynotes/notes/${note.id}`}>{note.title}</Link>
                 </div>
             ))}
-            </div>
 
         </div>
 
-        <Route exact path='/mynotes/notes/:noteId'>
+        {/* <Route exact path='/mynotes/notes/:noteId'>
             <CurrentNote />
-        </Route>
+        </Route> */}
         {/* <Route exact path='/mynotes/notes/new'>
             <Create />
         </Route> */}
 
 
-            <form onSubmit={handleErrors} id='create-form'>
+            {/* <form onSubmit={handleErrors} id='create-form'>
                 <div className='title-container'>
                     <h2>Create a new note</h2>
 
@@ -143,7 +141,8 @@ function Notes() {
             <button
             className='butts'
             >Create</button>
-        </form>
+        </form> */}
+        {/* <Link to='/mynotes/notes'>Create</Link> */}
         </div>
         </>
     )

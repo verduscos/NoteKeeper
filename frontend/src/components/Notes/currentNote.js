@@ -48,6 +48,7 @@ function CurrentNote() {
     if (updated) {
         setTimeout(() => {
             setUpdated(false);
+            history.push('/mynotes/notes')
         }, 2000)
     }
 
@@ -148,7 +149,7 @@ function CurrentNote() {
                                 onClick={(e) => {
                     handleDelete(e, noteId)
                 }}>Delete</button>
-                <Link to='/mynotes/notes'>Back</Link>
+                <Link to='/mynotes/notes'>Create</Link>
             </form>
         </div>
     )

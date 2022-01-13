@@ -1,0 +1,43 @@
+
+
+#note-container {
+    border: solid 3px rgb(78, 78, 78);
+    overflow-y: auto;
+    height: 500px;
+}
+
+#note-link-column {
+    position: absolute;
+    /* background-color: gray; */
+    width: 250px;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+    left: 0px;
+
+}
+
+#note-links {
+    background-color: mintcream;
+    border-bottom: 1px solid gray;
+    height: 50px;
+    width: 200px;
+    font-size: 20px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+}
+
+#note-links:hover {
+    background-color: rgb(202, 202, 202);
+
+}
+
+#note-link {
+    text-decoration: none;
+    color: black;
+}
