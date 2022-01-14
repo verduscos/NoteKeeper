@@ -117,3 +117,14 @@ li > * {
 
 }
 
+#user-icon {
+    border: none;
+    background-color: transparent;
+    font-size: 30px;
+    cursor: pointer;
+    transition-duration: .2s;
+    float: center;
+}
+#user-icon:hover {
+    color: rgb(194, 194, 194)
+}

@@ -5,6 +5,12 @@
     right: 25px;
     top:25px;
     z-index: 100;
+    /* background-color: rgba(0, 0, 0, 0.514); */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
 }
 
 .displayNote {
