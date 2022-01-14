@@ -1,7 +1,7 @@
-import React, {  useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import * as sessionActions from '../../store/notes';
-import { useParams, useHistory, Link} from 'react-router-dom';
+import { useParams, useHistory, Link } from 'react-router-dom';
 import './CurrentNote.css';
 
 
@@ -12,12 +12,12 @@ function CurrentNote() {
     const dispatch = useDispatch();
     const currentUser = useSelector(state => state.session.user);
     const userNotes = useSelector(state => state.notes.notes)
-    const  { noteId } = params;
+    const { noteId } = params;
     const [currtitle, setcurrTitle] = useState('');
     const [currentNote, setCurrentNote] = useState('');
     const [errors, setErrors] = useState([]);
     const [updated, setUpdated] = useState(false);
-    const [deleted, setDeleted] = useState(false);
+    // const [deleted, setDeleted] = useState(false);
 
     let notifcation;
     if (updated) {
@@ -32,18 +32,18 @@ function CurrentNote() {
         )
     }
 
-    let deletion;
-    if (deleted) {
-        deletion = (
-            <div className='notification'>
-                <p>Note Deleted! </p> <i id='notification-check' class="fas fa-check-square"></i>
-            </div>
-        )
-    } else {
-        deletion = (
-            null
-            )
-    }
+    // let deletion;
+    // if (deleted) {
+    //     deletion = (
+    //         <div className='notification'>
+    //             <p>Note Deleted! </p> <i id='notification-check' class="fas fa-check-square"></i>
+    //         </div>
+    //     )
+    // } else {
+    //     deletion = (
+    //         null
+    //     )
+    // }
 
     if (updated) {
         setTimeout(() => {
@@ -68,23 +68,23 @@ function CurrentNote() {
         if (currtitle.length >= 4 && currentNote.length >= 1) setUpdated(true)
 
         return dispatch(sessionActions.editNoteThunk(payload, noteId))
-        .catch(async (res) => {
-            const data = await res.json();
-            if (data && data.errors) setErrors(data.errors);
-        })
+            .catch(async (res) => {
+                const data = await res.json();
+                if (data && data.errors) setErrors(data.errors);
+            })
     }
 
     // DELETE
     const handleDelete = async (e, id) => {
         e.preventDefault();
-        setDeleted(true);
+        // setDeleted(true);
 
         const res = await dispatch(sessionActions.removeNoteThunk(id))
-        if (deleted) {
-           await setTimeout(() => {
-                setDeleted(false);
-            }, 5000)
-        }
+        // if (deleted) {
+        //     await setTimeout(() => {
+        //         setDeleted(false);
+        //     }, 10000)
+        // }
         if (res.id) history.push('/mynotes/notes')
         return
     }
@@ -93,7 +93,7 @@ function CurrentNote() {
     useEffect(() => {
         dispatch(sessionActions.getNotesThunk(currentUser?.id))
 
-        const  { title, body } = userNotes?.find(note =>
+        const { title, body } = userNotes?.find(note =>
             note.id === +noteId
         )
 
@@ -104,53 +104,54 @@ function CurrentNote() {
 
     return (
         <div>
-            <form onSubmit={handleEdit} id='edit-form'>
-            <div className='title-container'>
+            <form onSubmit={handleEdit} className='form'>
+                <div className='title-container'>
+                <Link id='create-link' to='/mynotes/notes'>New note</Link>
 
-            <h1>{currtitle}</h1>
-            {deletion}
-            {notifcation}
-            <input
-                   value={currtitle}
-                className='butts'
-                onChange={(e) => {
-                    setcurrTitle(e.target.value)
-                }}
+                    {/* <h1>{currtitle}</h1> */}
+                    {/* {deletion} */}
+                    {notifcation}
+                    <ul className='errors'>
+                        {errors.map((error, idx) => <li key={idx}>{error}</li>)}
+                    </ul>
+                    <input
+                    className='form-title edit'
+                        value={currtitle}
+                        onChange={(e) => {
+                            setcurrTitle(e.target.value)
+                        }}
 
-                type="text"></input>
-                  <ul id='testing'>
-                    {errors.map((error, idx) => <li key={idx}>{error}</li>)}
-                </ul>
-            </div>
+                        type="text"></input>
+
+                </div>
                 <textarea
-                // className='butts'
-                className='displayNote'
-                onChange={(e) => {
-                    setCurrentNote(e.target.value)
-                }}
-                required
-                value={currentNote}
-                type="textarea"
-                cols='60' rows='8'
+                    // className='butts'
+                    className='displayNote'
+                    onChange={(e) => {
+                        setCurrentNote(e.target.value)
+                    }}
+                    required
+                    value={currentNote}
+                    type="textarea"
+                    cols='60' rows='8'
                 ></textarea>
 
                 <button
-                onClick={(e) => {
-                    handleEdit(e)
-                }}
-                className='create-delete create'
-               >Update</button>
+                    onClick={(e) => {
+                        handleEdit(e)
+                    }}
+                    className='create-delete create'
+                >Update</button>
 
 
 
 
-                                <button
-                                id='delete'
-                                className='create-delete'
-                                onClick={(e) => {
-                    handleDelete(e, noteId)
-                }}>Delete</button>
-                <Link id='create-link' to='/mynotes/notes'>Add Note</Link>
+                <button
+                    id='delete'
+                    className='create-delete'
+                    onClick={(e) => {
+                        handleDelete(e, noteId)
+                    }}>Delete</button>
             </form>
         </div>
     )

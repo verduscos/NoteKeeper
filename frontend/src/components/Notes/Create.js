@@ -61,22 +61,23 @@ function Create() {
         <>
         {notifcation}
 
-        <form onSubmit={handleErrors} id='create-form'>
-        <h1>CREATE NOTE</h1>
+        <form onSubmit={handleErrors} className='form'>
                 <div className='title-container'>
-                    <h2>Create a new note</h2>
+                    {/* <h2>Create a new note</h2> */}
+
+                    <ul className='errors'>
+                    {errors.map((error, idx) => <li key={idx}>{error}</li>)}
+                </ul>
 
                 <input  onChange={(e) => {
                 setTitle(e.target.value);
             }}
             required
-            id='createNote-title'
+            className='form-title edit'
             type='text' value={title} placeholder='Title'/>
                 </div>
 
-                <ul className='errors'>
-                    {errors.map((error, idx) => <li key={idx}>{error}</li>)}
-                </ul>
+
 
             <textarea onChange={(e) => {
                 setBody(e.target.value);
