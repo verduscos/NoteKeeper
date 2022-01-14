@@ -94,7 +94,7 @@ function Notes() {
     // if (loaded) {
 
         return (
-        <>
+        <div id='bg'>
            {notifcation}
            <div id='user'>
                 <ProfileButton user={currentUser}/>
@@ -146,7 +146,7 @@ function Notes() {
         </form> */}
         {/* <Link to='/mynotes/notes'>Create</Link> */}
         </div>
-        </>
+        </div>
     )
 }
 

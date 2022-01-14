@@ -4,7 +4,7 @@
     position: absolute;
     right: 25px;
     top:25px;
-    z-index: 1;
+    z-index: 100;
 }
 
 .displayNote {
@@ -36,13 +36,37 @@
 
 
 
-.butts {
+.create-delete {
     width: 200px;
     height: 30px;
     border-radius: 5px;
     border: 2px solid gray;
     margin: 0 auto;
     margin-top: 10px;
+    cursor: pointer;
+    color: rgb(226, 226, 226);
+
+}
+
+.create {
+    background-color: #00a82d;
+
+}
+
+.create:hover{
+    background-color: #0cca3f;
+    transition-duration: .2s;
+    transition-property: background-color;
+}
+
+#delete {
+    background-color: rgb(233, 94, 94);
+}
+
+#delete:hover {
+    background-color: rgb(209, 71, 71);
+    transition-duration: .2s;
+    transition-property: background-color;
 }
 
 .title-container {
@@ -87,4 +111,28 @@
 #notification-check {
     color: rgb(80, 206, 80);
     margin-left: 10px;
+}
+
+
+#create-link {
+    color: #fff;
+    font-weight: bold;
+    text-decoration: none;
+    border-radius: 3px;
+    letter-spacing: 1.5px;
+    font-size: 16px;
+    padding: 16px 30px;
+    background-color: #00a82d;
+    transition-duration: .2;
+    position: absolute;
+    right: 150px;
+    top:150px;
+    font-family: 'Roboto', sans-serif;
+    z-index: 12;
+}
+
+#create-link:hover {
+    background-color: #0cca3f;
+    transition-duration: .2s;
+    transition-property: background-color;
 }

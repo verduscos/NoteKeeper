@@ -84,7 +84,8 @@ function Create() {
             className='displayNote'
             type='texarea' value={body} placeholder='Start writing...'/>
             <button
-            className='butts'
+
+            className='create-delete create'
             >Create</button>
         </form>
         </>

@@ -138,18 +138,19 @@ function CurrentNote() {
                 onClick={(e) => {
                     handleEdit(e)
                 }}
-                className='butts'
+                className='create-delete create'
                >Update</button>
 
 
 
 
                                 <button
-                                className='butts'
+                                id='delete'
+                                className='create-delete'
                                 onClick={(e) => {
                     handleDelete(e, noteId)
                 }}>Delete</button>
-                <Link to='/mynotes/notes'>Create</Link>
+                <Link id='create-link' to='/mynotes/notes'>Add Note</Link>
             </form>
         </div>
     )
