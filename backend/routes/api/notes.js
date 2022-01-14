@@ -18,7 +18,7 @@ const validateNote = [
       .withMessage('Title must be at least 4 characters.'),
   check('body')
       .exists({ checkFalsy: true })
-      .withMessage('You need to write something!'),
+      .withMessage('You should write something.'),
   handleValidationErrors,
 ];
 
