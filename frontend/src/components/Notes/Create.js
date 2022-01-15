@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import * as sessionActions from '../../store/notes';
 import './Create.css'
@@ -55,6 +55,11 @@ function Create() {
         }, 2000)
     }
 
+
+    useEffect(() => {
+        dispatch(sessionActions.getNotesThunk(currentUser.id))
+
+    }, [dispatch])
 
 
     return (

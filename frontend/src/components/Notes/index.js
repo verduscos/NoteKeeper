@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import * as sessionActions from '../../store/notes';
+import * as notebookActions from '../../store/notebooks';
 import { useDispatch, useSelector } from 'react-redux';
 import CurrentNote from './currentNote';
 import { Link, Route } from 'react-router-dom';
@@ -84,7 +85,7 @@ function Notes() {
 
     useEffect(() => {
         dispatch(sessionActions.getNotesThunk(currentUser.id))
-
+        dispatch(notebookActions.getNootbooksThunk(currentUser.id))
         //adding loaded is not chaning anything atm, fixed loading issue with '?'
 
     }, [dispatch])
