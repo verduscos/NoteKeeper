@@ -14,7 +14,31 @@ module.exports = {
           userId: 1,
           createdAt: new Date(),
           updatedAt: new Date(),
-        }
+        },
+        {
+          title: 'Second Notebook',
+          userId: 1,
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
+          title: 'Test Notebook',
+          userId: 3,
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
+          title: 'Test Notebook',
+          userId: 2,
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
+          title: 'Test Notebook',
+          userId: 1,
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
       ], {});
   },
 
