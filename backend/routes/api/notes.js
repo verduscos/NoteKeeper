@@ -38,8 +38,12 @@ router.get("/:userId", asyncHandler(async(req, res) => {
 
   const notes = await Note.findAll({
     where: {
-      userId: id
-    }
+      userId: id,
+
+    },
+    order: [
+      ['updatedAt', 'DESC']
+    ]
   });
 
   return res.json(notes);
@@ -105,3 +109,8 @@ router.delete('/notes/:noteId', asyncHandler(async (req, res) => {
 }))
 
 module.exports = router;
+
+//SEARCH
+router.get('/notes', asyncHandler(async (req, res) => {
+  let search = new URl
+}))

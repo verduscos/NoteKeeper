@@ -7,6 +7,7 @@ import Navigation from "./components/Navigation";
 import Homepage from "./components/Homepage";
 import Footer from './components/Footer';
 import Notes from "./components/Notes";
+import Notebooks from "./components/NoteBooks";
 import CurrentNote from "./components/Notes/currentNote";
 import Create from "./components/Notes/Create";
 
@@ -32,6 +33,7 @@ function App() {
             <SignupFormPage />
           </Route>
           <Route exact path="/mynotes/notes">
+            <Notebooks />
             <Notes />
             <Create />
           </Route>
