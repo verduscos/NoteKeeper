@@ -9,15 +9,15 @@ import './CurrentNote.css';
 function CurrentNote() {
     const history = useHistory();
     const params = useParams();
+    const { noteId } = params
     const dispatch = useDispatch();
     const currentUser = useSelector(state => state.session.user);
-    const userNotes = useSelector(state => state.notes.notes)
-    const { noteId } = params;
+    const userNotes = useSelector(state => state.notes)
+    let selectedNote = userNotes[noteId];
     const [currtitle, setcurrTitle] = useState('');
     const [currentNote, setCurrentNote] = useState('');
     const [errors, setErrors] = useState([]);
     const [updated, setUpdated] = useState(false);
-    // const [deleted, setDeleted] = useState(false);
 
     let notifcation;
     if (updated) {
@@ -93,12 +93,6 @@ function CurrentNote() {
     useEffect(() => {
         dispatch(sessionActions.getNotesThunk(currentUser?.id))
 
-        const { title, body } = userNotes?.find(note =>
-            note.id === +noteId
-        )
-
-        setcurrTitle(title)
-        setCurrentNote(body)
     }, [dispatch, noteId])
 
 
@@ -116,7 +110,7 @@ function CurrentNote() {
                     </ul>
                     <input
                     className='form-title edit'
-                        value={currtitle}
+                        value={selectedNote?.title}
                         onChange={(e) => {
                             setcurrTitle(e.target.value)
                         }}
@@ -131,7 +125,7 @@ function CurrentNote() {
                         setCurrentNote(e.target.value)
                     }}
                     required
-                    value={currentNote}
+                    value={selectedNote?.body}
                     type="textarea"
                     cols='60' rows='8'
                 ></textarea>

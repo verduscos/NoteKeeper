@@ -107,14 +107,15 @@ const notesReducer = (state = initialState, action) => {
             return notes
         }
         // WORKING
-        // case CREATE_NOTE: {
-        //     const newState = { ...state};
-        //     newState.notes = [
-        //         ...newState.notes,
-        //          action.payload,
-        //     ];
-        //     return newState
-        // }
+        case CREATE_NOTE: {
+            const newState = { ...state};
+
+
+            newState[action.payload.id] = action.payload
+            console.log(newState)
+
+            return newState
+        }
         // // WORKING
         // case EDIT_NOTE: {
         //     const newState = { ...state};
