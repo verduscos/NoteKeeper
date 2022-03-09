@@ -64,7 +64,9 @@ function Notes() {
         }, 2000)
     }
 
-    const userNotes = useSelector(state => state.notes.notes);
+    const userNotes = useSelector(state => state.notes);
+    let notes = Object.values(userNotes)
+    console.log(notes, "HERE IS USERNOTES")
 
     const handleCreate = (e) => {
         e.preventDefault();
@@ -104,9 +106,9 @@ function Notes() {
             <h1>My Notes</h1>
 
             <div id='note-container'>
-            {userNotes?.map(note => (
+            {notes?.map(note => (
                 <div>
-                    <Link id='note-links'  to={`/mynotes/notes/${note.id}`}>{note.title}</Link>
+                    <Link id='note-links'  to={`/mynotes/notes/${note?.id}`}>{note?.title}</Link>
                 </div>
             ))}
 

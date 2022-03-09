@@ -95,50 +95,59 @@ const notesReducer = (state = initialState, action) => {
     switch (action.type) {
         // WORKING
         case GET_NOTES: {
-            return {...state, notes: action.payload}
-        }
-        // WORKING
-        case CREATE_NOTE: {
-            const newState = { ...state};
-            newState.notes = [
-                ...newState.notes,
-                 action.payload,
-            ];
-            return newState
-        }
-        // WORKING
-        case EDIT_NOTE: {
-            const newState = { ...state};
-            newState.notes.forEach((note, i ,arr) => {
-                if (note.id === action.payload.id) {
-                    arr[i] = action.payload
-                }
+            let notes = {};
+            console.log("ABOVE")
+            console.log(action.payload)
+            action.payload.forEach(note => {
+              notes[note.id] = note
             })
-            return newState;
-          }
-        // NOT WORKING
-        // case REMOVE_NOTE: {
-        //     const newState = {...state};
-            // newState.notes.forEach((note, i, arr) => {
-            //     if (note.id === action.noteId) {
-            //        newState.notes.splice(i, 1, 0);
-            //     }
-            // })
-            // for (let i = 0; i < newState.notes; i++) {
-            //     if (newState.notes.id[i] === action.payload.id) {
-            //          newState.notes.splice(i, 1, 0);
-            //     }
-            // }
-            // return newState
-        // }
-        case REMOVE_NOTE: {
-            const newState = {...state}
-            // console.log(action)
-            const newNotes = newState.notes.filter(note => note.id !== +action.payload)
-            // console.log(newNotes)
-            newState.notes = newNotes;
-            return newState;
+            console.log("inside reducers")
+            console.log(notes)
+
+            return notes
         }
+        // WORKING
+        // case CREATE_NOTE: {
+        //     const newState = { ...state};
+        //     newState.notes = [
+        //         ...newState.notes,
+        //          action.payload,
+        //     ];
+        //     return newState
+        // }
+        // // WORKING
+        // case EDIT_NOTE: {
+        //     const newState = { ...state};
+        //     newState.notes.forEach((note, i ,arr) => {
+        //         if (note.id === action.payload.id) {
+        //             arr[i] = action.payload
+        //         }
+        //     })
+        //     return newState;
+        //   }
+        // // NOT WORKING
+        // // case REMOVE_NOTE: {
+        // //     const newState = {...state};
+        //     // newState.notes.forEach((note, i, arr) => {
+        //     //     if (note.id === action.noteId) {
+        //     //        newState.notes.splice(i, 1, 0);
+        //     //     }
+        //     // })
+        //     // for (let i = 0; i < newState.notes; i++) {
+        //     //     if (newState.notes.id[i] === action.payload.id) {
+        //     //          newState.notes.splice(i, 1, 0);
+        //     //     }
+        //     // }
+        //     // return newState
+        // // }
+        // case REMOVE_NOTE: {
+        //     const newState = {...state}
+        //     // console.log(action)
+        //     const newNotes = newState.notes.filter(note => note.id !== +action.payload)
+        //     // console.log(newNotes)
+        //     newState.notes = newNotes;
+        //     return newState;
+        // }
 
         default:
             return state;
