@@ -1,6 +1,8 @@
 #notebooks {
     background: gray;
     position: absolute;
-    right: 50%;
-    z-index: 100;
+    left: 0;
+    top: 0;
+    width: 200px;
+    height: 100vh;
 }

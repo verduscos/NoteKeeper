@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import * as notebookActions from '../../store/notebooks';
+import { getNotebookNotesThunk } from '../../store/notes';
 import { useDispatch, useSelector } from 'react-redux';
 import './Notebooks.css';
 
@@ -9,18 +10,25 @@ function Notebooks() {
     const currentUser = useSelector(state => state.session.user);
     const notebooks = useSelector(state => state.notebooks.notebooks);
 
-    console.log(notebooks);
+    const getNotebookNotes = (e, notebookId) => {
+      e.preventDefault();
+
+      dispatch(getNotebookNotesThunk(currentUser.id, notebookId));
+    }
 
     return (
         <div id='notebooks'>
             <h1>notebooks</h1>
-            <ul>
+            <div id='note-container'>
             {notebooks?.map(notebook => (
-                <li>{notebook.title}</li>
-                // <li>{notebook.updatedAt}</li>
+                <div
+                onClick={(e) => {
+                  getNotebookNotes(e, notebook.id)
+                }}
+                id='note-links'>{notebook.title}</div>
             ))}
 
-            </ul>
+            </div>
         </div>
     )
 

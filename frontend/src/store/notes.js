@@ -2,6 +2,7 @@ import { csrfFetch } from "./csrf"
 
 const GET_NOTES = 'mynotes/getNotes';
 // const SINGLE_NOTE = 'mynotes/singleNote';
+const GET_NOTEBOOK_NOTES = 'mynotes/GET'
 const CREATE_NOTE = 'mynotes/createNote';
 const EDIT_NOTE = 'mynotes/editNote';
 const REMOVE_NOTE = 'mynotes/deleteNote'
@@ -9,6 +10,11 @@ const REMOVE_NOTE = 'mynotes/deleteNote'
 const getNotes = (notes) => ({
     type: GET_NOTES,
     payload: notes
+})
+
+const getNotebookNotes = (notes) => ({
+  type: GET_NOTEBOOK_NOTES,
+  payload: notes
 })
 
 // const singleNote = (note) => ({
@@ -50,6 +56,16 @@ export const getNotesThunk = (userId) => async (dispatch) => {
     })
     const data = await response.json();
     dispatch(getNotes(data));
+}
+
+export const getNotebookNotesThunk = (userId, notebookId) => async (dispatch) => {
+  console.log('INSIDE THUNK');
+  const response = await csrfFetch(`/api/mynotes/notebooks/${userId}/${notebookId}`, {
+    method: "GET"
+  })
+
+  const data = await response.json();
+  dispatch(getNotebookNotes(data));
 }
 
 // export const getSingleNoteThunk = (userId, noteId) => async (dispatch) => {
@@ -106,6 +122,15 @@ const notesReducer = (state = initialState, action) => {
             return notes
         }
 
+        case GET_NOTEBOOK_NOTES:
+          let notes = {};
+          console.log("INSIDE RECUDER")
+          console.log(action.payload)
+          action.payload.forEach(note => {
+            notes[note.id] = note;
+          })
+
+          return notes;
         // case SINGLE_NOTE:
         //   let newNote = {}
 
