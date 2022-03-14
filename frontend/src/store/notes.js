@@ -53,10 +53,12 @@ export const getNotesThunk = (userId) => async (dispatch) => {
 }
 
 export const getSingleNoteThunk = (userId, noteId) => async (dispatch) => {
+    console.log("IN SIDE THE THUNK")
     const response = await csrfFetch(`/api/mynotes/${userId}/notes/${noteId}`, {
         method: 'GET',
     })
     const data = await response.json();
+    console.log("DATATATATTA", data)
     dispatch(singleNote(data));
 }
 
@@ -96,16 +98,19 @@ const notesReducer = (state = initialState, action) => {
         // WORKING
         case GET_NOTES: {
             let notes = {};
-            console.log("ABOVE")
-            console.log(action.payload)
-            action.payload.forEach(note => {
-              notes[note.id] = note
-            })
-            console.log("inside reducers")
-            console.log(notes)
+
+              action.payload.forEach(note => {
+                notes[note.id] = note
+              })
 
             return notes
         }
+
+        case SINGLE_NOTE:
+          let newNote = {}
+
+          console.log("INSIDE REDUCER")
+          console.log(action.payload)
         // WORKING
         case CREATE_NOTE: {
             const newState = { ...state};

@@ -14,8 +14,8 @@ function CurrentNote() {
     const currentUser = useSelector(state => state.session.user);
     const userNotes = useSelector(state => state.notes)
     let selectedNote = userNotes[noteId];
-    const [currtitle, setcurrTitle] = useState('');
-    const [currentNote, setCurrentNote] = useState('');
+    const [currtitle, setcurrTitle] = useState(selectedNote?.title);
+    const [currentNote, setCurrentNote] = useState("");
     const [errors, setErrors] = useState([]);
     const [updated, setUpdated] = useState(false);
 
@@ -91,7 +91,8 @@ function CurrentNote() {
 
 
     useEffect(() => {
-        dispatch(sessionActions.getNotesThunk(currentUser?.id))
+        // dispatch(sessionActions.getNotesThunk(currentUser?.id))
+        dispatch(sessionActions.getSingleNoteThunk(currentUser.id, noteId))
 
     }, [dispatch, noteId])
 
@@ -110,7 +111,7 @@ function CurrentNote() {
                     </ul>
                     <input
                     className='form-title edit'
-                        value={selectedNote?.title}
+                        value={currtitle}
                         onChange={(e) => {
                             setcurrTitle(e.target.value)
                         }}
