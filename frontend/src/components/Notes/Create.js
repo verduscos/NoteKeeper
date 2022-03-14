@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import ReactQuill from 'react-quill';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from "react-router-dom"
 import * as sessionActions from '../../store/notes';
@@ -12,6 +13,7 @@ function Create() {
     const [notebookId, setNotebookId] = useState(null);
     const [errors, setErrors] = useState([]);
     const [created, setCreated] = useState(false);
+    const [value, setValue] = useState("")
 
 
     const [title, setTitle] = useState('');
@@ -35,13 +37,13 @@ function Create() {
 
         const payload = {
             title,
-            body,
+            body: value,
             userId: currentUser.id,
             notebookId
          }
          setErrors([]);
 
-         if (title.length >= 4 && body.length >= 1) setCreated(true)
+         if (title.length >= 4 && value.length >= 1) setCreated(true)
 
              return dispatch(sessionActions.createNoteThunk(payload))
              .catch(async (res) => {
@@ -53,6 +55,7 @@ function Create() {
      if (created) {
         setTimeout(() => {
             setCreated(false);
+            history.push("/mynotes/notes")
         }, 2000)
     }
 
@@ -84,12 +87,13 @@ function Create() {
                 </div>
 
 
+                <ReactQuill placeholder="Start writing..." theme="snow" value={value} onChange={setValue} className='displayNote' />
 
-            <textarea onChange={(e) => {
+            {/* <textarea onChange={(e) => {
                 setBody(e.target.value);
             }}
             className='displayNote'
-            type='texarea' value={body} placeholder='Start writing...'/>
+            type='texarea' value={body} placeholder='Start writing...'/> */}
             <button
 
             className='create-delete create'
