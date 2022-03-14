@@ -33,7 +33,7 @@ const handleSubmit = (e) => {
 }
     return (
         <div id='sigupformpage'>
-            <Link id='back-arrow' to='/'><i class="fas fa-arrow-left"></i></Link>
+            <Link id='back-arrow' to='/'><i className="fas fa-arrow-left"></i></Link>
             <form onSubmit={handleSubmit} id='signupPage'>
                 <Link id='signup-title' to='/'>NoteKeeper</Link>
                 <p id='signup-text'>Remember everthing important.</p>

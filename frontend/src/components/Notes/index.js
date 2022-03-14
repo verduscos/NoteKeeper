@@ -26,7 +26,7 @@ function Notes() {
     if (created) {
         notifcation = (
             <div className='notification'>
-                <p>Note Created! </p> <i id='notification-check' class="fas fa-check-square"></i>
+                <p>Note Created! </p> <i id='notification-check' className="fas fa-check-square"></i>
             </div>
         )
     } else {
@@ -67,7 +67,6 @@ function Notes() {
 
     const userNotes = useSelector(state => state.notes);
     let notes = Object.values(userNotes)
-    console.log(notes, "HERE IS USERNOTES")
 
     const handleCreate = (e) => {
         e.preventDefault();
@@ -115,9 +114,11 @@ function Notes() {
             <div id='note-container'>
             {notes?.map(note => (
                 <div onClick={(e) => {
-                  getNote(e, note.id)
-                }}>
-                    <Link id='note-links'  to={`/mynotes/notes/${note?.id}`}>{note?.title}</Link>
+                  getNote(e, note?.id)
+                }}
+                key={note?.id}
+                >
+                    <Link key={`${note?.id}-link`}id='note-links'  to={`/mynotes/notes/${note?.id}`}>{note?.title}</Link>
                 </div>
             ))}
 

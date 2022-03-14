@@ -21,13 +21,12 @@ function CurrentNote() {
     const [updated, setUpdated] = useState(false);
     // const [deleted, setDeleted] = useState(false);
     const [value, setValue] = useState('');
-    console.log(value)
 
     let notifcation;
     if (updated) {
         notifcation = (
             <div className='notification'>
-                <p>Note Updated! </p> <i id='notification-check' class="fas fa-check-square"></i>
+                <p>Note Updated! </p> <i id='notification-check' className="fas fa-check-square"></i>
             </div>
         )
     } else {
@@ -97,10 +96,12 @@ function CurrentNote() {
     useEffect(() => {
         dispatch(sessionActions.getNotesThunk(currentUser?.id))
 
-        const { title, body } = userNotes?.find(note =>
-            note.id === +noteId
-        )
+        // const { title, body } = userNotes?.find(note =>
+        //     note?.id === +noteId
+        // )
 
+        let title = userNotes1[noteId].title;
+        let body = userNotes1[noteId].body;
         // const { title, body } = userNotes1[noteId];
 
         setcurrTitle(title)

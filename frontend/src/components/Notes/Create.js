@@ -23,7 +23,7 @@ function Create() {
     if (created) {
         notifcation = (
             <div className='notification'>
-                <p>Note Created! </p> <i id='notification-check' class="fas fa-check-square"></i>
+                <p>Note Created! </p> <i id='notification-check' className="fas fa-check-square"></i>
             </div>
         )
     } else {
