@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from "react-router-dom"
 import * as sessionActions from '../../store/notes';
 import './Create.css'
 
 
 function Create() {
     const currentUser = useSelector(state => state.session.user);
+    const history = useHistory()
     const dispatch = useDispatch()
     const [notebookId, setNotebookId] = useState(null);
     const [errors, setErrors] = useState([]);
@@ -45,7 +47,6 @@ function Create() {
              .catch(async (res) => {
                  const data = await res.json();
                  if (data && data.errors) setErrors(data.errors)
-
              })
      }
 

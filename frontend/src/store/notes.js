@@ -1,7 +1,7 @@
 import { csrfFetch } from "./csrf"
 
 const GET_NOTES = 'mynotes/getNotes';
-const SINGLE_NOTE = 'mynotes/singleNote';
+// const SINGLE_NOTE = 'mynotes/singleNote';
 const CREATE_NOTE = 'mynotes/createNote';
 const EDIT_NOTE = 'mynotes/editNote';
 const REMOVE_NOTE = 'mynotes/deleteNote'
@@ -11,10 +11,10 @@ const getNotes = (notes) => ({
     payload: notes
 })
 
-const singleNote = (note) => ({
-    type: GET_NOTES,
-    payload: note
-})
+// const singleNote = (note) => ({
+//     type: GET_NOTES,
+//     payload: note
+// })
 
 const createNote = (note) => ({
     type: CREATE_NOTE,
@@ -52,13 +52,15 @@ export const getNotesThunk = (userId) => async (dispatch) => {
     dispatch(getNotes(data));
 }
 
-export const getSingleNoteThunk = (userId, noteId) => async (dispatch) => {
-    const response = await csrfFetch(`/api/mynotes/${userId}/notes/${noteId}`, {
-        method: 'GET',
-    })
-    const data = await response.json();
-    dispatch(singleNote(data));
-}
+// export const getSingleNoteThunk = (userId, noteId) => async (dispatch) => {
+//     console.log("IN SIDE THE THUNK")
+//     const response = await csrfFetch(`/api/mynotes/${userId}/notes/${noteId}`, {
+//         method: 'GET',
+//     })
+//     const data = await response.json();
+//     console.log("DATATATATTA", data)
+//     dispatch(singleNote(data));
+// }
 
 export const createNoteThunk = (payload) => async (dispatch) => {
     const response = await csrfFetch(`/api/mynotes`, {
@@ -95,50 +97,63 @@ const notesReducer = (state = initialState, action) => {
     switch (action.type) {
         // WORKING
         case GET_NOTES: {
-            return {...state, notes: action.payload}
+            let notes = {};
+
+              action.payload.forEach(note => {
+                notes[note.id] = note
+              })
+
+            return notes
         }
+
+        // case SINGLE_NOTE:
+        //   let newNote = {}
+
+        //   console.log("INSIDE REDUCER")
+        //   console.log(action.payload)
         // WORKING
         case CREATE_NOTE: {
             const newState = { ...state};
-            newState.notes = [
-                ...newState.notes,
-                 action.payload,
-            ];
+
+
+            newState[action.payload.id] = action.payload
+            console.log(newState)
+
             return newState
         }
-        // WORKING
-        case EDIT_NOTE: {
-            const newState = { ...state};
-            newState.notes.forEach((note, i ,arr) => {
-                if (note.id === action.payload.id) {
-                    arr[i] = action.payload
-                }
-            })
-            return newState;
-          }
-        // NOT WORKING
+        // // WORKING
+        // case EDIT_NOTE: {
+        //     const newState = { ...state};
+        //     newState.notes.forEach((note, i ,arr) => {
+        //         if (note.id === action.payload.id) {
+        //             arr[i] = action.payload
+        //         }
+        //     })
+        //     return newState;
+        //   }
+        // // NOT WORKING
+        // // case REMOVE_NOTE: {
+        // //     const newState = {...state};
+        //     // newState.notes.forEach((note, i, arr) => {
+        //     //     if (note.id === action.noteId) {
+        //     //        newState.notes.splice(i, 1, 0);
+        //     //     }
+        //     // })
+        //     // for (let i = 0; i < newState.notes; i++) {
+        //     //     if (newState.notes.id[i] === action.payload.id) {
+        //     //          newState.notes.splice(i, 1, 0);
+        //     //     }
+        //     // }
+        //     // return newState
+        // // }
         // case REMOVE_NOTE: {
-        //     const newState = {...state};
-            // newState.notes.forEach((note, i, arr) => {
-            //     if (note.id === action.noteId) {
-            //        newState.notes.splice(i, 1, 0);
-            //     }
-            // })
-            // for (let i = 0; i < newState.notes; i++) {
-            //     if (newState.notes.id[i] === action.payload.id) {
-            //          newState.notes.splice(i, 1, 0);
-            //     }
-            // }
-            // return newState
+        //     const newState = {...state}
+        //     // console.log(action)
+        //     const newNotes = newState.notes.filter(note => note.id !== +action.payload)
+        //     // console.log(newNotes)
+        //     newState.notes = newNotes;
+        //     return newState;
         // }
-        case REMOVE_NOTE: {
-            const newState = {...state}
-            // console.log(action)
-            const newNotes = newState.notes.filter(note => note.id !== +action.payload)
-            // console.log(newNotes)
-            newState.notes = newNotes;
-            return newState;
-        }
 
         default:
             return state;

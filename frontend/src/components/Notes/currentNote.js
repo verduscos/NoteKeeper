@@ -11,7 +11,8 @@ function CurrentNote() {
     const params = useParams();
     const dispatch = useDispatch();
     const currentUser = useSelector(state => state.session.user);
-    const userNotes = useSelector(state => state.notes.notes)
+    const userNotes1 = useSelector(state => state.notes)
+    let userNotes = Object.values(userNotes1)
     const { noteId } = params;
     const [currtitle, setcurrTitle] = useState('');
     const [currentNote, setCurrentNote] = useState('');
@@ -93,9 +94,11 @@ function CurrentNote() {
     useEffect(() => {
         dispatch(sessionActions.getNotesThunk(currentUser?.id))
 
-        const { title, body } = userNotes?.find(note =>
-            note.id === +noteId
-        )
+        // const { title, body } = userNotes?.find(note =>
+        //     note.id === +noteId
+        // )
+
+        const { title, body } = userNotes1[noteId];
 
         setcurrTitle(title)
         setCurrentNote(body)

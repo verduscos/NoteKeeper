@@ -33,7 +33,7 @@ function App() {
             <SignupFormPage />
           </Route>
           <Route exact path="/mynotes/notes">
-            <Notebooks />
+            {/* <Notebooks /> */}
             <Notes />
             <Create />
           </Route>

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import * as sessionActions from '../../store/notes';
+import { getSingleNoteThunk } from '../../store/currentNote';
 import * as notebookActions from '../../store/notebooks';
 import { useDispatch, useSelector } from 'react-redux';
 import CurrentNote from './currentNote';
@@ -64,7 +65,9 @@ function Notes() {
         }, 2000)
     }
 
-    const userNotes = useSelector(state => state.notes.notes);
+    const userNotes = useSelector(state => state.notes);
+    let notes = Object.values(userNotes)
+    console.log(notes, "HERE IS USERNOTES")
 
     const handleCreate = (e) => {
         e.preventDefault();
@@ -78,6 +81,12 @@ function Notes() {
          dispatch(sessionActions.createNoteThunk(payload))
 
         return
+    }
+
+    const getNote = (e, noteId) => {
+      e.preventDefault();
+      dispatch(getSingleNoteThunk(currentUser.id, noteId))
+      // dispatch(sessionActions.getSingleNoteThunk(currentUser.id, noteId));
     }
 
 
@@ -104,9 +113,11 @@ function Notes() {
             <h1>My Notes</h1>
 
             <div id='note-container'>
-            {userNotes?.map(note => (
-                <div>
-                    <Link id='note-links'  to={`/mynotes/notes/${note.id}`}>{note.title}</Link>
+            {notes?.map(note => (
+                <div onClick={(e) => {
+                  getNote(e, note.id)
+                }}>
+                    <Link id='note-links'  to={`/mynotes/notes/${note?.id}`}>{note?.title}</Link>
                 </div>
             ))}
 
