@@ -1,7 +1,7 @@
 import { csrfFetch } from "./csrf"
 
 const GET_NOTES = 'mynotes/getNotes';
-const SINGLE_NOTE = 'mynotes/singleNote';
+// const SINGLE_NOTE = 'mynotes/singleNote';
 const CREATE_NOTE = 'mynotes/createNote';
 const EDIT_NOTE = 'mynotes/editNote';
 const REMOVE_NOTE = 'mynotes/deleteNote'
@@ -11,10 +11,10 @@ const getNotes = (notes) => ({
     payload: notes
 })
 
-const singleNote = (note) => ({
-    type: GET_NOTES,
-    payload: note
-})
+// const singleNote = (note) => ({
+//     type: GET_NOTES,
+//     payload: note
+// })
 
 const createNote = (note) => ({
     type: CREATE_NOTE,
@@ -52,15 +52,15 @@ export const getNotesThunk = (userId) => async (dispatch) => {
     dispatch(getNotes(data));
 }
 
-export const getSingleNoteThunk = (userId, noteId) => async (dispatch) => {
-    console.log("IN SIDE THE THUNK")
-    const response = await csrfFetch(`/api/mynotes/${userId}/notes/${noteId}`, {
-        method: 'GET',
-    })
-    const data = await response.json();
-    console.log("DATATATATTA", data)
-    dispatch(singleNote(data));
-}
+// export const getSingleNoteThunk = (userId, noteId) => async (dispatch) => {
+//     console.log("IN SIDE THE THUNK")
+//     const response = await csrfFetch(`/api/mynotes/${userId}/notes/${noteId}`, {
+//         method: 'GET',
+//     })
+//     const data = await response.json();
+//     console.log("DATATATATTA", data)
+//     dispatch(singleNote(data));
+// }
 
 export const createNoteThunk = (payload) => async (dispatch) => {
     const response = await csrfFetch(`/api/mynotes`, {
@@ -106,11 +106,11 @@ const notesReducer = (state = initialState, action) => {
             return notes
         }
 
-        case SINGLE_NOTE:
-          let newNote = {}
+        // case SINGLE_NOTE:
+        //   let newNote = {}
 
-          console.log("INSIDE REDUCER")
-          console.log(action.payload)
+        //   console.log("INSIDE REDUCER")
+        //   console.log(action.payload)
         // WORKING
         case CREATE_NOTE: {
             const newState = { ...state};

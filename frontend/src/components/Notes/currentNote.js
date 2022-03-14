@@ -9,15 +9,16 @@ import './CurrentNote.css';
 function CurrentNote() {
     const history = useHistory();
     const params = useParams();
-    const { noteId } = params
     const dispatch = useDispatch();
     const currentUser = useSelector(state => state.session.user);
-    const userNotes = useSelector(state => state.notes)
-    let selectedNote = userNotes[noteId];
-    const [currtitle, setcurrTitle] = useState(selectedNote?.title);
-    const [currentNote, setCurrentNote] = useState("");
+    const userNotes1 = useSelector(state => state.notes)
+    let userNotes = Object.values(userNotes1)
+    const { noteId } = params;
+    const [currtitle, setcurrTitle] = useState('');
+    const [currentNote, setCurrentNote] = useState('');
     const [errors, setErrors] = useState([]);
     const [updated, setUpdated] = useState(false);
+    // const [deleted, setDeleted] = useState(false);
 
     let notifcation;
     if (updated) {
@@ -91,9 +92,16 @@ function CurrentNote() {
 
 
     useEffect(() => {
-        // dispatch(sessionActions.getNotesThunk(currentUser?.id))
-        dispatch(sessionActions.getSingleNoteThunk(currentUser.id, noteId))
+        dispatch(sessionActions.getNotesThunk(currentUser?.id))
 
+        // const { title, body } = userNotes?.find(note =>
+        //     note.id === +noteId
+        // )
+
+        const { title, body } = userNotes1[noteId];
+
+        setcurrTitle(title)
+        setCurrentNote(body)
     }, [dispatch, noteId])
 
 
@@ -126,7 +134,7 @@ function CurrentNote() {
                         setCurrentNote(e.target.value)
                     }}
                     required
-                    value={selectedNote?.body}
+                    value={currentNote}
                     type="textarea"
                     cols='60' rows='8'
                 ></textarea>
