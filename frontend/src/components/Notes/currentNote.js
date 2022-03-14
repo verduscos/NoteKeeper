@@ -94,11 +94,11 @@ function CurrentNote() {
     useEffect(() => {
         dispatch(sessionActions.getNotesThunk(currentUser?.id))
 
-        // const { title, body } = userNotes?.find(note =>
-        //     note.id === +noteId
-        // )
+        const { title, body } = userNotes?.find(note =>
+            note.id === +noteId
+        )
 
-        const { title, body } = userNotes1[noteId];
+        // const { title, body } = userNotes1[noteId];
 
         setcurrTitle(title)
         setCurrentNote(body)
