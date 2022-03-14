@@ -13,15 +13,20 @@
 
 }
 
+/* remove default border from react quill */
+.ql-container.ql-snow {
+  border: none;
+}
 .displayNote {
     background-color: rgb(241, 241, 241);
     height: 600px;
     width: 1200px;
     word-break: break-all;white-space: pre-wrap;
     white-space: pre-wrap;
-    outline: none;
+    outline: none !important;
     font-size: 12px;
     border: 1px solid rgb(228, 228, 228);
+    border: none;
     /* box-shadow: rgb(148 148 161 / 20%) 0px 2px 25px 0px; */
     /* box-shadow: rgba(148, 148, 161, 0.2) 0px 2px 15px 0px; */
     box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
