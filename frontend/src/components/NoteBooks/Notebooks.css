@@ -26,7 +26,7 @@
 
 #notebook-links {
   color: rgb(226, 226, 226);
-  border-bottom: 1px solid gray;
+  /* border-bottom: 1px solid gray; */
   height: 50px;
   width: 245px;
   font-size: 20px;
@@ -53,9 +53,12 @@
 
 .delete {
   background-color: red;
-  text-align: center;
-  align-self: flex-end;
-  position: absolute;
-  right: 0;
+  margin-right: 10px;
   cursor: pointer;
+}
+
+#notebook-container {
+  display: flex;
+  align-items: center;
+  border-bottom: .5px solid gray;
 }

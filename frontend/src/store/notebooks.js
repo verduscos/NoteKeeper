@@ -3,8 +3,9 @@ import { csrfFetch } from "./csrf";;
 //action
 const GET_NOTEBOOKS = 'mynotes/GET_NOTEBOOKS'
 const CREATE_NOTEBOOK = 'mynotes/CREATE_NOTEOOK'
+const UPDATE_NOTEBOOK = 'mynotes/UPDATE_NOTEBOOK'
 const DELETE_NOTEBOOK = 'mynotes/DELETE_NOTEBOOK'
-// const GET_NOTEBOOK_NOTES = 'mynotes/GET'
+const GET_NOTEBOOK_NOTES = 'mynotes/GET'
 
 //action creator
 const getNotebooks = (notebooks) => ({
@@ -19,6 +20,11 @@ const postNotebook = (notebook) => ({
 
 const deleteNotebook = (notebook) => ({
   type: DELETE_NOTEBOOK,
+  payload: notebook
+})
+
+const updateNotebook = (notebook) => ({
+  type: UPDATE_NOTEBOOK,
   payload: notebook
 })
 // const getNotebookNotes = (notes) => ({
@@ -54,7 +60,6 @@ export const postNotebookThunk = (payload) => async (dispatch) => {
 
 
 export const deleteNotebookThunk = (payload) => async(dispatch) => {
-  console.log(payload)
   const response = await csrfFetch(`/api/mynotes/notebooks/`, {
     method: "DELETE",
     headers: {
@@ -66,6 +71,24 @@ export const deleteNotebookThunk = (payload) => async(dispatch) => {
   if (response.ok) {
     const note = await response.json();
     dispatch(deleteNotebook(note));
+    return note;
+  }
+}
+
+export const updateNotebookThunk = (payload) => async(dispatch) => {
+  console.log("TESTLKJ")
+  const response = await csrfFetch(`/api/mynotes/notebooks/`, {
+    method: "PUT",
+    headers: {
+      "Content-Type" : "application/json"
+    },
+    body: JSON.stringify(payload)
+  })
+  console.log("LASKFJKLSFJKSDL")
+  console.log("OKAYOKAY")
+  if (response.ok) {
+    const note = await response.json();
+    dispatch(updateNotebook(note));
     return note;
   }
 }
@@ -98,6 +121,14 @@ const notebooksReducer = (state = initialState, action) => {
           newNotebook[action.payload.id] = action.payload;
 
           return newNotebook;
+        case UPDATE_NOTEBOOK:
+          console.log("LSAJFKLDJLSFKDJ")
+          console.log(action.payload)
+          let updateNotebook = { ...state }
+
+          updateNotebook[action.payload.id] = action.payload
+
+          return updateNotebook;
         case DELETE_NOTEBOOK:
           let updatedNotebook = { ...state }
 

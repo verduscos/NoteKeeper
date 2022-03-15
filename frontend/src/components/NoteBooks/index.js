@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import * as notebookActions from '../../store/notebooks';
 import { getNotebookNotesThunk } from '../../store/notes';
-import { postNotebookThunk, deleteNotebookThunk } from '../../store/notebooks';
+import { postNotebookThunk, deleteNotebookThunk, updateNotebookThunk } from '../../store/notebooks';
 import { useDispatch, useSelector } from 'react-redux';
 import './Notebooks.css';
 
@@ -33,7 +33,6 @@ function Notebooks() {
 
   const deleteNotebook = (e, id) => {
     e.preventDefault();
-    console.log(id)
     const payload = {
       notebookId: id
     }
@@ -41,21 +40,44 @@ function Notebooks() {
     dispatch(deleteNotebookThunk(payload))
   }
 
+  const updateNotebook = (e, id) => {
+    e.preventDefault();
+    const payload = {
+      notebookId: id,
+      title: notebookName
+    }
+
+    dispatch(updateNotebookThunk(payload))
+  }
+
   return (
     <div id='notebooks'>
       <h1>notebooks</h1>
       <div id='note-container'>
         {notebooks?.map(notebook => (
-          <>
+          <div id="notebook-container">
           <div
             onClick={(e) => {
               getNotebookNotes(e, notebook.id)
             }}
             id='notebook-links'>{notebook?.title}</div>
+
             <span  onClick={(e) => {
               deleteNotebook(e, notebook.id)
-            }} value={notebook?.id} className="delete">X</span>
-            </>
+            }} className="delete">X</span>
+
+            <form onSubmit={(e) => {
+              updateNotebook(e, notebook.id)
+            }}>
+              <input value={notebookName} onChange={(e) => {
+          e.preventDefault()
+          setNotebookName(e.target.value)
+        }} type="text" />
+
+            <button className="delete">O</button>
+            </form>
+
+            </div>
         ))}
 
       </div>

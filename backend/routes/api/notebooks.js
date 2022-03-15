@@ -74,14 +74,26 @@ router.post("/", validateNotebook, asyncHandler(async(req, res) => {
 // Delete a notebook
 router.delete("/", asyncHandler(async(req, res) => {
   const { notebookId } = req.body;
+  const notebook = await Notebook.findByPk(notebookId);
+
+  await notebook.destroy();
+  return res.json(notebook);
+}))
+
+
+// Update a notebook title
+router.put("/", asyncHandler(async(req, res) => {
+  const { notebookId, title } = req.body;
+
   console.log("WE HIT")
-  console.log(req.body)
+  // console.log(req.body)
+  console.log(title)
   console.log(notebookId)
   const notebook = await Notebook.findByPk(notebookId);
 
-  console.log(notebook, 'HERE')
+  notebook.title = title
+  await notebook.save();
 
-  await notebook.destroy();
   return res.json(notebook);
 }))
 
