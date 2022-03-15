@@ -105,9 +105,6 @@ function Notes() {
         return (
         <div id='bg'>
            {notifcation}
-           <div id='user'>
-                <ProfileButton user={currentUser}/>
-           </div>
         <div id='note-link-column'>
             <h1>notes</h1>
 
