@@ -33,8 +33,6 @@ export const getNootbooksThunk = (userId) => async (dispatch)=> {
 
 
 export const postNotebookThunk = (payload) => async (dispatch) => {
-  console.log("BEFORE RES")
-  console.log(payload)
   const response = await csrfFetch(`/api/mynotes/notebooks/`, {
     method: "POST",
     headers: {
@@ -42,7 +40,6 @@ export const postNotebookThunk = (payload) => async (dispatch) => {
     },
     body: JSON.stringify(payload)
   })
-  console.log("INSIDE THUNK")
   if (response.ok) {
     const note = await response.json();
     dispatch(postNotebook(note));

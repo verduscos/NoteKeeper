@@ -11,6 +11,7 @@ function Notebooks() {
   const notebooksObj = useSelector(state => state.notebooks);
   let notebooks = Object.values(notebooksObj);
   const [notebookName, setNotebookName] = useState("");
+  const [errors, setErrors] = useState("");
 
   const getNotebookNotes = (e, notebookId) => {
     e.preventDefault();
@@ -23,8 +24,11 @@ function Notebooks() {
       user_id: currentUser.id,
       title: notebookName
     }
-    console.log("INSIDE HANDLE CLICK")
-    dispatch(postNotebookThunk(payload))
+    if (notebookName.length >= 4) {
+      dispatch(postNotebookThunk(payload))
+    } else {
+      setErrors(["*Title must be at least 4 characters long."])
+    }
   }
 
   return (
@@ -41,6 +45,7 @@ function Notebooks() {
 
       </div>
 
+      <p className="error-mssg">{errors[0]}</p>
       <form onSubmit={(e) => {
         createNotebook(e)
       }}>
@@ -49,6 +54,7 @@ function Notebooks() {
           setNotebookName(e.target.value)
         }} type="text" />
         <button>create</button>
+
       </form>
     </div>
   )

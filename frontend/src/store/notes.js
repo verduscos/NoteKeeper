@@ -59,8 +59,6 @@ export const getNotesThunk = (userId) => async (dispatch) => {
 }
 
 export const getNotebookNotesThunk = (userId, notebookId) => async (dispatch) => {
-  console.log('INSIDE THUNK');
-  console.log(userId, notebookId)
   const response = await csrfFetch(`/api/mynotes/notebooks/${userId}/${notebookId}`, {
     method: "GET"
   })
