@@ -3,9 +3,12 @@ import * as notebookActions from '../../store/notebooks';
 import { getNotebookNotesThunk } from '../../store/notes';
 import { postNotebookThunk, deleteNotebookThunk, updateNotebookThunk } from '../../store/notebooks';
 import { useDispatch, useSelector } from 'react-redux';
+import { Link, useParams } from 'react-router-dom';
 import './Notebooks.css';
 
 function Notebooks() {
+  const params = useParams();
+  const { notebookId } = params;
   const dispatch = useDispatch()
   const currentUser = useSelector(state => state.session.user);
   const notebooksObj = useSelector(state => state.notebooks);
@@ -50,17 +53,22 @@ function Notebooks() {
     dispatch(updateNotebookThunk(payload))
   }
 
+  useEffect(() => {
+    dispatch(getNotebookNotesThunk(currentUser.id, notebookId));
+  }, [dispatch, notebookId])
+
   return (
     <div id='notebooks'>
       <h1>notebooks</h1>
       <div id='note-container'>
         {notebooks?.map(notebook => (
           <div id="notebook-container">
-          <div
-            onClick={(e) => {
-              getNotebookNotes(e, notebook.id)
-            }}
-            id='notebook-links'>{notebook?.title}</div>
+          <Link
+            to={`/mynotes/notebook/${notebook?.id}`}
+            // onClick={(e) => {
+            //   getNotebookNotes(e, notebook.id)
+            // }}
+            id='notebook-links'>{notebook?.title}</Link>
 
             <span  onClick={(e) => {
               deleteNotebook(e, notebook.id)

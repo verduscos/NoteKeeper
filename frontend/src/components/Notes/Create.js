@@ -1,106 +1,109 @@
 import React, { useState, useEffect } from 'react';
 import ReactQuill from 'react-quill';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from "react-router-dom"
+import { useHistory, useParams } from "react-router-dom"
 import * as sessionActions from '../../store/notes';
 import './Create.css'
 
 
 function Create() {
-    const currentUser = useSelector(state => state.session.user);
-    const history = useHistory()
-    const dispatch = useDispatch()
-    const [notebookId, setNotebookId] = useState(null);
-    const [errors, setErrors] = useState([]);
-    const [created, setCreated] = useState(false);
-    const [value, setValue] = useState("")
+  const params = useParams();
+  const { notebookId } = params;
+  const currentUser = useSelector(state => state.session.user);
+  const history = useHistory()
+  const dispatch = useDispatch()
+  const [notebookId1, setNotebookId] = useState(null);
+  const [errors, setErrors] = useState([]);
+  const [created, setCreated] = useState(false);
+  const [value, setValue] = useState("")
 
 
-    const [title, setTitle] = useState('');
-    const [body, setBody] = useState('');
+  const [title, setTitle] = useState('');
+  const [body, setBody] = useState('');
 
-    let notifcation;
-    if (created) {
-        notifcation = (
-            <div className='notification'>
-                <p>Note Created! </p> <i id='notification-check' className="fas fa-check-square"></i>
-            </div>
-        )
-    } else {
-        notifcation = (
-            null
-        )
+  let notifcation;
+  if (created) {
+    notifcation = (
+      <div className='notification'>
+        <p>Note Created! </p> <i id='notification-check' className="fas fa-check-square"></i>
+      </div>
+    )
+  } else {
+    notifcation = (
+      null
+    )
+  }
+
+  console.log(notebookId)
+  const handleErrors = (e) => {
+    e.preventDefault();
+
+    const payload = {
+      title,
+      body: value,
+      userId: currentUser.id,
+      notebookId: notebookId
     }
+    setErrors([]);
 
-    const handleErrors = (e) => {
-        e.preventDefault();
+    if (title.length >= 4 && value.length >= 1) setCreated(true)
 
-        const payload = {
-            title,
-            body: value,
-            userId: currentUser.id,
-            notebookId
-         }
-         setErrors([]);
+    return dispatch(sessionActions.createNoteThunk(payload))
+      .catch(async (res) => {
+        const data = await res.json();
+        if (data && data.errors) setErrors(data.errors)
+      })
+  }
 
-         if (title.length >= 4 && value.length >= 1) setCreated(true)
-
-             return dispatch(sessionActions.createNoteThunk(payload))
-             .catch(async (res) => {
-                 const data = await res.json();
-                 if (data && data.errors) setErrors(data.errors)
-             })
-     }
-
-     if (created) {
-        setTimeout(() => {
-            setCreated(false);
-            history.push("/mynotes/notes")
-        }, 2000)
-    }
+  if (created) {
+    setTimeout(() => {
+      setCreated(false);
+      history.push(`/mynotes/notebook/${notebookId}`)
+    }, 2000)
+  }
 
 
-    useEffect(() => {
-        dispatch(sessionActions.getNotesThunk(currentUser.id))
+  useEffect(() => {
+    dispatch(sessionActions.getNotesThunk(currentUser.id))
 
-    }, [dispatch])
+  }, [dispatch])
 
 
-    return (
-        <>
-        {notifcation}
+  return (
+    <>
+      {notifcation}
 
-        <form onSubmit={handleErrors} className='form'>
-                <div className='title-container'>
-                    {/* <h2>Create a new note</h2> */}
+      <form onSubmit={handleErrors} className='form'>
+        <div className='title-container'>
+          {/* <h2>Create a new note</h2> */}
 
-                    <ul className='errors'>
-                    {errors.map((error, idx) => <li key={idx}>{error}</li>)}
-                </ul>
+          <ul className='errors'>
+            {errors.map((error, idx) => <li key={idx}>{error}</li>)}
+          </ul>
 
-                <input  onChange={(e) => {
-                setTitle(e.target.value);
-            }}
+          <input onChange={(e) => {
+            setTitle(e.target.value);
+          }}
             required
             className='form-title edit'
-            type='text' value={title} placeholder='Title'/>
-                </div>
+            type='text' value={title} placeholder='Title' />
+        </div>
 
 
-                <ReactQuill placeholder="Start writing..." theme="snow" value={value} onChange={setValue} className='displayNote' />
+        <ReactQuill placeholder="Start writing..." theme="snow" value={value} onChange={setValue} className='displayNote' />
 
-            {/* <textarea onChange={(e) => {
+        {/* <textarea onChange={(e) => {
                 setBody(e.target.value);
             }}
             className='displayNote'
             type='texarea' value={body} placeholder='Start writing...'/> */}
-            <button
+        <button
 
-            className='create-delete create'
-            >Create</button>
-        </form>
-        </>
-    )
+          className='create-delete create'
+        >Create</button>
+      </form>
+    </>
+  )
 }
 
 export default Create;

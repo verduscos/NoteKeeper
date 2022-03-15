@@ -52,12 +52,13 @@ router.get("/:userId", asyncHandler(async(req, res) => {
 
   // Create a note
 router.post('/', validateNote ,asyncHandler(async(req, res, next) => {
-  const { title, body, userId} = req.body;
-
+  const { title, body, userId, notebookId } = req.body;
+  console.log(notebookId, "NOTEBOOK ID")
   let newNote = await Note.build({
     title,
     body,
-    userId
+    userId,
+    notebookId
   })
 
   const validationErrors = validationResult(req);
