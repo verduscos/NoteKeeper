@@ -44,6 +44,7 @@ function App() {
             <Create />
           </Route>
           <Route exact path="/mynotes/notes/:noteId">
+            <Notebooks />
             <Notes />
             <CurrentNote />
           </Route>

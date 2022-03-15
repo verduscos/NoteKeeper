@@ -13,9 +13,9 @@
 
 #note-link-column {
   font-family: "Roboto", sans-serif;
-  color: rgb(226, 226, 226);
+  color: #1a1a1a;
   position: absolute;
-  background-color: #1a1a1a;
+  background-color: rgb(226, 226, 226);
   min-width: 270px;
   width: auto;
   display: flex;
@@ -24,7 +24,7 @@
   align-items: center;
   padding: 0;
   margin: 0;
-  left: 200px;
+  left: 270px;
   top: 0;
   height: 100vh;
   z-index: 10;
@@ -39,7 +39,7 @@
 }
 
 #note-links {
-  color: rgb(226, 226, 226);
+  color: #1a1a1a;
   border-bottom: 1px solid gray;
   height: 50px;
   width: 245px;

@@ -5,4 +5,37 @@
     top: 0;
     width: 200px;
     height: 100vh;
+
+    font-family: "Roboto", sans-serif;
+    color: rgb(226, 226, 226);
+    position: absolute;
+    background-color: #1a1a1a;
+    min-width: 270px;
+    width: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+    left: 0px;
+    top: 0;
+    height: 100vh;
+    z-index: 10;
+}
+
+#notebook-links {
+  color: rgb(226, 226, 226);
+  border-bottom: 1px solid gray;
+  height: 50px;
+  width: 245px;
+  font-size: 20px;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  padding: 10px;
+}
+
+#notebook-links:hover {
+  background-color: rgb(87, 87, 87);
 }

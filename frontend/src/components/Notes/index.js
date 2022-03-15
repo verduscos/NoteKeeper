@@ -109,7 +109,7 @@ function Notes() {
                 <ProfileButton user={currentUser}/>
            </div>
         <div id='note-link-column'>
-            <h1>My Notes</h1>
+            <h1>notes</h1>
 
             <div id='note-container'>
             {notes?.map(note => (

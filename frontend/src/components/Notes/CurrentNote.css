@@ -164,7 +164,7 @@
     z-index: 12;
     /* box-shadow: 1px 2px  1px red; */
     position: absolute;
-    left: 70px;
+    right: 225px;
     top: 65px;
     box-shadow: rgba(148, 148, 161, 0.2) 0px 2px 25px 0px;
 }
