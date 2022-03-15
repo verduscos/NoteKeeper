@@ -71,7 +71,19 @@ router.post("/", validateNotebook, asyncHandler(async(req, res) => {
 
 
 
-// Delete 
+// Delete a notebook
+router.delete("/", asyncHandler(async(req, res) => {
+  const { notebookId } = req.body;
+  console.log("WE HIT")
+  console.log(req.body)
+  console.log(notebookId)
+  const notebook = await Notebook.findByPk(notebookId);
+
+  console.log(notebook, 'HERE')
+
+  await notebook.destroy();
+  return res.json(notebook);
+}))
 
 
 module.exports = router;

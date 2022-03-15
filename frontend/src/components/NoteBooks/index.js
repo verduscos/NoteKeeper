@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import * as notebookActions from '../../store/notebooks';
 import { getNotebookNotesThunk } from '../../store/notes';
-import { postNotebookThunk } from '../../store/notebooks';
+import { postNotebookThunk, deleteNotebookThunk } from '../../store/notebooks';
 import { useDispatch, useSelector } from 'react-redux';
 import './Notebooks.css';
 
@@ -31,16 +31,31 @@ function Notebooks() {
     }
   }
 
+  const deleteNotebook = (e, id) => {
+    e.preventDefault();
+    console.log(id)
+    const payload = {
+      notebookId: id
+    }
+
+    dispatch(deleteNotebookThunk(payload))
+  }
+
   return (
     <div id='notebooks'>
       <h1>notebooks</h1>
       <div id='note-container'>
         {notebooks?.map(notebook => (
+          <>
           <div
             onClick={(e) => {
               getNotebookNotes(e, notebook.id)
             }}
             id='notebook-links'>{notebook?.title}</div>
+            <span  onClick={(e) => {
+              deleteNotebook(e, notebook.id)
+            }} value={notebook?.id} className="delete">X</span>
+            </>
         ))}
 
       </div>

@@ -76,7 +76,6 @@ router.post('/', validateNote ,asyncHandler(async(req, res, next) => {
 router.put('/notes/:noteId', validateNote, asyncHandler(async (req, res) => {
   const { noteId } = req.params;
   const { title, body } = req.body;
-  console.log('INSIDE ORUTE')
   const note = await Note.findByPk(noteId);
 
 

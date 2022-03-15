@@ -3,6 +3,7 @@ import { csrfFetch } from "./csrf";;
 //action
 const GET_NOTEBOOKS = 'mynotes/GET_NOTEBOOKS'
 const CREATE_NOTEBOOK = 'mynotes/CREATE_NOTEOOK'
+const DELETE_NOTEBOOK = 'mynotes/DELETE_NOTEBOOK'
 // const GET_NOTEBOOK_NOTES = 'mynotes/GET'
 
 //action creator
@@ -15,6 +16,11 @@ const postNotebook = (notebook) => ({
   type: CREATE_NOTEBOOK,
   payload: notebook
 })
+
+const deleteNotebook = (notebook) => ({
+  type: DELETE_NOTEBOOK,
+  payload: notebook
+})
 // const getNotebookNotes = (notes) => ({
 //   type: GET_NOTEBOOK_NOTES,
 //   payload: notes
@@ -22,7 +28,6 @@ const postNotebook = (notebook) => ({
 
 //thunk
 export const getNootbooksThunk = (userId) => async (dispatch)=> {
-
   const response = await csrfFetch(`/api/mynotes/notebooks/${userId}`, {
     method: 'GET'
   })
@@ -43,6 +48,24 @@ export const postNotebookThunk = (payload) => async (dispatch) => {
   if (response.ok) {
     const note = await response.json();
     dispatch(postNotebook(note));
+    return note;
+  }
+}
+
+
+export const deleteNotebookThunk = (payload) => async(dispatch) => {
+  console.log(payload)
+  const response = await csrfFetch(`/api/mynotes/notebooks/`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(payload)
+  })
+
+  if (response.ok) {
+    const note = await response.json();
+    dispatch(deleteNotebook(note));
     return note;
   }
 }
@@ -75,6 +98,12 @@ const notebooksReducer = (state = initialState, action) => {
           newNotebook[action.payload.id] = action.payload;
 
           return newNotebook;
+        case DELETE_NOTEBOOK:
+          let updatedNotebook = { ...state }
+
+          delete updatedNotebook[action.payload.id]
+
+          return updatedNotebook
         default:
             return state;
     }
