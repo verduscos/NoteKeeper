@@ -124,3 +124,10 @@ li > * {
   font-size: 23px;
   margin-right: 15px;
 }
+
+.profile-dropdown > p,
+.profile-dropdown > div,
+.profile-dropdown > li > button
+{
+  padding-left: 15px;
+}

@@ -98,9 +98,9 @@ ul {
   }
 
   #logout-container {
-    /* background-color: gray; */
     width: 100%;
-    padding-left: -15px;
+    /* width: 285px;
+    padding-left: -15px; */
   }
 
   #logout {
@@ -126,7 +126,7 @@ ul {
     padding: 0;
     margin-top: 10px;
     width: 300px;
-    height: 270px;
+    height: 175px;
     background-color: white;
     box-shadow: 0 0 6px rgba(0,0,0,0.3);
     position: absolute;
@@ -137,7 +137,6 @@ ul {
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
-    /* padding-left: 15px; */
     color: #1a1a1a;
   }
 
