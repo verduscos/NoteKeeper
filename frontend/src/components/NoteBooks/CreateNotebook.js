@@ -5,30 +5,31 @@ import { useHistory } from 'react-router-dom';
 import { IoIosArrowDown } from 'react-icons/io'
 import { AiOutlinePlus } from 'react-icons/ai'
 import { postNotebookThunk } from '../../store/notebooks';
+import { MdOutlineCreateNewFolder } from 'react-icons/md'
 
 function CreateNotebook({ user }) {
   const history = useHistory();
   const dispatch = useDispatch();
-  const [showMenu, setShowMenu] = useState(false);
+  const [showCreateForm, setShowCreateForm] = useState(false);
   const [notebookName, setNotebookName] = useState("");
   const [errors, setErrors] = useState("");
 
-  const openMenu = () => {
-    if (showMenu) return;
-    setShowMenu(true);
-  };
+  // const openMenu = () => {
+  //   if (showMenu) return;
+  //   setShowMenu(true);
+  // };
 
-  useEffect(() => {
-    if (!showMenu) return;
+  // useEffect(() => {
+  //   if (!showMenu) return;
 
-    const closeMenu = () => {
-      setShowMenu(false);
-    };
+  //   const closeMenu = () => {
+  //     setShowMenu(false);
+  //   };
 
-    document.addEventListener('click', closeMenu);
+  //   document.addEventListener('click', closeMenu);
 
-    return () => document.removeEventListener("click", closeMenu);
-  }, [showMenu]);
+  //   return () => document.removeEventListener("click", closeMenu);
+  // }, [showMenu]);
 
   const createNotebook = (e) => {
     e.preventDefault();
@@ -37,36 +38,46 @@ function CreateNotebook({ user }) {
       title: notebookName
     }
     if (notebookName.length >= 4) {
-      dispatch(postNotebookThunk(payload))
+      dispatch(postNotebookThunk(payload));
+      setErrors("");
+      setShowCreateForm(!showCreateForm);
+      setNotebookName("");
     } else {
-      setErrors(["*Title must be at least 4 characters long."])
+      setErrors(["*Title must be at least 4 characters."])
     }
   }
 
   return (
     <>
-      <button id='create-notebook-btn' onClick={openMenu}>
+      <button id='create-notebook-btn'
+      onClick={(e) => {
+        e.preventDefault();
+        setShowCreateForm(!showCreateForm);
+      }}>
         <div id="notebook-text-container">
           <AiOutlinePlus />
           <p>New Notebook</p>
         </div>
         <IoIosArrowDown id="user-btn-arrow-create" />
       </button>
-      {showMenu && (
+      {showCreateForm ? (
         <>
           <p className="error-mssg">{errors[0]}</p>
           <form onSubmit={(e) => {
             createNotebook(e)
-          }}>
-            <input value={notebookName} onChange={(e) => {
+          }}
+          id="create-notebook-form"
+          >
+            <input id="create-notebook-input" value={notebookName} onChange={(e) => {
               e.preventDefault()
               setNotebookName(e.target.value)
             }} type="text" />
-            <button>create</button>
+            
+            <button id="create-notebook-submit" ><MdOutlineCreateNewFolder /></button>
 
           </form>
         </>
-      )}
+      ) : null}
     </>
   );
 }
