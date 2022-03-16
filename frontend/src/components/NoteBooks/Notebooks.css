@@ -72,7 +72,7 @@
   cursor: pointer;
   border: none;
   align-self: flex-end;
-  color: rgb(226, 226, 226);
+  color: rgb(255, 255, 255);
   background-color: rgb(233, 94, 94);
   padding: 5px;
   border-radius: 5px;
@@ -103,6 +103,8 @@
 }
 
 .highlight-notebook {
+  margin-left: -10px;
+  width: 260px !important;
   border-bottom: 1px solid rgb(226, 226, 226) !important;
 }
 
