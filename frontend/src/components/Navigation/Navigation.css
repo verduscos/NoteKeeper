@@ -22,11 +22,7 @@
     text-decoration: none;
     list-style: none;
     width: 70%;
-
-}
-
-li {
-    align-self:center;
+    align-items: center;
 
 }
 
@@ -89,6 +85,7 @@ li > * {
     color: #292929;
 
 }
+
 #loginButt:hover {
     color: rgb(78, 78, 78);
 }
@@ -121,4 +118,9 @@ li > * {
 #user-btn-arrow {
   font-size: 13px;
   margin-left: 15px;
+}
+
+#user-modal-check {
+  font-size: 23px;
+  margin-right: 15px;
 }

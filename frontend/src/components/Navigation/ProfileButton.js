@@ -2,7 +2,8 @@ import React, { useState, useEffect } from "react";
 import { useDispatch } from 'react-redux';
 import * as sessionActions from '../../store/session';
 import { useHistory } from 'react-router-dom';
-import { IoIosArrowDown } from 'react-icons/io'
+import { IoIosArrowDown } from 'react-icons/io';
+import { AiOutlineCheck } from 'react-icons/ai';
 
 function ProfileButton({ user }) {
   const history = useHistory();
@@ -41,10 +42,16 @@ function ProfileButton({ user }) {
       </button>
       {showMenu && (
         <ul className="profile-dropdown">
-          <li>{user.username}</li>
-          <li>{user.email}</li>
-          <li>
-            <button id='logout' onClick={logout}>Log Out</button>
+          <p>ACCOUNT</p>
+          <div id="user-modal-text">
+            <AiOutlineCheck id="user-modal-check"  />
+            <div>
+              <li>{user.username}</li>
+              <li>{user.email}</li>
+            </div>
+          </div>
+          <li id="logout-container">
+            <button id='logout' onClick={logout}>Sign out {user.username}</button>
           </li>
         </ul>
       )}
