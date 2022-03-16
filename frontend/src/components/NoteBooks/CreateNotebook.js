@@ -50,10 +50,10 @@ function CreateNotebook({ user }) {
   return (
     <>
       <button id='create-notebook-btn'
-      onClick={(e) => {
-        e.preventDefault();
-        setShowCreateForm(!showCreateForm);
-      }}>
+        onClick={(e) => {
+          e.preventDefault();
+          setShowCreateForm(!showCreateForm);
+        }}>
         <div id="notebook-text-container">
           <AiOutlinePlus />
           <p>New Notebook</p>
@@ -62,17 +62,17 @@ function CreateNotebook({ user }) {
       </button>
       {showCreateForm ? (
         <>
-          <p className="error-mssg">{errors[0]}</p>
+          {errors ? <p className="error-mssg">{errors}</p> : null}
           <form onSubmit={(e) => {
             createNotebook(e)
           }}
-          id="create-notebook-form"
+            id="create-notebook-form"
           >
             <input id="create-notebook-input" value={notebookName} onChange={(e) => {
               e.preventDefault()
               setNotebookName(e.target.value)
-            }} type="text" />
-            
+            }} type="text" placeholder="Add notebook title..." />
+
             <button id="create-notebook-submit" ><MdOutlineCreateNewFolder /></button>
 
           </form>
