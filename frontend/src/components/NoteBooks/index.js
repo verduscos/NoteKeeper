@@ -1,10 +1,13 @@
+
 import React, { useEffect, useState } from 'react';
+import CreateNotebook from './CreateNotebook';
 import * as notebookActions from '../../store/notebooks';
 import { getNotebookNotesThunk } from '../../store/notes';
 import ProfileButton from '../Navigation/ProfileButton';
 import { postNotebookThunk, deleteNotebookThunk, updateNotebookThunk } from '../../store/notebooks';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
+import { IoIosArrowDown } from 'react-icons/io'
 import './Notebooks.css';
 
 function Notebooks() {
@@ -22,18 +25,6 @@ function Notebooks() {
     dispatch(getNotebookNotesThunk(currentUser.id, notebookId));
   }
 
-  const createNotebook = (e) => {
-    e.preventDefault();
-    const payload = {
-      user_id: currentUser.id,
-      title: notebookName
-    }
-    if (notebookName.length >= 4) {
-      dispatch(postNotebookThunk(payload))
-    } else {
-      setErrors(["*Title must be at least 4 characters long."])
-    }
-  }
 
   const deleteNotebook = (e, id) => {
     e.preventDefault();
@@ -63,17 +54,8 @@ function Notebooks() {
       <div id='user'>
         <ProfileButton user={currentUser} />
       </div>
-      <p className="error-mssg">{errors[0]}</p>
-      <form onSubmit={(e) => {
-        createNotebook(e)
-      }}>
-        <input value={notebookName} onChange={(e) => {
-          e.preventDefault()
-          setNotebookName(e.target.value)
-        }} type="text" />
-        <button>create</button>
 
-      </form>
+      <CreateNotebook user={currentUser} />
 
       <div id='note-container'>
         {notebooks?.map(notebook => (

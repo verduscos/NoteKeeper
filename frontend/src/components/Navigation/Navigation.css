@@ -68,7 +68,6 @@ li > * {
     border-radius: 3px;
     cursor: pointer;
     transition-duration: .2s;
-    /* color: blue; */
 }
 
 #loginButt {
@@ -85,16 +84,13 @@ li > * {
     border:solid 1px transparent;
 }
 
-#signupButt:hover
-{
+#signupButt:hover {
     background-color: rgb(235, 235, 235);
     color: #292929;
 
 }
 #loginButt:hover {
-    /* border: solid 1px rgb(180, 180, 180); */
     color: rgb(78, 78, 78);
-    /* background-color: #292929; */
 }
 
 #demo {
@@ -124,5 +120,5 @@ li > * {
 
 #user-btn-arrow {
   font-size: 13px;
-  margin-left: 5px;
+  margin-left: 15px;
 }
