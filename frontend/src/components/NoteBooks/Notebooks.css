@@ -70,26 +70,63 @@
 .delete {
   margin-right: 10px;
   cursor: pointer;
+  border: none;
+  align-self: flex-end;
+  color: rgb(226, 226, 226);
+  background-color: rgb(233, 94, 94);
+  padding: 5px;
+  border-radius: 5px;
+  font-size: 13px;
+  letter-spacing: .5px;
+}
+
+#edit-notebook-input {
+  outline: none;
+  border: none;
+  border-radius: 5px;
+  padding: 5px;
+  height: 20px;
+  border: 1px solid rgba(128, 128, 128, 0.281);
 }
 
 #notebook-container {
   display: flex;
-  align-items: flex-start;
-  justify-content: center;
-  flex-direction: column;
-  border-bottom: 0.5px solid gray;
-  background-color: blue;
+  align-items: center;
+  justify-content: space-between;
   z-index: 3;
   width: 250px;
+  border-bottom: 1px solid transparent;
 }
 
 #notebook-container:hover {
   background-color: rgb(87, 87, 87);
-
 }
 
 .highlight-notebook {
-  background-color: rgb(87, 87, 87) !important;
+  border-bottom: 1px solid rgb(226, 226, 226) !important;
+}
+
+#notebook-edit-btn {
+  color: rgb(226, 226, 226);
+  font-size: 23px;
+  cursor: pointer;
+  z-index: 100;
+}
+
+#notebook-edit-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  background-color: white;
+  box-shadow: 0 0 6px rgba(0,0,0,0.3);
+  position: absolute;
+  margin-top: 25px;
+  border-radius: 5px;
+  width: 200px;
+  height: 100px;
+  padding: 15px;
+  color: #1a1a1a;
 }
 
 /* NOTEBOOK CREATE */
