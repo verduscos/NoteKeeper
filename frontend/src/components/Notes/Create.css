@@ -1,54 +1,52 @@
 .form {
-    /* background-color: gray; */
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    width: 1200px;
-    margin: 75px auto 0 600px;
-
+  /* background-color: gray; */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 1200px;
+  margin: 75px auto 0 600px;
+  z-index: -20;
 }
 
-
-.form-title{
-    height: 25px;
-    width: 200px;
-    outline: none;
-    font-size: 18px;
-    border: none;
-    border-bottom: 1px solid rgb(163, 163, 163);
-    margin-bottom: 15px;
-    /* border: 2px solid gray; */
+.form-title {
+  height: 25px;
+  width: 200px;
+  outline: none;
+  font-size: 18px;
+  border: none;
+  border-bottom: 1px solid rgb(163, 163, 163);
+  margin-bottom: 15px;
+  /* border: 2px solid gray; */
 }
-
 
 .notification {
-    font-family: 'Roboto', sans-serif;
-    background-color: rgb(209, 209, 209);
-    color: black;
-    position: absolute;
-    right: 50%;
-    /* note sure why margin 0 auto doesnt work here */
-    transform: translate(50%, 50%);
-    top:15px;
-    width: 200px;
-    height: 75px;
-    border-radius: 15px;
-    text-align: center;
-    align-self: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 100;
+  font-family: "Roboto", sans-serif;
+  background-color: rgb(209, 209, 209);
+  color: black;
+  position: absolute;
+  right: 50%;
+  /* note sure why margin 0 auto doesnt work here */
+  transform: translate(50%, 50%);
+  top: 15px;
+  width: 200px;
+  height: 75px;
+  border-radius: 15px;
+  text-align: center;
+  align-self: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
 }
 #notification-check {
-    color: rgb(80, 206, 80);
-    margin-left: 10px;
+  color: rgb(80, 206, 80);
+  margin-left: 10px;
 }
 
 .errors {
-    color: rgb(255, 0, 0);
-    list-style: inside;
-    margin-right: 25px;
-    padding: 0;
-    /* position: absolute; */
+  color: rgb(255, 0, 0);
+  list-style: inside;
+  margin-right: 25px;
+  padding: 0;
+  /* position: absolute; */
 }

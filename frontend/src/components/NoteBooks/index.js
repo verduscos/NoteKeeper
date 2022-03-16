@@ -18,6 +18,7 @@ function Notebooks() {
   const notebooksObj = useSelector(state => state.notebooks);
   let notebooks = Object.values(notebooksObj);
   const [notebookName, setNotebookName] = useState("");
+  const [highlight, setHighlight] = useState("highlight-notebook")
   const [errors, setErrors] = useState("");
 
   const getNotebookNotes = (e, notebookId) => {
@@ -59,13 +60,16 @@ function Notebooks() {
 
       <div id='note-container'>
         {notebooks?.map(notebook => (
-          <div id="notebook-container">
+          <div id="notebook-container" className={ notebookId == notebook?.id ? highlight : ""}>
             <Link
               to={`/mynotes/notebook/${notebook?.id}`}
               // onClick={(e) => {
               //   getNotebookNotes(e, notebook.id)
               // }}
               id='notebook-links'>{notebook?.title}</Link>
+
+
+              { notebookId == notebook?.id ? <h1>test</h1> : null}
 
             <span onClick={(e) => {
               deleteNotebook(e, notebook.id)

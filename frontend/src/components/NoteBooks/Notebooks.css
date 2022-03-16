@@ -50,7 +50,7 @@
 #notebook-links {
   color: rgb(226, 226, 226);
   height: 50px;
-  width: 245px;
+  /* width: 245px; */
   font-size: 15px;
   text-decoration: none;
   display: flex;
@@ -74,14 +74,22 @@
 
 #notebook-container {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
+  justify-content: center;
+  flex-direction: column;
   border-bottom: 0.5px solid gray;
   background-color: blue;
-  z-index: 10000000;
+  z-index: 3;
+  width: 250px;
 }
 
 #notebook-container:hover {
   background-color: rgb(87, 87, 87);
+
+}
+
+.highlight-notebook {
+  background-color: rgb(87, 87, 87) !important;
 }
 
 /* NOTEBOOK CREATE */
