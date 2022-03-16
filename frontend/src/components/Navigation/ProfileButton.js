@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useDispatch } from 'react-redux';
 import * as sessionActions from '../../store/session';
 import { useHistory } from 'react-router-dom';
+import { IoIosArrowDown } from 'react-icons/io'
 
 function ProfileButton({ user }) {
   const history = useHistory();
@@ -36,6 +37,7 @@ function ProfileButton({ user }) {
       <button id='user-icon' onClick={openMenu}>
         <i className="far fa-user-circle"></i>
         <p id="user-btn-username">{user.username}</p>
+        <IoIosArrowDown id="user-btn-arrow" />
       </button>
       {showMenu && (
         <ul className="profile-dropdown">

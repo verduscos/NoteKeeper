@@ -116,7 +116,15 @@ ul {
     list-style: none;
     padding: 0;
     margin-top: 10px;
-
+    width: 300px;
+    height: 270px;
+    background-color: white;
+    box-shadow: 0 0 6px rgba(0,0,0,0.3);
+    position: absolute;
+    top: 50px;
+    left: 0px;
+    border-radius: 3px;
+    z-index: 9000000000000;
   }
 
   .profile-dropdown > * {

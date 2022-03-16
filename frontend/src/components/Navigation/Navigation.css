@@ -118,6 +118,11 @@ li > * {
 }
 
 #user-btn-username {
-  background-color: red;
-  font-size: 15px;
+  font-size: 13px;
+  margin-left: 15px;
+}
+
+#user-btn-arrow {
+  font-size: 13px;
+  margin-left: 5px;
 }
