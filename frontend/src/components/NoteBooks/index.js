@@ -30,11 +30,6 @@ function Notebooks() {
     dispatch(getNotebookNotesThunk(currentUser.id, notebookId));
   }
 
-  const remove = () => {
-    setShowEditNotebook(false);
-  }
-
-
   const deleteNotebook = (e, id) => {
     e.preventDefault();
     const payload = {
@@ -55,6 +50,7 @@ function Notebooks() {
       dispatch(updateNotebookThunk(payload));
       setShowEditNotebook(false);
       setErrors("");
+      setNotebookName("");
     } else {
       setErrors("Title must be at least 4 characters.")
     }
@@ -64,6 +60,8 @@ function Notebooks() {
   useEffect(() => {
     dispatch(getNotebookNotesThunk(currentUser.id, notebookId));
     setShowEditNotebook(false);
+    setErrors("")
+    setNotebookName("");
   }, [dispatch, notebookId])
 
   return (
@@ -96,13 +94,12 @@ function Notebooks() {
               <div id="notebook-edit-container"
                 onClick={(e) => {
                   e.preventDefault();
-                  // setShowEditNotebook(false);
-                }}
-              // onBlur={(e) => {
-              //   e.preventDefault();
-              //   setShowEditNotebook(false);
-              // }}
-              >
+                }}>
+
+                <div id="close-delete-btns">
+                  <div onClick={(e) => setShowEditNotebook(false)} id="delete-notebook-btn" className="close-edit-form" ><AiFillCloseSquare /></div>
+                </div>
+
                 {errors.length ?
                   <p className="errors-modal">*{errors}</p>
                   : null}
@@ -120,15 +117,13 @@ function Notebooks() {
                     e.preventDefault();
                     updateNotebook(e, notebook.id)
                   }}><RiSave3Fill /></div>
+
+                  <div onClick={(e) => {
+                    deleteNotebook(e, notebook.id)
+                  }} id="delete-notebook-btn"><RiDeleteBin5Fill /></div>
                 </form>
 
-                <button onClick={(e) => {
-                  deleteNotebook(e, notebook.id)
-                }} id="delete-notebook-btn"><RiDeleteBin5Fill /></button>
-                {/* <div onClick={remove} id="delete-notebook-btn"><AiFillCloseSquare /></div> */}
               </div>
-
-
 
               : null}
 
