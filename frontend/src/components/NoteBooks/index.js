@@ -63,6 +63,7 @@ function Notebooks() {
 
   useEffect(() => {
     dispatch(getNotebookNotesThunk(currentUser.id, notebookId));
+    setShowEditNotebook(false);
   }, [dispatch, notebookId])
 
   return (
@@ -95,7 +96,7 @@ function Notebooks() {
               <div id="notebook-edit-container"
                 onClick={(e) => {
                   e.preventDefault();
-                  // setShowEditNotebook(!showEditNotebook);
+                  // setShowEditNotebook(false);
                 }}
               // onBlur={(e) => {
               //   e.preventDefault();
