@@ -100,8 +100,8 @@ function CurrentNote() {
         //     note?.id === +noteId
         // )
 
-        let title = userNotes1[noteId].title;
-        let body = userNotes1[noteId].body;
+        let title = userNotes1[noteId]?.title;
+        let body = userNotes1[noteId]?.body;
         // const { title, body } = userNotes1[noteId];
 
         setcurrTitle(title)

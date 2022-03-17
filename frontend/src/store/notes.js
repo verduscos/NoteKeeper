@@ -123,8 +123,6 @@ const notesReducer = (state = initialState, action) => {
 
     case GET_NOTEBOOK_NOTES:
       let notes = {};
-      console.log("INSIDE RECUDER")
-      console.log(action.payload)
       action.payload.forEach(note => {
         notes[note.id] = note;
       })

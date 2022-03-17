@@ -34,7 +34,6 @@ function Create() {
     )
   }
 
-  console.log(notebookId)
   const handleErrors = (e) => {
     e.preventDefault();
 
