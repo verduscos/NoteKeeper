@@ -69,7 +69,6 @@ function Create() {
 
       <form onSubmit={handleErrors} className='form'>
         <div className='title-container'>
-          {/* <h2>Create a new note</h2> */}
 
           <ul className='errors'>
             {errors.map((error, idx) => <li key={idx}>{error}</li>)}
@@ -80,7 +79,7 @@ function Create() {
           }}
             required
             className='form-title edit'
-            type='text' value={title} placeholder='Title' />
+            type='text' value={title} placeholder='Add a title...' />
         </div>
 
 
