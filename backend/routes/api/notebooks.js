@@ -85,10 +85,6 @@ router.delete("/", asyncHandler(async(req, res) => {
 router.put("/", asyncHandler(async(req, res) => {
   const { notebookId, title } = req.body;
 
-  console.log("WE HIT")
-  // console.log(req.body)
-  console.log(title)
-  console.log(notebookId)
   const notebook = await Notebook.findByPk(notebookId);
 
   notebook.title = title

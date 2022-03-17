@@ -24,6 +24,7 @@ function Notebooks() {
   const [highlight, setHighlight] = useState("highlight-notebook")
   const [errors, setErrors] = useState("");
   const [showEditNotebook, setShowEditNotebook] = useState(false)
+  const [displayDisabled, setDisplayDisabled] = useState(false)
 
   const getNotebookNotes = (e, notebookId) => {
     e.preventDefault();
@@ -118,9 +119,27 @@ function Notebooks() {
                     updateNotebook(e, notebook.id)
                   }}><RiSave3Fill /></div>
 
-                  <div onClick={(e) => {
-                    deleteNotebook(e, notebook.id)
-                  }} id="delete-notebook-btn"><RiDeleteBin5Fill /></div>
+
+
+                  {notebooks?.length ?
+                  <>
+                  { displayDisabled ? <p id="disabled-msg">Unable to delete a non-empty notebooks.</p> : null}
+                    <button
+                    onMouseOver={() => {
+                      setDisplayDisabled(true);
+                    }}
+                    onMouseLeave={() => setDisplayDisabled(false) }
+                    onClick={(e) => {
+                      deleteNotebook(e, notebook.id)
+                    }} id="delete-notebook-btn-disabled"  ><RiDeleteBin5Fill /></button>
+                    </>
+                    :
+                    <button onClick={(e) => {
+                      deleteNotebook(e, notebook.id)
+                    }} id="delete-notebook-btn" ><RiDeleteBin5Fill /></button>
+                  }
+
+
                 </form>
 
               </div>

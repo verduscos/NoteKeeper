@@ -158,7 +158,8 @@
   z-index: 5;
 }
 
-#delete-notebook-btn {
+#delete-notebook-btn,
+#delete-notebook-btn-disabled {
   border: none;
   outline: none;
   background-color: transparent;
@@ -168,8 +169,11 @@
   cursor: pointer;
   margin: 0;
   padding: 0;
-  /* margin-left: auto;
-  margin-right: -10px; */
+}
+
+#delete-notebook-btn-disabled {
+  color: lightgray;
+  cursor: not-allowed;
 }
 
 .close-edit-form > svg {
@@ -262,6 +266,12 @@
 
 #close-delete-btns {
   margin-left: auto;
-  /* margin-bottom: auto; */
   margin-top: -10px;
+}
+
+#disabled-msg {
+  color: red;
+  position: absolute;
+  font-size: 14px;
+  margin-top: -100px;
 }
