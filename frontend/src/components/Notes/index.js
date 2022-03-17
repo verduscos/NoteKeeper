@@ -9,9 +9,12 @@ import ProfileButton from '../Navigation/ProfileButton';
 import './NoteList.css'
 import Create from './Create';
 import { MdStickyNote2 } from "react-icons/md"
+import { useParams } from "react-router-dom";
 
 function Notes() {
   const currentUser = useSelector(state => state.session.user);
+  const params = useParams();
+  const { noteId } = params;
   const dispatch = useDispatch()
   // const [loaded, setLoaded] = useState();
   // const [notes, setNotes] = useState=([])
@@ -86,7 +89,7 @@ function Notes() {
 
   const getNote = (e, noteId) => {
     e.preventDefault();
-    dispatch(getSingleNoteThunk(currentUser.id, noteId))
+    // dispatch(getSingleNoteThunk(currentUser.id, noteId))
     // dispatch(sessionActions.getSingleNoteThunk(currentUser.id, noteId));
   }
 
@@ -118,14 +121,14 @@ function Notes() {
 
             <div id='note-container'>
               {notes?.map(note => (
-                <div onClick={(e) => {
-                  getNote(e, note?.id)
-                }}
-                  key={note?.id} id="note-containers"
+                <Link
+                  key={note?.id} id="note-containers" className={noteId == note?.id ? "note-highlight" : ""}
+                  to={`/mynotes/notebook/${note?.notebookId}/notes/${note?.id}`}
                 >
-                  <Link key={`${note?.id}-link`} id='note-links' to={`/mynotes/notebook/${note?.notebookId}/notes/${note?.id}`}>{note?.title}</Link>
-                  {/* <p>{note?.createdAt.split('T')[0].split('-')[1]}/{note?.createdAt.split('T')[0].split('-')[2]}/{note?.createdAt.split('T')[0].split('-')[0]}</p> */}
-                </div>
+                  {/* <Link key={`${note?.id}-link`} id='note-links' to={`/mynotes/notebook/${note?.notebookId}/notes/${note?.id}`}>{note?.title}</Link> */}
+                  <p id="note-title">{note?.title}</p>
+                  <p id="note-date">{note?.createdAt.split('T')[0].split('-')[1]}/{note?.createdAt.split('T')[0].split('-')[2]}/{note?.createdAt.split('T')[0].split('-')[0]}</p>
+                </Link>
               ))}
 
             </div>

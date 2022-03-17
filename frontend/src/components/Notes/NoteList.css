@@ -59,7 +59,6 @@
 
 #note-container {
   overflow-y: auto;
-  margin-top: 50px;
   width: 100%;
   border-top: 1px solid rgba(211, 211, 211, 0.288);
   border-bottom: 1px solid rgba(211, 211, 211, 0.288);
@@ -74,28 +73,44 @@
   padding: 20px 15px;
   border-top: 0.5px solid rgba(211, 211, 211, 0.288);
   border-bottom: 0.5px solid rgba(211, 211, 211, 0.288);
+  text-decoration: none;
 }
 
 #note-containers > p {
   margin: 0;
-  font-size: 13px;
+}
+
+#note-title {
+  font-size: 14px;
+  font-weight: bold;
+  color: #1a1a1a;
+}
+
+#note-date {
+  font-size: 11px;
+  letter-spacing: 0.03em;
+  font-weight: lighter;
 }
 
 #note-containers:hover {
-  background-color: rgb(87, 87, 87);
+  background-color: white;
 }
 
 #note-links {
-  color: #1a1a1a;
+  /* color: #1a1a1a;
   width: 100%;
   font-size: 14px;
   font-weight: bold;
   text-decoration: none;
   display: flex;
-  align-items: center;
+  align-items: center; */
 }
 
 #note-link {
   text-decoration: none;
   color: black;
+}
+
+.note-highlight {
+  border: 2px solid rgb(185, 193, 196) !important;
 }
