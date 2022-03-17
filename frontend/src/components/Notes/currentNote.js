@@ -94,7 +94,7 @@ function CurrentNote() {
 
 
     useEffect(() => {
-        dispatch(sessionActions.getNotesThunk(currentUser?.id))
+        // dispatch(sessionActions.getNotesThunk(currentUser?.id))
 
         // const { title, body } = userNotes?.find(note =>
         //     note?.id === +noteId

@@ -63,11 +63,6 @@ function Create() {
   }
 
 
-  useEffect(() => {
-    dispatch(sessionActions.getNotesThunk(currentUser.id))
-
-  }, [dispatch])
-
 
   return (
     <>

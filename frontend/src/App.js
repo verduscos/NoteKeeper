@@ -42,15 +42,15 @@ function App() {
             <Notes />
             <Create />
           </Route>
+          <Route exact path="/mynotes/notebook/:notebookId/notes/:noteId">
+            <Notebooks />
+            <Notes />
+            <CurrentNote />
+          </Route>
           <Route exact path="/mynotes/notes/create">
             <Notebooks />
             <Notes />
             <Create />
-          </Route>
-          <Route exact path="/mynotes/notes/:noteId">
-            <Notebooks />
-            <Notes />
-            <CurrentNote />
           </Route>
 
         </Switch>

@@ -92,7 +92,7 @@ function Notes() {
 
 
     useEffect(() => {
-        dispatch(sessionActions.getNotesThunk(currentUser.id))
+        // dispatch(sessionActions.getNotesThunk(currentUser.id))
         dispatch(notebookActions.getNootbooksThunk(currentUser.id))
         //adding loaded is not chaning anything atm, fixed loading issue with '?'
 
@@ -115,7 +115,7 @@ function Notes() {
                 }}
                 key={note?.id}
                 >
-                    <Link key={`${note?.id}-link`}id='note-links'  to={`/mynotes/notes/${note?.id}`}>{note?.title}</Link>
+                    <Link key={`${note?.id}-link`}id='note-links'  to={`/mynotes/notebook/${note?.notebookId}/notes/${note?.id}`}>{note?.title}</Link>
                 </div>
             ))}
 
