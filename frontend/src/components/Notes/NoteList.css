@@ -15,42 +15,84 @@
   font-family: "Roboto", sans-serif;
   color: #1a1a1a;
   position: absolute;
-  background-color: rgb(226, 226, 226);
-  min-width: 270px;
-  width: auto;
+  background-color: #f8f8f8;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
   padding: 0;
   margin: 0;
-  left: 270px;
+  left: 260px;
   top: 0;
   height: 100vh;
   z-index: 1;
+  height: 100%;
+  max-width: 880px;
+  min-width: 380px;
+}
+
+#notes-header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 15px;
+  width: 85px;
+  margin-right: auto;
+}
+
+#notes-header, #notes-header-container >  svg {
+  text-align: left;
+  margin: 0;
+  font-size: 20px;
+  letter-spacing: 0.03em;
+  line-height: 28px;
+  font-weight: lighter;
+}
+
+#notes-length {
+  margin: 0;
+  margin-right: auto;
+  padding:  0 15px 15px 15px;
+  font-size: 14px;
+  color:rgb(139, 139, 139);
 }
 
 #note-container {
-  border-top: 1px solid gray;
   overflow-y: auto;
-  height: 700px;
   margin-top: 50px;
+  width: 100%;
+  border-top: 1px solid rgba(211, 211, 211, 0.288);
+  border-bottom: 1px solid rgba(211, 211, 211, 0.288);
+}
+
+#note-containers {
+  min-height: 80px;
+  max-height: 110px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 20px 15px;
+  border-top: 0.5px solid rgba(211, 211, 211, 0.288);
+  border-bottom: 0.5px solid rgba(211, 211, 211, 0.288);
+}
+
+#note-containers > p {
+  margin: 0;
+  font-size: 13px;
+}
+
+#note-containers:hover {
+  background-color: rgb(87, 87, 87);
 }
 
 #note-links {
   color: #1a1a1a;
-  border-bottom: 1px solid gray;
-  height: 50px;
-  width: 245px;
-  font-size: 20px;
+  width: 100%;
+  font-size: 14px;
+  font-weight: bold;
   text-decoration: none;
   display: flex;
   align-items: center;
-  padding: 10px;
-}
-
-#note-links:hover {
-  background-color: rgb(87, 87, 87);
 }
 
 #note-link {

@@ -4,7 +4,7 @@
   flex-direction: column;
   align-items: flex-start;
   width: 1200px;
-  margin: 75px auto 0 600px;
+  margin: 75px auto 0 675px;
   z-index: -20;
 }
 
@@ -16,7 +16,6 @@
   border: none;
   border-bottom: 1px solid rgb(163, 163, 163);
   margin-bottom: 15px;
-  /* border: 2px solid gray; */
 }
 
 .notification {
