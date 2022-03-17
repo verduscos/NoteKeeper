@@ -77,15 +77,15 @@
   padding: 5px;
   border-radius: 5px;
   font-size: 13px;
-  letter-spacing: .5px;
+  letter-spacing: 0.5px;
 }
 
 #edit-notebook-input {
   outline: none;
   border: none;
   border-radius: 5px;
-  padding: 5px;
-  height: 20px;
+  padding: 5px !important;
+  /* height: 20px; */
   border: 1px solid rgba(128, 128, 128, 0.281);
 }
 
@@ -99,7 +99,7 @@
 }
 
 #notebook-container:hover {
-  background-color: rgb(87, 87, 87);
+  background-color: #404040;
 }
 
 .highlight-notebook {
@@ -118,17 +118,62 @@
 #notebook-edit-container {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
   justify-content: space-between;
   background-color: white;
-  box-shadow: 0 0 6px rgba(0,0,0,0.3);
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.3);
   position: absolute;
-  margin-top: 25px;
+  margin-top: 190px;
   border-radius: 5px;
   width: 200px;
   height: 100px;
   padding: 15px;
   color: #1a1a1a;
+}
+
+#notebook-edit-form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  justify-content: space-between;
+  margin: 0;
+  padding: 0;
+}
+
+#notebook-edit-form > * {
+  padding: 0;
+  margin: 0;
+}
+
+#edit-notebook-btn {
+  border: none;
+  outline: none;
+  background-color: transparent;
+  font-size: 24px;
+  color: #1a1a1a;
+  display: flex;
+  cursor: pointer;
+  margin-left: 5px;
+  z-index: 5;
+}
+
+#delete-notebook-btn {
+  border: none;
+  outline: none;
+  background-color: transparent;
+  font-size: 24px;
+  color: #1a1a1a;
+  display: flex;
+  cursor: pointer;
+  margin: 0;
+  padding: 0;
+  margin-left: auto;
+  margin-right: -10px;
+}
+
+#delete-notebook-btn:hover {
+  color: red;
 }
 
 /* NOTEBOOK CREATE */
@@ -202,4 +247,10 @@
   width: 100%;
   display: flex;
   align-items: flex-end;
+}
+
+.errors-modal {
+  color: red;
+  font-size: 12px;
+  margin: 0;
 }

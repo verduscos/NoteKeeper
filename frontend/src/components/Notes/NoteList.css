@@ -1,15 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Lato:wght@100&family=Roboto&display=swap");
 
-/* #bg {
-    background-color: #292929;
-    width: 100vw;
-    height: 100vh;
-    position: absolute;
-    left: 0;
-    top: 0;
-    z-index: -1;
 
-} */
 
 #note-link-column {
   font-family: "Roboto", sans-serif;
@@ -90,20 +81,11 @@
   font-size: 11px;
   letter-spacing: 0.03em;
   font-weight: lighter;
+  color:rgb(139, 139, 139);
 }
 
 #note-containers:hover {
   background-color: white;
-}
-
-#note-links {
-  /* color: #1a1a1a;
-  width: 100%;
-  font-size: 14px;
-  font-weight: bold;
-  text-decoration: none;
-  display: flex;
-  align-items: center; */
 }
 
 #note-link {
