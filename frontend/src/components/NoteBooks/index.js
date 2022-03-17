@@ -124,19 +124,21 @@ function Notebooks() {
                   {notebooks?.length ?
                   <>
                   { displayDisabled ? <p id="disabled-msg">Unable to delete a non-empty notebooks.</p> : null}
-                    <button
+                    <div
                     onMouseOver={() => {
                       setDisplayDisabled(true);
                     }}
                     onMouseLeave={() => setDisplayDisabled(false) }
                     onClick={(e) => {
+                      e.preventDefault()
                       deleteNotebook(e, notebook.id)
-                    }} id="delete-notebook-btn-disabled"  ><RiDeleteBin5Fill /></button>
+                    }} id="delete-notebook-btn-disabled"  ><RiDeleteBin5Fill /></div>
                     </>
                     :
-                    <button onClick={(e) => {
+                    <div onClick={(e) => {
+                      e.preventDefault()
                       deleteNotebook(e, notebook.id)
-                    }} id="delete-notebook-btn" ><RiDeleteBin5Fill /></button>
+                    }} id="delete-notebook-btn" ><RiDeleteBin5Fill /></div>
                   }
 
 
