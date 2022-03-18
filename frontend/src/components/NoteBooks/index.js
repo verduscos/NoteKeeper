@@ -21,7 +21,12 @@ function Notebooks() {
   const dispatch = useDispatch()
   const currentUser = useSelector(state => state.session.user);
   const notebooksObj = useSelector(state => state.notebooks);
+  const notes1 = useSelector(state => state.notes);
+  let notes = Object.values(notes1);
+  console.log(notes.length)
   let notebooks = Object.values(notebooksObj);
+  console.log(notebooks.length)
+  console.log(notebooks)
   const [notebookName, setNotebookName] = useState("");
   const [highlight, setHighlight] = useState("highlight-notebook")
   const [errors, setErrors] = useState("");
@@ -142,7 +147,7 @@ function Notebooks() {
 
 
 
-                  {notebooks?.length ?
+                  {notes?.length ?
                     <>
                       {displayDisabled ? <p id="disabled-msg">Unable to delete a non-empty notebooks.</p> : null}
                       <div
