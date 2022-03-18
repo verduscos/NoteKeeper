@@ -9,7 +9,7 @@ import ProfileButton from '../Navigation/ProfileButton';
 import './NoteList.css'
 import Create from './Create';
 import { MdStickyNote2 } from "react-icons/md"
-import { useParams } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 
 function Notes() {
   const currentUser = useSelector(state => state.session.user);
@@ -25,6 +25,7 @@ function Notes() {
   const [displayNote, setDisplayNote] = useState('')
   const [errors, setErrors] = useState([]);
   const [created, setCreated] = useState(false);
+  const history = useHistory();
 
   let notifcation;
   if (created) {
@@ -93,12 +94,17 @@ function Notes() {
     // dispatch(sessionActions.getSingleNoteThunk(currentUser.id, noteId));
   }
 
+  const getAllNotes = (e) => {
+    e.preventDefault();
 
+    dispatch(sessionActions.getNotesThunk(currentUser.id));
+    history.push("/mynotes/notes")
+  }
 
 
   useEffect(() => {
     // dispatch(sessionActions.getNotesThunk(currentUser.id))
-    dispatch(notebookActions.getNootbooksThunk(currentUser.id))
+    // dispatch(notebookActions.getNootbooksThunk(currentUser.id))
     //adding loaded is not chaning anything atm, fixed loading issue with '?'
 
   }, [dispatch])
@@ -118,6 +124,8 @@ function Notes() {
               <h1 id="notes-header">Notes</h1>
             </div>
             <p id="notes-length">{notes?.length} notes</p>
+
+            <div onClick={getAllNotes}>All notes</div>
 
             <div id='note-container'>
               {notes?.map(note => (

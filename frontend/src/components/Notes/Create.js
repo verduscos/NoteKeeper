@@ -10,6 +10,10 @@ function Create() {
   const params = useParams();
   const { notebookId } = params;
   const currentUser = useSelector(state => state.session.user);
+  const notebooks = useSelector(state => state.notebooks);
+  let notebookArr = Object.values(notebooks);
+  console.log(notebooks)
+  console.log(notebookArr)
   const history = useHistory()
   const dispatch = useDispatch()
   const [notebookId1, setNotebookId] = useState(null);
@@ -41,7 +45,7 @@ function Create() {
       title,
       body: value,
       userId: currentUser.id,
-      notebookId: notebookId
+      notebookId: notebookId1
     }
     setErrors([]);
 
@@ -81,6 +85,17 @@ function Create() {
             className='form-title edit'
             type='text' value={title} placeholder='Add a title...' />
         </div>
+
+        <select
+          onChange={(e) => {
+            setNotebookId(e.target.value);
+          }}
+          required>
+          <option value="">Select Notebook</option>
+          {notebookArr.map(notebook => (
+            <option key={notebook?.id} value={notebook?.id}>{notebook?.title}</option>
+          ))}
+        </select>
 
 
         <ReactQuill placeholder="Start writing..." theme="snow" value={value} onChange={setValue} className='displayNote' />

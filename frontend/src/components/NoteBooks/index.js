@@ -8,6 +8,7 @@ import { postNotebookThunk, deleteNotebookThunk, updateNotebookThunk } from '../
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
 import { IoIosArrowDown } from 'react-icons/io';
+import * as sessionActions from '../../store/notes';
 import { BiDotsVerticalRounded } from 'react-icons/bi';
 import { RiSave3Fill, RiDeleteBin5Fill } from 'react-icons/ri'
 import { AiFillCloseSquare } from 'react-icons/ai'
@@ -57,6 +58,14 @@ function Notebooks() {
     }
 
   }
+
+
+  useEffect(() => {
+    dispatch(sessionActions.getNotesThunk(currentUser.id))
+    dispatch(notebookActions.getNootbooksThunk(currentUser.id))
+    //adding loaded is not chaning anything atm, fixed loading issue with '?'
+
+  }, [dispatch])
 
   useEffect(() => {
     dispatch(getNotebookNotesThunk(currentUser.id, notebookId));
@@ -122,17 +131,17 @@ function Notebooks() {
 
 
                   {notebooks?.length ?
-                  <>
-                  { displayDisabled ? <p id="disabled-msg">Unable to delete a non-empty notebooks.</p> : null}
-                    <div
-                    onMouseOver={() => {
-                      setDisplayDisabled(true);
-                    }}
-                    onMouseLeave={() => setDisplayDisabled(false) }
-                    onClick={(e) => {
-                      e.preventDefault()
-                      deleteNotebook(e, notebook.id)
-                    }} id="delete-notebook-btn-disabled"  ><RiDeleteBin5Fill /></div>
+                    <>
+                      {displayDisabled ? <p id="disabled-msg">Unable to delete a non-empty notebooks.</p> : null}
+                      <div
+                        onMouseOver={() => {
+                          setDisplayDisabled(true);
+                        }}
+                        onMouseLeave={() => setDisplayDisabled(false)}
+                        onClick={(e) => {
+                          e.preventDefault()
+                          deleteNotebook(e, notebook.id)
+                        }} id="delete-notebook-btn-disabled"  ><RiDeleteBin5Fill /></div>
                     </>
                     :
                     <div onClick={(e) => {
