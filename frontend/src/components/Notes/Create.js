@@ -65,6 +65,9 @@ function Create() {
     }, 2000)
   }
 
+  const autosave = (e) => {
+        handleErrors(e);
+  }
 
 
   return (
@@ -78,7 +81,9 @@ function Create() {
             {errors.map((error, idx) => <li key={idx}>{error}</li>)}
           </ul>
 
-          <input onChange={(e) => {
+          <input
+          onBlur={(e) => autosave(e)}
+          onChange={(e) => {
             setTitle(e.target.value);
           }}
             required
