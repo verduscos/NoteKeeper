@@ -6,7 +6,7 @@ import { getNotebookNotesThunk } from '../../store/notes';
 import ProfileButton from '../Navigation/ProfileButton';
 import { postNotebookThunk, deleteNotebookThunk, updateNotebookThunk } from '../../store/notebooks';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useHistory, useParams } from 'react-router-dom';
 import { IoIosArrowDown } from 'react-icons/io';
 import * as sessionActions from '../../store/notes';
 import { BiDotsVerticalRounded } from 'react-icons/bi';
@@ -16,6 +16,7 @@ import './Notebooks.css';
 
 function Notebooks() {
   const params = useParams();
+  const history = useHistory();
   const { notebookId } = params;
   const dispatch = useDispatch()
   const currentUser = useSelector(state => state.session.user);
@@ -59,6 +60,13 @@ function Notebooks() {
 
   }
 
+  const filterByNotebook = (e, id) => {
+    e.preventDefault();
+    history.push(`/mynotes/notebook/${id}`);
+    dispatch(getNotebookNotesThunk(currentUser.id, id));
+
+  }
+
 
   useEffect(() => {
     dispatch(sessionActions.getNotesThunk(currentUser.id))
@@ -68,7 +76,7 @@ function Notebooks() {
   }, [dispatch])
 
   useEffect(() => {
-    dispatch(getNotebookNotesThunk(currentUser.id, notebookId));
+    // dispatch(getNotebookNotesThunk(currentUser.id, notebookId));
     setShowEditNotebook(false);
     setErrors("")
     setNotebookName("");
@@ -84,9 +92,13 @@ function Notebooks() {
 
       <div>
         {notebooks?.map(notebook => (
-          <div id="notebook-container" className={notebookId == notebook?.id ? highlight : ""} >
+          <div
+          onClick={(e) => {
+            filterByNotebook(e, notebook?.id);
+          }}
+          id="notebook-container" className={notebookId == notebook?.id ? highlight : ""} >
             <Link
-              to={`/mynotes/notebook/${notebook?.id}`}
+              // to={`/mynotes/notebook/${notebook?.id}`}
               // onClick={(e) => {
               //   getNotebookNotes(e, notebook.id)
               // }}

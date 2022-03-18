@@ -37,6 +37,11 @@ function App() {
             <Notes />
             <Create />
           </Route>
+          <Route exact path="/mynotes/notes/:noteId">
+            <Notebooks />
+            <Notes />
+            <Create />
+          </Route>
           <Route exact path="/mynotes/notebook/:notebookId">
             <Notebooks />
             <Notes />
