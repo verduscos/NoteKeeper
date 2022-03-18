@@ -90,8 +90,9 @@ function Create() {
           onChange={(e) => {
             setNotebookId(e.target.value);
           }}
-          required>
+          required id="select-notebook">
           <option value="">Select Notebook</option>
+          <option value="Default">Default</option>
           {notebookArr.map(notebook => (
             <option key={notebook?.id} value={notebook?.id}>{notebook?.title}</option>
           ))}
