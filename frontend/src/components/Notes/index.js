@@ -131,7 +131,7 @@ function Notes() {
               {notes?.map(note => (
                 <Link
                   key={note?.id} id="note-containers" className={noteId == note?.id ? "note-highlight" : ""}
-                  to={`/mynotes/notebook/${note?.notebookId}/notes/${note?.id}`}
+                  to={`/mynotes/notebook/${note?.notebookId ? note?.notebookId : "default"}/notes/${note?.id}`}
                 >
                   {/* <Link key={`${note?.id}-link`} id='note-links' to={`/mynotes/notebook/${note?.notebookId}/notes/${note?.id}`}>{note?.title}</Link> */}
                   <p id="note-title">{note?.title}</p>
