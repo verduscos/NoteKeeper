@@ -53,7 +53,6 @@ router.get("/:userId", asyncHandler(async(req, res) => {
   // Create a note
 router.post('/', validateNote ,asyncHandler(async(req, res, next) => {
   const { title, body, userId, notebookId } = req.body;
-  console.log(notebookId, "NOTEBOOK ID")
 
   let test;
 
@@ -72,7 +71,9 @@ router.post('/', validateNote ,asyncHandler(async(req, res, next) => {
     return res.json(newNote);
   } else {
     const errors = validationErrors.array().map(err => err.msg);
-    res.json({errors});
+    console.log("ERRRORS HERE")
+    console.log(errors)
+    return res.json({ "errors" : errors });
   }
 
 }))

@@ -19,8 +19,6 @@ function Create() {
   const [errors, setErrors] = useState([]);
   const [created, setCreated] = useState(false);
   const [value, setValue] = useState("")
-
-
   const [title, setTitle] = useState('');
   const [body, setBody] = useState('');
 
@@ -37,6 +35,10 @@ function Create() {
     )
   }
 
+  const reactQuillRef = React.useRef();
+  const unprivilegedEditor = reactQuillRef;
+  console.log(ReactQuill.innerText)
+
   const handleErrors = async (e) => {
     e.preventDefault();
 
@@ -46,18 +48,29 @@ function Create() {
       userId: currentUser.id,
       notebookId: notebookId1
     }
-    setErrors([]);
 
-    if (title.length >= 4 && value.length >= 1) setCreated(true)
+    setErrors([]);
+    let errors = [];
+
+    if (title.length <= 3) errors.push("Title must be at least 4 characters.");
+    if (value.length <= 12) errors.push("Note must be at least 4 charcters.");
+    console.log(value.length)
+    console.log(value)
+    if (!notebookId1.length) errors.push("Please select a notebook.");
+    setErrors(errors);
+
+
+    if (title.length >= 4 && value.length >= 4) setCreated(true)
 
     let note = await dispatch(sessionActions.createNoteThunk(payload))
-      // .catch(async (res) => {
-      //   const data = await res.json();
-      //   if (data && data.errors) setErrors(data.errors)
-      // })
 
-    console.log(note.notebookId);
-    console.log(note.id)
+    // .catch(async (res) => {
+    //   const data = await res.json();
+    // console.log(note)
+    // console.log("NOTE ABOVE")
+    // if (data && data.errors) setErrors(data.errors)
+    // })
+
 
     if (note.notebookId) {
       history.push(`/mynotes/notebook/${note.notebookId}/notes/${note.id}`);
@@ -107,9 +120,9 @@ function Create() {
           onChange={(e) => {
             setNotebookId(e.target.value);
           }}
-           id="select-notebook">
+          id="select-notebook">
           <option value="">Select Notebook</option>
-          <option value="" >Default</option>
+          <option value="0" >Default</option>
           {notebookArr.map(notebook => (
             <option key={notebook?.id} value={notebook?.id}>{notebook?.title}</option>
           ))}
