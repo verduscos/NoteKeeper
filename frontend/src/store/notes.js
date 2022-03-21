@@ -87,6 +87,7 @@ export const createNoteThunk = (payload) => async (dispatch) => {
   if (response.ok) {
     const note = await response.json();
     dispatch(createNote(note));
+    console.log(note);
     return note;
   }
 }

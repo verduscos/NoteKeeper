@@ -64,7 +64,7 @@ router.post('/', validateNote ,asyncHandler(async(req, res, next) => {
   const validationErrors = validationResult(req);
   if (validationErrors.isEmpty()) {
     await newNote.save();
-    res.json(newNote);
+    return res.json(newNote);
   } else {
     const errors = validationErrors.array().map(err => err.msg);
     res.json({errors});

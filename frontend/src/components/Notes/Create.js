@@ -12,8 +12,7 @@ function Create() {
   const currentUser = useSelector(state => state.session.user);
   const notebooks = useSelector(state => state.notebooks);
   let notebookArr = Object.values(notebooks);
-  console.log(notebooks)
-  console.log(notebookArr)
+
   const history = useHistory()
   const dispatch = useDispatch()
   const [notebookId1, setNotebookId] = useState(null);
@@ -38,7 +37,7 @@ function Create() {
     )
   }
 
-  const handleErrors = (e) => {
+  const handleErrors = async (e) => {
     e.preventDefault();
 
     const payload = {
@@ -51,22 +50,33 @@ function Create() {
 
     if (title.length >= 4 && value.length >= 1) setCreated(true)
 
-    return dispatch(sessionActions.createNoteThunk(payload))
-      .catch(async (res) => {
-        const data = await res.json();
-        if (data && data.errors) setErrors(data.errors)
-      })
+    let note = await dispatch(sessionActions.createNoteThunk(payload))
+      // .catch(async (res) => {
+      //   const data = await res.json();
+      //   if (data && data.errors) setErrors(data.errors)
+      // })
+
+    console.log(note.notebookId);
+    console.log(note.id)
+
+    if (note.notebookId) {
+      history.push(`/mynotes/notebook/${note.notebookId}/notes/${note.id}`);
+    } else {
+      history.push(`/mynotes/notebook/default/notes/${note.id}`);
+    }
   }
+
 
   if (created) {
     setTimeout(() => {
       setCreated(false);
-      history.push(`/mynotes/notebook/${notebookId}`)
+      // history.push(`/mynotes/notebook/${notebookId}`)
     }, 2000)
   }
 
   const autosave = (e) => {
-        handleErrors(e);
+    if (title.length >= 4 && value.length >= 4)
+      handleErrors(e);
   }
 
 
@@ -82,10 +92,10 @@ function Create() {
           </ul>
 
           <input
-          onBlur={(e) => autosave(e)}
-          onChange={(e) => {
-            setTitle(e.target.value);
-          }}
+            onBlur={(e) => autosave(e)}
+            onChange={(e) => {
+              setTitle(e.target.value);
+            }}
             required
             className='form-title edit'
             type='text' value={title} placeholder='Add a title...' />
