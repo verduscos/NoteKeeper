@@ -54,8 +54,6 @@ function Create() {
 
     if (title.length <= 3) errors.push("Title must be at least 4 characters.");
     if (value.length <= 12) errors.push("Note must be at least 4 charcters.");
-    console.log(value.length)
-    console.log(value)
     if (!notebookId1.length) errors.push("Please select a notebook.");
     setErrors(errors);
 
@@ -89,10 +87,10 @@ function Create() {
     }, 2000)
   }
 
-  const autosave = (e) => {
-    if (title.length >= 4 && value.length >= 4)
-      handleErrors(e);
-  }
+  // const autosave = (e) => {
+  //   if (title.length >= 4 && value.length >= 4)
+  //     handleErrors(e);
+  // }
 
 
   return (
@@ -107,7 +105,6 @@ function Create() {
           </ul>
 
           <input
-            onBlur={(e) => autosave(e)}
             onChange={(e) => {
               setTitle(e.target.value);
             }}
@@ -120,6 +117,7 @@ function Create() {
           onChange={(e) => {
             setNotebookId(e.target.value);
           }}
+          required
           id="select-notebook">
           <option value="">Select Notebook</option>
           <option value="0" >Default</option>

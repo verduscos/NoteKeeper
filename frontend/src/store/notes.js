@@ -148,15 +148,16 @@ const notesReducer = (state = initialState, action) => {
       return newState
     }
     // // WORKING
-    // case EDIT_NOTE: {
-    //     const newState = { ...state};
-    //     newState.notes.forEach((note, i ,arr) => {
-    //         if (note.id === action.payload.id) {
-    //             arr[i] = action.payload
-    //         }
-    //     })
-    //     return newState;
-    //   }
+    case EDIT_NOTE: {
+        const newState = { ...state};
+        // newState.notes.forEach((note, i ,arr) => {
+        //     if (note.id === action.payload.id) {
+        //         arr[i] = action.payload
+        //     }
+        // })
+        newState[action.payload.id] = action.payload;
+        return newState;
+      }
     // // NOT WORKING
     // // case REMOVE_NOTE: {
     // //     const newState = {...state};

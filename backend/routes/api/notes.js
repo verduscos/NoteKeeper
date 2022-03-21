@@ -82,7 +82,12 @@ router.post('/', validateNote ,asyncHandler(async(req, res, next) => {
 // Edit a note
 router.put('/notes/:noteId', validateNote, asyncHandler(async (req, res) => {
   const { noteId } = req.params;
-  const { title, body } = req.body;
+  const { title, body, notebookId } = req.body;
+
+  let test;
+
+  notebookId >= 1 ? test = notebookId : null
+
   const note = await Note.findByPk(noteId);
 
 
@@ -92,13 +97,14 @@ router.put('/notes/:noteId', validateNote, asyncHandler(async (req, res) => {
   if (validationErrors.isEmpty()) {
     await note.update({
       title,
-      body
+      body,
+      notebookId: test
     })
 
     return res.json(note);
   } else {
     const errors = validationErrors.array().map(err => err.msg);
-    res.json({errors});
+    return res.json({errors});
   }
 
 
