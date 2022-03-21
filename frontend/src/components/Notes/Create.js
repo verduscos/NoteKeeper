@@ -15,7 +15,7 @@ function Create() {
 
   const history = useHistory()
   const dispatch = useDispatch()
-  const [notebookId1, setNotebookId] = useState(null);
+  const [notebookId1, setNotebookId] = useState("");
   const [errors, setErrors] = useState([]);
   const [created, setCreated] = useState(false);
   const [value, setValue] = useState("")
@@ -64,6 +64,8 @@ function Create() {
     } else {
       history.push(`/mynotes/notebook/default/notes/${note.id}`);
     }
+
+
   }
 
 
@@ -105,9 +107,9 @@ function Create() {
           onChange={(e) => {
             setNotebookId(e.target.value);
           }}
-          required id="select-notebook">
+           id="select-notebook">
           <option value="">Select Notebook</option>
-          <option value="Default">Default</option>
+          <option value="" >Default</option>
           {notebookArr.map(notebook => (
             <option key={notebook?.id} value={notebook?.id}>{notebook?.title}</option>
           ))}

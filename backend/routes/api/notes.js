@@ -54,11 +54,16 @@ router.get("/:userId", asyncHandler(async(req, res) => {
 router.post('/', validateNote ,asyncHandler(async(req, res, next) => {
   const { title, body, userId, notebookId } = req.body;
   console.log(notebookId, "NOTEBOOK ID")
+
+  let test;
+
+  notebookId >= 1 ? test = notebookId : null
+
   let newNote = await Note.build({
     title,
     body,
     userId,
-    notebookId
+    notebookId : test
   })
 
   const validationErrors = validationResult(req);
