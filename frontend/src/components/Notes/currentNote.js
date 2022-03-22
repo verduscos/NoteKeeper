@@ -34,7 +34,7 @@ function CurrentNote() {
   const testingTime = () => {
 
     if (Math.round(Math.abs(lastSaved - currentDate) / 36e5) > 24) {
-      test = `Last updated on ${lastSaved.toDateString()}`;
+      test = `Last updated on ${lastSaved.toDateString().split(" ")[0]}, ${lastSaved.toDateString().split(" ")[1]} ${lastSaved.toDateString().split(" ")[2]}, ${lastSaved.toDateString().split(" ")[3]}`;
     } else if (Math.round(Math.abs(lastSaved - currentDate) / 36e5) < 1) {
       test = (Math.abs(lastSaved - currentDate) / 36e5).toFixed(2).split(".")[1];
       if (test[0] === "0") test = ` Last updated ${test[1]} minutes ago`;
@@ -217,8 +217,7 @@ function CurrentNote() {
           </select>
 
 
-          {/* <p>{ Math.round(Math.abs(lastSaved - currentDate) / 36e5) > 24 ? lastSaved.toDateString() : ` Last Saved ${Math.round(Math.abs(lastSaved - currentDate) / 36e5)} Hours Ago` }</p> */}
-          <p>{test}</p>
+          <p id="note-date">{test}</p>
         </div>
 
 

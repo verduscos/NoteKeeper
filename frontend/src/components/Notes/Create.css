@@ -78,5 +78,7 @@
 }
 
 #date-container > p {
-margin-bottom: 5px;
+margin-bottom: -5px;
+margin-right: 15px;
+font-size: 12px !important;
 }
