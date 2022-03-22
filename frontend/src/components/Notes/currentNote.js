@@ -104,19 +104,12 @@ function CurrentNote() {
     // setDeleted(true);
 
     const res = await dispatch(sessionActions.removeNoteThunk(id))
-    // if (deleted) {
-    //     await setTimeout(() => {
-    //         setDeleted(false);
-    //     }, 10000)
-    // }
-    // if (res.id) history.push('/mynotes/notes')
-    return
   }
 
 
-  const autosave = () => {
+  const autosave = (e) => {
     console.log('HERERERE')
-    if (currtitle.length >= 4 && value.length >= 12) handleEdit();
+    if (currtitle.length >= 4 && value.length >= 12) handleEdit(e);
   }
 
 
@@ -137,9 +130,10 @@ useEffect(() => {
 }, [dispatch, noteId])
 
 
+
 return (
   <div>
-    <form onSubmit={(e) => handleEdit(e)} className='form'>
+    <form className='form' onSubmit={handleEdit}>
       <div className='title-container'>
         <Link id='create-link' to='/mynotes/notes'>New note</Link>
 
@@ -150,6 +144,7 @@ return (
           {errors.map((error, idx) => <li key={idx}>{error}</li>)}
         </ul>
         <input
+        // onBlur={(e) => handleEdit(e)}
           className='form-title edit'
           value={currtitle}
           onChange={(e) => {
