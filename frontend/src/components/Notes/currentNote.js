@@ -27,7 +27,37 @@ function CurrentNote() {
   const [value, setValue] = useState('');
   var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
   const lastSaved = new Date(date);
-  console.log(lastSaved)
+  const currentDate = new Date();
+
+  let test;
+
+  const testingTime = () => {
+
+    if (Math.round(Math.abs(lastSaved - currentDate) / 36e5) > 24) {
+      test = `Last updated on ${lastSaved.toDateString()}`;
+    } else if (Math.round(Math.abs(lastSaved - currentDate) / 36e5) < 1) {
+      test = (Math.abs(lastSaved - currentDate) / 36e5).toFixed(2).split(".")[1];
+      if (test[0] === "0") test = ` Last updated ${test[1]} minutes ago`;
+      else test = `Last updated ${test} minutes ago`
+    } else {
+      test = `Last updated ${Math.round(Math.abs(lastSaved - currentDate) / 36e5)} hours ago`;
+    }
+
+  }
+
+  testingTime();
+
+  const resetUpdate = () => {
+    setInterval(() => {
+      test = 0;
+      test += 1;
+    }, 600)
+  }
+
+
+
+
+
 
 
   let notifcation;
@@ -90,6 +120,7 @@ function CurrentNote() {
       setUpdated(true)
       let note = await dispatch(sessionActions.editNoteThunk(payload, noteId))
 
+
       if (note.notebookId) {
         history.push(`/mynotes/notebook/${note.notebookId}/notes/${note.id}`);
       } else {
@@ -132,17 +163,21 @@ function CurrentNote() {
     let body = userNotes1[noteId]?.body;
     let notebookId = userNotes1[noteId]?.notebookId;
     let updatedAt = userNotes1[noteId]?.updatedAt;
-    console.log(updatedAt)
-    // const { title, body } = userNotes1[noteId];
+
 
     setcurrTitle(title)
     setValue(body)
     setNotebookId(notebookId)
     setDate(updatedAt)
-  }, [dispatch, noteId])
+
+  }, [dispatch, noteId, updated])
+
+  useEffect(() => {
+    let updatedAt = userNotes1[noteId]?.updatedAt;
+    setDate(updatedAt)
+  }, [dispatch, updated])
 
 
-  console.log(notebookId1)
   return (
     <div>
       <form className='form' onSubmit={handleEdit}>
@@ -182,7 +217,8 @@ function CurrentNote() {
           </select>
 
 
-          <p>{lastSaved.toDateString()}</p>
+          {/* <p>{ Math.round(Math.abs(lastSaved - currentDate) / 36e5) > 24 ? lastSaved.toDateString() : ` Last Saved ${Math.round(Math.abs(lastSaved - currentDate) / 36e5)} Hours Ago` }</p> */}
+          <p>{test}</p>
         </div>
 
 
