@@ -24,6 +24,8 @@ function CurrentNote() {
   const [updated, setUpdated] = useState(false);
   // const [deleted, setDeleted] = useState(false);
   const [value, setValue] = useState('');
+  var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+
 
   let notifcation;
   if (updated) {
@@ -134,7 +136,7 @@ function CurrentNote() {
   }, [dispatch, noteId])
 
 
-console.log(notebookId1)
+  console.log(notebookId1)
   return (
     <div>
       <form className='form' onSubmit={handleEdit}>
@@ -159,19 +161,23 @@ console.log(notebookId1)
 
         </div>
 
+        <div id="date-container">
+          <select
+            onChange={(e) => {
+              setNotebookId(e.target.value);
+            }}
+            required
+            id="select-notebook">
+            <option value="">Select Notebook</option>
+            <option value="0">Default</option>
+            {notebookArr.map(notebook => (
+              <option key={notebook?.id} value={notebook?.id} selected={notebook?.id === notebookId1 ? true : false}>{notebook?.title}</option>
+            ))}
+          </select>
 
-        <select
-          onChange={(e) => {
-            setNotebookId(e.target.value);
-          }}
-          required
-          id="select-notebook">
-          <option value="">Select Notebook</option>
-          <option value="0">Default</option>
-          {notebookArr.map(notebook => (
-            <option key={notebook?.id} value={notebook?.id} selected={ notebook?.id === notebookId1 ? true : false }>{notebook?.title}</option>
-          ))}
-        </select>
+
+          <p>{Date(userNotes1[noteId]?.updatedAt)}</p>
+        </div>
 
 
         <ReactQuill theme="snow" value={value} onChange={setValue}
