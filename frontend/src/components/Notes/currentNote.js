@@ -83,7 +83,7 @@ function CurrentNote() {
 
     setErrors(errors);
 
-    if (currtitle.length >= 4 && value.length >= 12 && notebookId1 > 1) {
+    if (currtitle.length >= 4 && value.length >= 12 && notebookId1 > 0) {
       setUpdated(true)
       let note = await dispatch(sessionActions.editNoteThunk(payload, noteId))
 
@@ -176,7 +176,7 @@ function CurrentNote() {
           </select>
 
 
-          <p>{Date(userNotes1[noteId]?.updatedAt)}</p>
+          <p>{userNotes1[noteId]?.updatedAt}</p>
         </div>
 
 
