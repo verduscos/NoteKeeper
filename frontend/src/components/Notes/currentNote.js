@@ -21,10 +21,13 @@ function CurrentNote() {
   const [currentNote, setCurrentNote] = useState('');
   const [notebookId1, setNotebookId] = useState("");
   const [errors, setErrors] = useState([]);
+  const [date, setDate] = useState("");
   const [updated, setUpdated] = useState(false);
   // const [deleted, setDeleted] = useState(false);
   const [value, setValue] = useState('');
   var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+  const lastSaved = new Date(date);
+  console.log(lastSaved)
 
 
   let notifcation;
@@ -128,11 +131,14 @@ function CurrentNote() {
     let title = userNotes1[noteId]?.title;
     let body = userNotes1[noteId]?.body;
     let notebookId = userNotes1[noteId]?.notebookId;
+    let updatedAt = userNotes1[noteId]?.updatedAt;
+    console.log(updatedAt)
     // const { title, body } = userNotes1[noteId];
 
     setcurrTitle(title)
     setValue(body)
     setNotebookId(notebookId)
+    setDate(updatedAt)
   }, [dispatch, noteId])
 
 
@@ -176,7 +182,7 @@ function CurrentNote() {
           </select>
 
 
-          <p>{userNotes1[noteId]?.updatedAt}</p>
+          <p>{lastSaved.toDateString()}</p>
         </div>
 
 
