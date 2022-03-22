@@ -92,10 +92,10 @@ function CurrentNote() {
     }
 
 
-      // .catch(async (res) => {
-      //   const data = await res.json();
-      //   if (data && data.errors) setErrors(data.errors);
-      // })
+    // .catch(async (res) => {
+    //   const data = await res.json();
+    //   if (data && data.errors) setErrors(data.errors);
+    // })
   }
 
   // DELETE
@@ -108,55 +108,56 @@ function CurrentNote() {
 
 
   const autosave = (e) => {
-    console.log('HERERERE')
-    if (currtitle.length >= 4 && value.length >= 12) handleEdit(e);
+    setTimeout(() => {
+      if (currtitle.length >= 4 && value.length >= 12) handleEdit(e);
+    }, 2000)
   }
 
 
 
-useEffect(() => {
-  // dispatch(sessionActions.getNotesThunk(currentUser?.id))
+  useEffect(() => {
+    // dispatch(sessionActions.getNotesThunk(currentUser?.id))
 
-  // const { title, body } = userNotes?.find(note =>
-  //     note?.id === +noteId
-  // )
+    // const { title, body } = userNotes?.find(note =>
+    //     note?.id === +noteId
+    // )
 
-  let title = userNotes1[noteId]?.title;
-  let body = userNotes1[noteId]?.body;
-  // const { title, body } = userNotes1[noteId];
+    let title = userNotes1[noteId]?.title;
+    let body = userNotes1[noteId]?.body;
+    // const { title, body } = userNotes1[noteId];
 
-  setcurrTitle(title)
-  setValue(body)
-}, [dispatch, noteId])
-
-
-
-return (
-  <div>
-    <form className='form' onSubmit={handleEdit}>
-      <div className='title-container'>
-        <Link id='create-link' to='/mynotes/notes'>New note</Link>
-
-        {/* <h1>{currtitle}</h1> */}
-        {/* {deletion} */}
-        {notifcation}
-        <ul className='errors'>
-          {errors.map((error, idx) => <li key={idx}>{error}</li>)}
-        </ul>
-        <input
-        // onBlur={(e) => handleEdit(e)}
-          className='form-title edit'
-          value={currtitle}
-          onChange={(e) => {
-            setcurrTitle(e.target.value)
-          }}
-
-          type="text"></input>
-
-      </div>
+    setcurrTitle(title)
+    setValue(body)
+  }, [dispatch, noteId])
 
 
-      <select
+
+  return (
+    <div>
+      <form className='form' onSubmit={handleEdit}>
+        <div className='title-container'>
+          <Link id='create-link' to='/mynotes/notes'>New note</Link>
+
+          {/* <h1>{currtitle}</h1> */}
+          {/* {deletion} */}
+          {notifcation}
+          <ul className='errors'>
+            {errors.map((error, idx) => <li key={idx}>{error}</li>)}
+          </ul>
+          <input
+            // onBlur={(e) => handleEdit(e)}
+            className='form-title edit'
+            value={currtitle}
+            onChange={(e) => {
+              setcurrTitle(e.target.value)
+            }}
+
+            type="text"></input>
+
+        </div>
+
+
+        <select
           onChange={(e) => {
             setNotebookId(e.target.value);
           }}
@@ -170,8 +171,12 @@ return (
         </select>
 
 
-      <ReactQuill theme="snow" value={value} onChange={setValue} className='displayNote' />
-      {/* <textarea
+        <ReactQuill theme="snow" value={value} onChange={setValue}
+          onKeyUp={(e) => {
+            autosave(e)
+          }}
+          className='displayNote' />
+        {/* <textarea
                     // className='butts'
                     className='displayNote'
                     onChange={(e) => {
@@ -183,25 +188,25 @@ return (
                     cols='60' rows='8'
                 ></textarea> */}
 
-      <button
-        onClick={(e) => {
-          handleEdit(e)
-        }}
-        className='create-delete create'
-      >Update</button>
+        <button
+          onClick={(e) => {
+            handleEdit(e)
+          }}
+          className='create-delete create'
+        >Update</button>
 
 
 
 
-      <button
-        id='delete'
-        className='create-delete'
-        onClick={(e) => {
-          handleDelete(e, noteId)
-        }}>Delete</button>
-    </form>
-  </div>
-)
+        <button
+          id='delete'
+          className='create-delete'
+          onClick={(e) => {
+            handleDelete(e, noteId)
+          }}>Delete</button>
+      </form>
+    </div>
+  )
 }
 
 export default CurrentNote;
