@@ -102,28 +102,33 @@
 
 
 #create-link {
-    color: #fff;
-    font-weight: bold;
+    /* color: #fff; */
+    /* font-weight: bold; */
     text-decoration: none;
-    border-radius: 3px;
-    letter-spacing: 1.5px;
-    font-size: 13px;
-    padding: 10px 15px;
-    width: 100px;
-    text-align: center;
-    background-color: #21ac46;
-    transition-duration: .2;
-    margin-top: 10px;
-    font-family: 'Roboto', sans-serif;
-    z-index: 12;
-    position: absolute;
-    right: 225px;
-    top: 65px;
-    box-shadow: rgba(148, 148, 161, 0.2) 0px 2px 25px 0px;
+    /* border-radius: 3px; */
+    /* letter-spacing: 1.5px; */
+    /* font-size: 13px; */
+    /* padding: 10px 15px; */
+    /* width: 100px; */
+    /* text-align: center; */
+    /* background-color: #21ac46; */
+    /* transition-duration: .2; */
+    /* margin-top: 10px; */
+    /* font-family: 'Roboto', sans-serif; */
+    /* z-index: 12; */
+    /* position: absolute; */
+    /* right: 225px;
+    top: 65px; */
+    /* box-shadow: rgba(148, 148, 161, 0.2) 0px 2px 25px 0px; */
 }
 
-#create-link:hover {
+/* #create-link > * {
+  margin: 0;
+  padding: 0;
+} */
+
+/* #create-link:hover {
     background-color: #0cca3f;
     transition-duration: .2s;
     transition-property: background-color;
-}
+} */

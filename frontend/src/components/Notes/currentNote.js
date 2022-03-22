@@ -112,11 +112,11 @@ function CurrentNote() {
 
     if (currtitle.length <= 3) errors.push("Title must be at least 4 characters.");
     if (value.length <= 12) errors.push("Note must be at least 4 charcters.");
-    if (notebookId1 < 1) errors.push("Please select a notebook.");
+    if (!notebookId1.length) errors.push("Please select a notebook.");
 
     setErrors(errors);
 
-    if (currtitle.length >= 4 && value.length >= 12 && notebookId1 > 0) {
+    if (currtitle.length >= 4 && value.length >= 12 && notebookId1 >= 0) {
       setUpdated(true)
       let note = await dispatch(sessionActions.editNoteThunk(payload, noteId))
 
@@ -182,7 +182,6 @@ function CurrentNote() {
     <div>
       <form className='form' onSubmit={handleEdit}>
         <div className='title-container'>
-          <Link id='create-link' to='/mynotes/notes'>New note</Link>
 
           {/* <h1>{currtitle}</h1> */}
           {/* {deletion} */}
@@ -210,7 +209,7 @@ function CurrentNote() {
             required
             id="select-notebook">
             <option value="">Select Notebook</option>
-            <option value="0">Default</option>
+            <option value={0}>Default</option>
             {notebookArr.map(notebook => (
               <option key={notebook?.id} value={notebook?.id} selected={notebook?.id === notebookId1 ? true : false}>{notebook?.title}</option>
             ))}

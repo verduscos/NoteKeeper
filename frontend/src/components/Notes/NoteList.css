@@ -1,7 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Lato:wght@100&family=Roboto&display=swap");
 
-
-
 #note-link-column {
   font-family: "Roboto", sans-serif;
   color: #1a1a1a;
@@ -31,7 +29,8 @@
   margin-right: auto;
 }
 
-#notes-header, #notes-header-container >  svg {
+#notes-header,
+#notes-header-container > svg {
   text-align: left;
   margin: 0;
   font-size: 20px;
@@ -43,9 +42,9 @@
 #notes-length {
   margin: 0;
   margin-right: auto;
-  padding:  0 15px 15px 15px;
+  padding: 0 15px 15px 15px;
   font-size: 14px;
-  color:rgb(139, 139, 139);
+  color: rgb(139, 139, 139);
 }
 
 #note-container {
@@ -81,7 +80,7 @@
   font-size: 11px;
   letter-spacing: 0.03em;
   font-weight: lighter;
-  color:rgb(139, 139, 139);
+  color: rgb(139, 139, 139);
 }
 
 #note-containers:hover {
@@ -95,4 +94,24 @@
 
 .note-highlight {
   border: 2px solid rgb(185, 193, 196) !important;
+}
+
+#note-links {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+#note-links > * {
+  padding: 0 15px;
+  margin: 0 0 10px 0;
+  cursor: pointer;
+  color: #1a1a1a;
+}
+
+#note-links > a,
+#note-links > div > svg  {
+  font-size: 20px;
+  display: flex;
 }

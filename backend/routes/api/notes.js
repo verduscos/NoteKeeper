@@ -86,7 +86,7 @@ router.put('/notes/:noteId', validateNote, asyncHandler(async (req, res) => {
 
   let test;
 
-  notebookId >= 1 ? test = notebookId : null
+  notebookId >= 1 ? test = notebookId : test = null
 
   const note = await Note.findByPk(noteId);
 

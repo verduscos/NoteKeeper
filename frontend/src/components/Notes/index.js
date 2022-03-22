@@ -9,19 +9,21 @@ import ProfileButton from '../Navigation/ProfileButton';
 import './NoteList.css'
 import Create from './Create';
 import { MdStickyNote2 } from "react-icons/md"
+import { AiFillFileAdd } from "react-icons/ai";
+import { BsFillBackspaceFill } from "react-icons/bs";
 import { useParams, useHistory } from "react-router-dom";
 
 function Notes() {
   const currentUser = useSelector(state => state.session.user);
   const params = useParams();
-  const { noteId } = params;
+  const { noteId, notebookId } = params;
   const dispatch = useDispatch()
   // const [loaded, setLoaded] = useState();
   // const [notes, setNotes] = useState=([])
   const [title, setTitle] = useState('');
   const [body, setBody] = useState('');
   const [userId, setUserId] = useState(null);
-  const [notebookId, setNotebookId] = useState(null);
+  // const [notebookId, setNotebookId] = useState(null);
   const [displayNote, setDisplayNote] = useState('')
   const [errors, setErrors] = useState([]);
   const [created, setCreated] = useState(false);
@@ -41,26 +43,26 @@ function Notes() {
   }
 
 
-  const handleErrors = (e) => {
-    e.preventDefault();
+  // const handleErrors = (e) => {
+  //   e.preventDefault();
 
-    const payload = {
-      title,
-      body,
-      userId: currentUser.id,
-      notebookId
-    }
-    setErrors([]);
+  //   const payload = {
+  //     title,
+  //     body,
+  //     userId: currentUser.id,
+  //     notebookId
+  //   }
+  //   setErrors([]);
 
-    if (title.length >= 4 && body.length >= 1) setCreated(true)
+  //   if (title.length >= 4 && body.length >= 1) setCreated(true)
 
-    return dispatch(sessionActions.createNoteThunk(payload))
-      .catch(async (res) => {
-        const data = await res.json();
-        if (data && data.errors) setErrors(data.errors)
+  //   return dispatch(sessionActions.createNoteThunk(payload))
+  //     .catch(async (res) => {
+  //       const data = await res.json();
+  //       if (data && data.errors) setErrors(data.errors)
 
-      })
-  }
+  //     })
+  // }
 
 
 
@@ -74,25 +76,25 @@ function Notes() {
   let notes = Object.values(userNotes)
 
 
-  const handleCreate = (e) => {
-    e.preventDefault();
+  // const handleCreate = (e) => {
+  //   e.preventDefault();
 
-    const payload = {
-      title,
-      body,
-      userId: currentUser.id,
-      notebookId
-    }
-    dispatch(sessionActions.createNoteThunk(payload))
+  //   const payload = {
+  //     title,
+  //     body,
+  //     userId: currentUser.id,
+  //     notebookId
+  //   }
+  //   dispatch(sessionActions.createNoteThunk(payload))
 
-    return
-  }
+  //   return
+  // }
 
-  const getNote = (e, noteId) => {
-    e.preventDefault();
-    // dispatch(getSingleNoteThunk(currentUser.id, noteId))
-    // dispatch(sessionActions.getSingleNoteThunk(currentUser.id, noteId));
-  }
+  // const getNote = (e, noteId) => {
+  //   e.preventDefault();
+  //   // dispatch(getSingleNoteThunk(currentUser.id, noteId))
+  //   // dispatch(sessionActions.getSingleNoteThunk(currentUser.id, noteId));
+  // }
 
   const getAllNotes = (e) => {
     e.preventDefault();
@@ -102,12 +104,12 @@ function Notes() {
   }
 
 
-  useEffect(() => {
-    // dispatch(sessionActions.getNotesThunk(currentUser.id))
-    // dispatch(notebookActions.getNootbooksThunk(currentUser.id))
-    //adding loaded is not chaning anything atm, fixed loading issue with '?'
+  // useEffect(() => {
+  //   // dispatch(sessionActions.getNotesThunk(currentUser.id))
+  //   // dispatch(notebookActions.getNootbooksThunk(currentUser.id))
+  //   //adding loaded is not chaning anything atm, fixed loading issue with '?'
 
-  }, [dispatch])
+  // }, [dispatch])
   //rerender when deleting a note
 
 
@@ -125,7 +127,13 @@ function Notes() {
             </div>
             <p id="notes-length">{notes?.length} notes</p>
 
-            <div onClick={getAllNotes}>All notes</div>
+            <div id="note-links">
+
+              <Link id='create-link' to='/mynotes/notes'><AiFillFileAdd /></Link>
+
+              {notebookId ? <div onClick={getAllNotes}>All Notes</div> : null}
+
+            </div>
 
             <div id='note-container'>
               {notes?.map(note => (
