@@ -3,6 +3,7 @@ import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import { useSelector, useDispatch } from 'react-redux';
 import * as sessionActions from '../../store/notes';
+import { AiOutlineReload } from "react-icons/ai";
 import { useParams, useHistory, Link } from 'react-router-dom';
 import './CurrentNote.css';
 
@@ -23,6 +24,7 @@ function CurrentNote() {
   const [notebookId1, setNotebookId] = useState("");
   const [errors, setErrors] = useState([]);
   const [date, setDate] = useState("");
+  const [spin, setSpin] = useState("");
   const [updated, setUpdated] = useState(false);
   // const [deleted, setDeleted] = useState(false);
   const [value, setValue] = useState('');
@@ -38,7 +40,8 @@ function CurrentNote() {
       test = `Last updated on ${lastSaved.toDateString().split(" ")[0]}, ${lastSaved.toDateString().split(" ")[1]} ${lastSaved.toDateString().split(" ")[2]}, ${lastSaved.toDateString().split(" ")[3]}`;
     } else if (Math.round(Math.abs(lastSaved - currentDate) / 36e5) < 1) {
       test = (Math.abs(lastSaved - currentDate) / 36e5).toFixed(2).split(".")[1];
-      if (test[0] === "0") test = ` Last updated ${test[1]} minutes ago`;
+      if (test[0] === "0" && test[1] === "0") test = "Latest changes saved!"
+      else if (test[0] === "0") test = ` Last updated ${test[1]} minutes ago`;
       else test = `Last updated ${test} minutes ago`
     } else {
       test = `Last updated ${Math.round(Math.abs(lastSaved - currentDate) / 36e5)} hours ago`;
@@ -94,6 +97,13 @@ function CurrentNote() {
     }, 2000)
   }
 
+  if (spin.length) {
+    setTimeout(() => {
+      setSpin("");
+      // history.push('/mynotes/notes')
+    }, 3500)
+  }
+
 
   // EDIT
   const handleEdit = async (e) => {
@@ -113,12 +123,13 @@ function CurrentNote() {
 
     if (currtitle.length <= 3) errors.push("Title must be at least 4 characters.");
     if (value.length <= 12) errors.push("Note must be at least 4 charcters.");
-    if (!notebookId1.length) errors.push("Please select a notebook.");
+    if (notebookId1 === "") errors.push("Please select a notebook.");
 
     setErrors(errors);
 
     if (currtitle.length >= 4 && value.length >= 12 && notebookId1 >= 0) {
       setUpdated(true)
+      setSpin("spin");
       let note = await dispatch(sessionActions.editNoteThunk(payload, noteId))
 
 
@@ -186,7 +197,7 @@ function CurrentNote() {
 
           {/* <h1>{currtitle}</h1> */}
           {/* {deletion} */}
-          {notifcation}
+          {/* {notifcation} */}
           <ul className='errors'>
             {errors.map((error, idx) => <li key={idx}>{error}</li>)}
           </ul>
@@ -217,7 +228,7 @@ function CurrentNote() {
           </select>
 
 
-          <p id="note-date">{test}</p>
+          <p id="note-date"><AiOutlineReload id="saving-icon" class={spin} /> {test}</p>
         </div>
 
 

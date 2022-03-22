@@ -55,7 +55,7 @@ function Create() {
 
     if (title.length <= 3) errors.push("Title must be at least 4 characters.");
     if (value.length <= 12) errors.push("Note must be at least 4 charcters.");
-    if (!notebookId1.length) errors.push("Please select a notebook.");
+    if (notebookId1 === "") errors.push("Please select a notebook.");
     setErrors(errors);
 
 
