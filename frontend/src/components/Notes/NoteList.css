@@ -20,6 +20,41 @@
   min-width: 380px;
 }
 
+@media screen and (max-width: 1950px) {
+  #note-link-column {
+    max-width: 225px;
+    min-width: 225px;
+  }
+
+  .form {
+    max-width: 1000px !important;
+    margin: 25px auto 0 500px !important;
+  }
+
+  .displayNote {
+    width: 1000px;
+  }
+}
+
+@media screen and (max-width: 1550px) {
+  .form {
+    max-width: 60vw;
+    margin: 25px auto 0 500px !important;
+  }
+
+  .displayNote {
+    width: 60vw;
+  }
+
+  #date-container, .title-container {
+    width: 60vw !important;
+  }
+  .create-delete {
+    align-self: flex-start;
+  }
+}
+
+
 #notes-header-container {
   display: flex;
   justify-content: space-between;
@@ -111,7 +146,7 @@
 }
 
 #note-links > a,
-#note-links > div > svg  {
+#note-links > div > svg {
   font-size: 20px;
   display: flex;
 }
