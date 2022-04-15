@@ -1,7 +1,6 @@
 import { csrfFetch } from "./csrf"
 
 const GET_NOTES = 'mynotes/getNotes';
-// const SINGLE_NOTE = 'mynotes/singleNote';
 const GET_NOTEBOOK_NOTES = 'mynotes/GET'
 const CREATE_NOTE = 'mynotes/createNote';
 const EDIT_NOTE = 'mynotes/editNote';
@@ -16,11 +15,6 @@ const getNotebookNotes = (notes) => ({
   type: GET_NOTEBOOK_NOTES,
   payload: notes
 })
-
-// const singleNote = (note) => ({
-//     type: GET_NOTES,
-//     payload: note
-// })
 
 const createNote = (note) => ({
   type: CREATE_NOTE,
@@ -38,7 +32,6 @@ const removeNote = (noteId) => ({
 })
 
 export const removeNoteThunk = (noteId) => async (dispatch) => {
-  console.log('IN REMOVE THUNK')
   const response = await csrfFetch(`/api/mynotes/notes/${noteId}`, {
     method: 'DELETE'
   })
@@ -67,16 +60,6 @@ export const getNotebookNotesThunk = (userId, notebookId) => async (dispatch) =>
   dispatch(getNotebookNotes(data));
 }
 
-// export const getSingleNoteThunk = (userId, noteId) => async (dispatch) => {
-//     console.log("IN SIDE THE THUNK")
-//     const response = await csrfFetch(`/api/mynotes/${userId}/notes/${noteId}`, {
-//         method: 'GET',
-//     })
-//     const data = await response.json();
-//     console.log("DATATATATTA", data)
-//     dispatch(singleNote(data));
-// }
-
 export const createNoteThunk = (payload) => async (dispatch) => {
   const response = await csrfFetch(`/api/mynotes`, {
     method: 'POST',
@@ -88,15 +71,10 @@ export const createNoteThunk = (payload) => async (dispatch) => {
     const note = await response.json();
     dispatch(createNote(note));
     return note;
-  } else {
-    console.log("HERE IN THE FAILED")
   }
-
-  console.log("TKLASJFKLDS")
 }
 
 export const editNoteThunk = (payload, noteId) => async (dispatch) => {
-  console.log('IN THUNK')
   const response = await csrfFetch(`/api/mynotes/notes/${noteId}`, {
     method: 'PUT',
     headers: { 'Content-Type': 'application/json' },
@@ -132,29 +110,17 @@ const notesReducer = (state = initialState, action) => {
       })
 
       return notes;
-    // case SINGLE_NOTE:
-    //   let newNote = {}
-
-    //   console.log("INSIDE REDUCER")
-    //   console.log(action.payload)
-    // WORKING
     case CREATE_NOTE: {
       const newState = { ...state };
 
 
       newState[action.payload.id] = action.payload
-      console.log(newState)
 
       return newState
     }
     // // WORKING
     case EDIT_NOTE: {
         const newState = { ...state};
-        // newState.notes.forEach((note, i ,arr) => {
-        //     if (note.id === action.payload.id) {
-        //         arr[i] = action.payload
-        //     }
-        // })
         newState[action.payload.id] = action.payload;
         return newState;
       }

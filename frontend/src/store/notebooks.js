@@ -27,10 +27,7 @@ const updateNotebook = (notebook) => ({
   type: UPDATE_NOTEBOOK,
   payload: notebook
 })
-// const getNotebookNotes = (notes) => ({
-//   type: GET_NOTEBOOK_NOTES,
-//   payload: notes
-// })
+
 
 //thunk
 export const getNootbooksThunk = (userId) => async (dispatch)=> {
@@ -76,7 +73,6 @@ export const deleteNotebookThunk = (payload) => async(dispatch) => {
 }
 
 export const updateNotebookThunk = (payload) => async(dispatch) => {
-  console.log("TESTLKJ")
   const response = await csrfFetch(`/api/mynotes/notebooks/`, {
     method: "PUT",
     headers: {
@@ -84,23 +80,14 @@ export const updateNotebookThunk = (payload) => async(dispatch) => {
     },
     body: JSON.stringify(payload)
   })
-  console.log("LASKFJKLSFJKSDL")
-  console.log("OKAYOKAY")
+
   if (response.ok) {
     const note = await response.json();
     dispatch(updateNotebook(note));
     return note;
   }
 }
-// export const getNotebookNotesThunk = (userId, notebookId) => async (dispatch) => {
-//   console.log('INSIDE THUNK');
-//   const response = await csrfFetch(`/api/mynotes/notebooks/${userId}/${notebookId}`, {
-//     method: "GET"
-//   })
 
-//   const data = await response.json();
-//   dispatch(getNotebookNotes(data));
-// }
 
 //reducer
 const initialState = { notebooks: null };
@@ -122,8 +109,6 @@ const notebooksReducer = (state = initialState, action) => {
 
           return newNotebook;
         case UPDATE_NOTEBOOK:
-          console.log("LSAJFKLDJLSFKDJ")
-          console.log(action.payload)
           let updateNotebook = { ...state }
 
           updateNotebook[action.payload.id] = action.payload

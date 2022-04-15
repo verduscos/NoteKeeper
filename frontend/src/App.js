@@ -69,7 +69,6 @@ function App() {
             <Navigation isLoaded={isLoaded} />
             <NotFound />
           </Route>
-
         </Switch>
         </>
       )}
