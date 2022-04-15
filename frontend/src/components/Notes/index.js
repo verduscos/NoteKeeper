@@ -1,16 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import * as sessionActions from '../../store/notes';
-import { getSingleNoteThunk } from '../../store/currentNote';
-import * as notebookActions from '../../store/notebooks';
 import { useDispatch, useSelector } from 'react-redux';
-import CurrentNote from './currentNote';
-import { Link, Route } from 'react-router-dom';
-import ProfileButton from '../Navigation/ProfileButton';
+import { Link } from 'react-router-dom';
 import './NoteList.css'
-import Create from './Create';
 import { MdStickyNote2 } from "react-icons/md"
 import { AiFillFileAdd } from "react-icons/ai";
-import { BsFillBackspaceFill } from "react-icons/bs";
 import { useParams, useHistory } from "react-router-dom";
 
 function Notes() {
@@ -18,14 +12,6 @@ function Notes() {
   const params = useParams();
   const { noteId, notebookId } = params;
   const dispatch = useDispatch()
-  // const [loaded, setLoaded] = useState();
-  // const [notes, setNotes] = useState=([])
-  const [title, setTitle] = useState('');
-  const [body, setBody] = useState('');
-  const [userId, setUserId] = useState(null);
-  // const [notebookId, setNotebookId] = useState(null);
-  const [displayNote, setDisplayNote] = useState('')
-  const [errors, setErrors] = useState([]);
   const [created, setCreated] = useState(false);
   const history = useHistory();
 

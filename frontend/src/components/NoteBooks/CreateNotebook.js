@@ -1,14 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useDispatch } from 'react-redux';
-import * as sessionActions from '../../store/session';
-import { useHistory } from 'react-router-dom';
 import { IoIosArrowDown } from 'react-icons/io'
 import { AiOutlinePlus } from 'react-icons/ai'
 import { postNotebookThunk } from '../../store/notebooks';
 import { MdOutlineCreateNewFolder } from 'react-icons/md'
 
 function CreateNotebook({ user }) {
-  const history = useHistory();
   const dispatch = useDispatch();
   const [showCreateForm, setShowCreateForm] = useState(false);
   const [notebookName, setNotebookName] = useState("");

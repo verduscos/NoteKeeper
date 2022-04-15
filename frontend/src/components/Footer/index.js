@@ -5,7 +5,6 @@ import './Footer.css';
 function Footer() {
     return (
         <div id='footer-container'>
-            {/* <h1>salfjdaskl</h1> */}
             <div id='footer-links'>
                 <p>Created by Eddie Verdusco</p>
                 <a className='footer-link'  href='https://github.com/verduscos' target="_blank" ><i className="fab fa-github-square"></i></a>

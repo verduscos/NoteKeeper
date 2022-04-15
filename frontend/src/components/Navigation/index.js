@@ -32,8 +32,6 @@ function Navigation({ isLoaded }){
     sessionLinks = (
       <>
         <LoginFormModal />
-        {/* <SignupFormModal /> */}
-        {/* <NavLink id='signup' style={{ textDecoration: 'none' }} to="/signup">Sign Up</NavLink> */}
         <form onSubmit={handleDemo}>
           <button id='demo' type='submit'>Demo</button>
         </form>
