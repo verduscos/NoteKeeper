@@ -10,6 +10,7 @@ import Notes from "./components/Notes";
 import Notebooks from "./components/NoteBooks";
 import CurrentNote from "./components/Notes/currentNote";
 import Create from "./components/Notes/Create";
+import NotFound from "./components/NotFound";
 
 function App() {
   const dispatch = useDispatch();
@@ -56,6 +57,9 @@ function App() {
             <Notebooks />
             <Notes />
             <Create />
+          </Route>
+          <Route>
+            <NotFound />
           </Route>
 
         </Switch>
