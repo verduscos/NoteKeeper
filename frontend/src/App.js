@@ -25,40 +25,48 @@ function App() {
     <>
       {isLoaded && (
         <>
-            <Navigation isLoaded={isLoaded} />
+
         <Switch>
           <Route exact path="/">
+            <Navigation isLoaded={isLoaded} />
             <Homepage />
           </Route>
           <Route exact path="/signup">
+            <Navigation isLoaded={isLoaded} />
             <SignupFormPage />
           </Route>
           <Route exact path="/mynotes/notes">
+            <Navigation isLoaded={isLoaded} />
             <Notebooks />
             <Notes />
             <Create />
           </Route>
           <Route exact path="/mynotes/notes/:noteId">
+            <Navigation isLoaded={isLoaded} />
             <Notebooks />
             <Notes />
             <Create />
           </Route>
           <Route exact path="/mynotes/notebook/:notebookId">
+            <Navigation isLoaded={isLoaded} />
             <Notebooks />
             <Notes />
             <Create />
           </Route>
           <Route exact path="/mynotes/notebook/:notebookId/notes/:noteId">
+            <Navigation isLoaded={isLoaded} />
             <Notebooks />
             <Notes />
             <CurrentNote />
           </Route>
           <Route exact path="/mynotes/notes/create">
+            <Navigation isLoaded={isLoaded} />
             <Notebooks />
             <Notes />
             <Create />
           </Route>
           <Route>
+            <Navigation isLoaded={isLoaded} />
             <NotFound />
           </Route>
 

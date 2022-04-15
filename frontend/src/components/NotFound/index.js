@@ -3,7 +3,7 @@ import "./404.css";
 
 function notFound() {
 return (
-  <div id="note-found-block">
+  <div id="not-found-block">
     alsfkldfj
   </div>
 )
