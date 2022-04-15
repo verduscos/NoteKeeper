@@ -1,4 +1,19 @@
 #not-found-block {
-  background-color: red;
   margin-top: 150px;
+  color:#292929;
+  text-align: center;
+  width: 50%;
+  margin: 300px auto 0 auto;
+  font-size: 22px;
+  letter-spacing: 1px;
+}
+
+#not-found-block > a {
+  color: #292929;
+}
+
+@media screen and (max-width: 1000px) {
+  #not-found-block {
+    width: 95vw;
+  }
 }

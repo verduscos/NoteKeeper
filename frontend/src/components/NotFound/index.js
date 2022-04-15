@@ -4,7 +4,7 @@ import "./404.css";
 function notFound() {
 return (
   <div id="not-found-block">
-    alsfkldfj
+    Hmmmm...There's nothing here. <br /> <a href="./">Go back.</a>
   </div>
 )
 }
