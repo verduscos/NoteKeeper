@@ -79,3 +79,15 @@ body{
 #text-container > h4 {
     margin-bottom: 10px;
 }
+
+
+/* MOBILE */
+@media screen and (max-width: 850px) {
+  #hompage-h1 {
+    font-size: 33px;
+  }
+
+  #homepage-text {
+    font-size: 22px;
+}
+}
