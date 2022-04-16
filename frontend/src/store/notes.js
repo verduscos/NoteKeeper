@@ -92,7 +92,6 @@ const initialState = { notes: null };
 
 const notesReducer = (state = initialState, action) => {
   switch (action.type) {
-    // WORKING
     case GET_NOTES: {
       let notes = {};
 
@@ -139,14 +138,11 @@ const notesReducer = (state = initialState, action) => {
     //     // }
     //     // return newState
     // // }
-    // case REMOVE_NOTE: {
-    //     const newState = {...state}
-    //     // console.log(action)
-    //     const newNotes = newState.notes.filter(note => note.id !== +action.payload)
-    //     // console.log(newNotes)
-    //     newState.notes = newNotes;
-    //     return newState;
-    // }
+    case REMOVE_NOTE: {
+        const newState = {...state}
+          delete newState[action.payload]
+        return newState;
+    }
 
     default:
       return state;
