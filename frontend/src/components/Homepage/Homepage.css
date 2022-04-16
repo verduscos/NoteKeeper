@@ -90,4 +90,21 @@ body{
   #homepage-text {
     font-size: 22px;
 }
+
+#img-text-container {
+  flex-direction: column;
+}
+
+.homepage-img {
+  height: 550px;
+  width: 95vw;
+  margin-top: 50px;
+  background-image: url('./task.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+body{
+  overflow: auto;
+}
+
 }

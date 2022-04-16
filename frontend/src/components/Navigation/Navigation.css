@@ -132,6 +132,10 @@ li > * {
   padding-left: 15px;
 }
 
+.social-links {
+  display: auto;
+}
+
 /* MOBILE */
 @media screen and (max-width: 850px) {
   .social-links {
