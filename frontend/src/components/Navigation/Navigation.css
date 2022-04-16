@@ -141,4 +141,8 @@ li > * {
   #login-btn-container {
     background-color: red;
   }
+
+  #burger {
+    z-index: 10;
+  }
 }
