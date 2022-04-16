@@ -109,6 +109,7 @@ const notesReducer = (state = initialState, action) => {
       })
 
       return notes;
+      
     case CREATE_NOTE: {
       const newState = { ...state };
 
@@ -117,27 +118,13 @@ const notesReducer = (state = initialState, action) => {
 
       return newState
     }
-    // // WORKING
+
     case EDIT_NOTE: {
         const newState = { ...state};
         newState[action.payload.id] = action.payload;
         return newState;
       }
-    // // NOT WORKING
-    // // case REMOVE_NOTE: {
-    // //     const newState = {...state};
-    //     // newState.notes.forEach((note, i, arr) => {
-    //     //     if (note.id === action.noteId) {
-    //     //        newState.notes.splice(i, 1, 0);
-    //     //     }
-    //     // })
-    //     // for (let i = 0; i < newState.notes; i++) {
-    //     //     if (newState.notes.id[i] === action.payload.id) {
-    //     //          newState.notes.splice(i, 1, 0);
-    //     //     }
-    //     // }
-    //     // return newState
-    // // }
+
     case REMOVE_NOTE: {
         const newState = {...state}
           delete newState[action.payload]
