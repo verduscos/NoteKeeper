@@ -138,8 +138,8 @@ li > * {
     display: none;
   }
 
-  #login-btn-container {
-    background-color: red;
+  #loginButt {
+    margin-bottom: 5px;
   }
 
   #burger {
