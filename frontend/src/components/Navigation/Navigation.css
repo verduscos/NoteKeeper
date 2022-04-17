@@ -136,6 +136,10 @@ li > * {
   display: auto;
 }
 
+#burger {
+  display: none;
+}
+
 /* MOBILE */
 @media screen and (max-width: 850px) {
   .social-links {
@@ -148,5 +152,6 @@ li > * {
 
   #burger {
     z-index: 10;
+    display: block;
   }
 }

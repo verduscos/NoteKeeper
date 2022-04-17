@@ -15,6 +15,11 @@ function Navigation({ isLoaded }) {
   const dispatch = useDispatch();
   const sessionUser = useSelector(state => state.session.user);
 
+  // The current width of the viewport
+  const width = window.innerWidth;
+  // The width below which the mobile view should be rendered
+  const breakpoint = 850;
+
   if (sessionUser) return <Redirect to='/mynotes/notes' />;
 
 
@@ -48,15 +53,30 @@ function Navigation({ isLoaded }) {
           <a className='focus-color social-links' href='https://github.com/verduscos' target="_blank" >GitHub</a>
           <a className='focus-color social-links' href='https://www.linkedin.com/in/eddie-verdusco/' target='_blank'>LinkedIn</a>
         </li>
-        {loginBtn
+
+
+        {/* {loginBtn
           ?
           <li id="login-btn-container">
             {isLoaded && sessionLinks}
-          </li> :null }
+          </li> : null}
 
         <div id="burger" onClick={() => {
           setLoginBtn(!loginBtn)
-        }}>X</div>
+        }}>X</div> */}
+
+{/* <li id="login-btn-container">
+          {isLoaded && sessionLinks}
+        </li> */}
+
+        {width < breakpoint ? <li id="login-btn-container">
+          {isLoaded && sessionLinks}
+        </li> : <div id="burger" onClick={() => {
+          setLoginBtn(!loginBtn)
+        }}>X</div>}
+
+
+
       </ul>
     </nav>
   );
