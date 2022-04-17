@@ -37,7 +37,6 @@ function LoginButton( {isLoaded }) {
   return (
     <>
       { isLoaded && sessionLinks }
-      <h1>asdfas</h1>
     </>
   )
 }
