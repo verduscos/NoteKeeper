@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import LoginFormModal from '../LoginFormModal'
 import SignupFormModal from '../SignupFormModal';
+import Burger from './Burder';
 import './Navigation.css';
 import * as sessionActions from "../../store/session";
 
@@ -57,7 +58,7 @@ function Navigation({ isLoaded }) {
 
 
         { width < breakpoint ?
-        <div id="burger" >X</div> :
+          <Burger /> :
         <li id="login-btn-container">
         {isLoaded && sessionLinks}
       </li> }
