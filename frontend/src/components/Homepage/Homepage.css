@@ -85,10 +85,12 @@ body{
 @media screen and (max-width: 850px) {
   #hompage-h1 {
     font-size: 33px;
+    width: 95vw;
   }
 
   #homepage-text {
     font-size: 22px;
+    width: 95vw;
 }
 
 #img-text-container {
@@ -103,6 +105,13 @@ body{
   background-size: contain;
   background-repeat: no-repeat;
 }
+
+#text-container {
+  margin-left: 125px;
+  margin: 0 auto;
+  width: 90vw;
+}
+
 body{
   overflow: auto;
 }
