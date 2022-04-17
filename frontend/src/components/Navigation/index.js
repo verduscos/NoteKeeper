@@ -10,7 +10,6 @@ import * as sessionActions from "../../store/session";
 
 
 function Navigation({ isLoaded }) {
-  const [loginBtn, setLoginBtn] = useState(false);
   let history = useHistory();
   const dispatch = useDispatch();
   const sessionUser = useSelector(state => state.session.user);
@@ -55,25 +54,16 @@ function Navigation({ isLoaded }) {
         </li>
 
 
-        {/* {loginBtn
-          ?
-          <li id="login-btn-container">
-            {isLoaded && sessionLinks}
-          </li> : null}
 
-        <div id="burger" onClick={() => {
-          setLoginBtn(!loginBtn)
-        }}>X</div> */}
 
-{/* <li id="login-btn-container">
-          {isLoaded && sessionLinks}
-        </li> */}
+        { width < breakpoint ?
+        <div id="burger" >X</div> :
+        <li id="login-btn-container">
+        {isLoaded && sessionLinks}
+      </li> }
 
-        {width < breakpoint ? <li id="login-btn-container">
-          {isLoaded && sessionLinks}
-        </li> : <div id="burger" onClick={() => {
-          setLoginBtn(!loginBtn)
-        }}>X</div>}
+
+
 
 
 
