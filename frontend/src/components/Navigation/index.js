@@ -2,6 +2,8 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import Burger from './Burger';
 import LoginButton from './LoginButtons';
+import { useSelector } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 import './Navigation.css';
 
 function Navigation({ isLoaded }) {
@@ -9,6 +11,10 @@ function Navigation({ isLoaded }) {
   const width = window.innerWidth;
   // The width below which the mobile view should be rendered
   const breakpoint = 850;
+
+  const sessionUser = useSelector(state => state.session.user);
+
+  if (sessionUser) return <Redirect to='/mynotes/notes' />;
 
 
 
