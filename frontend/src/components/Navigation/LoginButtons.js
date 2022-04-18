@@ -25,12 +25,12 @@ function LoginButton( {isLoaded }) {
     );
   } else {
     sessionLinks = (
-      <>
+      <div id="login-btn-container">
         <LoginFormModal />
         <form onSubmit={handleDemo}>
           <button id='demo' type='submit'>Demo</button>
         </form>
-      </>
+      </div>
     );
   }
 
