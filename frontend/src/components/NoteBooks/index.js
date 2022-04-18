@@ -74,8 +74,8 @@ function Notebooks() {
 
 
   useEffect(() => {
-    dispatch(sessionActions.getNotesThunk(currentUser.id))
-    dispatch(notebookActions.getNootbooksThunk(currentUser.id))
+    dispatch(sessionActions.getNotesThunk(currentUser?.id))
+    dispatch(notebookActions.getNootbooksThunk(currentUser?.id))
     //adding loaded is not chaning anything atm, fixed loading issue with '?'
 
   }, [dispatch])
