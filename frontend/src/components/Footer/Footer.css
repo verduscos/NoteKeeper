@@ -38,7 +38,7 @@
     color: rgb(211, 211, 211);
 }
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 850px) {
   #footer-container {
     position: relative;
   }
