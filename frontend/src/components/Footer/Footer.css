@@ -37,3 +37,9 @@
 .footer-link:hover {
     color: rgb(211, 211, 211);
 }
+
+@media screen and (max-width: 800px) {
+  #footer-container {
+    position: relative;
+  }
+}
