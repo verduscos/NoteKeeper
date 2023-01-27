@@ -1,5 +1,10 @@
 'use strict';
 
+let options = {};
+if (process.env.NODE_ENV === 'production') {
+  options.schema = process.env.SCHEMA;  // define your schema in options object
+}
+
 module.exports = {
   up: (queryInterface, Sequelize) => {
     /*
@@ -8,7 +13,8 @@ module.exports = {
 
       Example:
       */
-      return queryInterface.bulkInsert('Notes', [
+      options.tableName = 'Notes';
+      return queryInterface.bulkInsert(options, [
         {
           title: 'My First note',
           body:'This is my first note, and I am in the body.',
@@ -50,6 +56,7 @@ module.exports = {
 
       Example:
       */
-      return queryInterface.bulkDelete('Notes', null, {});
+      options.tableName = 'Notes';
+      return queryInterface.bulkDelete(options);
   }
 };

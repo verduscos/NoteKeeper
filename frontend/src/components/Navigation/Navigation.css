@@ -140,6 +140,15 @@ li > * {
   display: none;
 }
 
+#login-btn-container {
+  display: flex;
+}
+
+#login-btn-container > :nth-child(2) {
+  margin-left: 25px;
+}
+
+
 /* MOBILE */
 @media screen and (max-width: 850px) {
   .social-links {
