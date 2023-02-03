@@ -7,7 +7,7 @@ import './Homepage.css'
 function Homepage() {
 
     return (
-        <div id='body'>
+        <div id='homepage'>
             <h1 id='hompage-h1'>Tame your work, organize your life</h1>
             <h3 id='homepage-text'>Remember everything and tackle any project with your notes, tasks, and schedule all in one place.</h3>
             <Link id='homepageButt' to='/signup'>Join now for free</Link>
