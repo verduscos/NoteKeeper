@@ -34,45 +34,51 @@ function App() {
           <Route exact path="/signup">
             <Navigation isLoaded={isLoaded} />
             <SignupFormPage />
+            <Footer />
           </Route>
           <Route exact path="/mynotes/notes">
             <Navigation isLoaded={isLoaded} />
             <Notebooks />
             <Notes />
             <Create />
+            <Footer />
           </Route>
           <Route exact path="/mynotes/notes/:noteId">
             <Navigation isLoaded={isLoaded} />
             <Notebooks />
             <Notes />
             <Create />
+            <Footer />
           </Route>
           <Route exact path="/mynotes/notebook/:notebookId">
             <Navigation isLoaded={isLoaded} />
             <Notebooks />
             <Notes />
             <Create />
+            <Footer />
           </Route>
           <Route exact path="/mynotes/notebook/:notebookId/notes/:noteId">
             <Navigation isLoaded={isLoaded} />
             <Notebooks />
             <Notes />
             <CurrentNote />
+            <Footer />
           </Route>
           <Route exact path="/mynotes/notes/create">
             <Navigation isLoaded={isLoaded} />
             <Notebooks />
             <Notes />
             <Create />
+            <Footer />
           </Route>
           <Route>
             <Navigation isLoaded={isLoaded} />
             <NotFound />
+            <Footer />
           </Route>
         </Switch>
         </>
       )}
-      <Footer />
     </>
   );
 }
