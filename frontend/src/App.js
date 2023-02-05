@@ -39,9 +39,9 @@ function App() {
           <Route exact path="/mynotes/notes">
             <Navigation isLoaded={isLoaded} />
             <Notebooks />
-            <Notes />
-            <Create />
-            <Footer />
+            {/* <Notes /> */}
+            {/* <Create /> */}
+            {/* <Footer /> */}
           </Route>
           <Route exact path="/mynotes/notes/:noteId">
             <Navigation isLoaded={isLoaded} />
