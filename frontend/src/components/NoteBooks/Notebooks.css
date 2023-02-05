@@ -43,14 +43,10 @@
   margin-top: 5px;
   margin-bottom: 5px;
 }
-#user-icon:hover {
-  /* color: rgb(177, 31, 31) */
-}
 
 #notebook-links {
   color: rgb(226, 226, 226);
   height: 50px;
-  /* width: 245px; */
   font-size: 15px;
   text-decoration: none;
   display: flex;
@@ -85,7 +81,6 @@
   border: none;
   border-radius: 5px;
   padding: 5px !important;
-  /* height: 20px; */
   border: 1px solid rgba(128, 128, 128, 0.281);
 }
 
@@ -274,4 +269,16 @@
   position: absolute;
   font-size: 14px;
   margin-top: -130px;
+}
+
+
+/* MOBILE */
+@media screen and (max-width: 850px) {
+  #notebooks {
+  width: 100px;
+}
+}
+
+@media screen and (max-width: 550px) {
+
 }
