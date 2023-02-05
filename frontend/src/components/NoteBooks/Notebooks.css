@@ -277,8 +277,14 @@
   #notebooks {
   width: 100px;
 }
+  #notebooks > *, #notebook-container {
+  width: inherit !important;
+}
+#notebook-text-container > p {
+  font-size: 12px;
+}
 }
 
-@media screen and (max-width: 550px) {
+/* @media screen and (max-width: 550px) {
 
-}
+} */
