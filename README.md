@@ -8,13 +8,15 @@
 NoteKeeper is build on a React frontend and an Express backend with a PostgreSQL database. This application utizlies React-Quill, a free, open source rich-text editor built for the modern web.
 
 ## Features 
-### Notes
+### Notes & Notebooks
   * Users can create, read, update, or delete notes.
-![Capture](https://user-images.githubusercontent.com/89158442/217089171-585d1a2a-f7f5-4c7d-9c89-9491b06f2f5c.PNG)
+  ![Capture](https://user-images.githubusercontent.com/89158442/217089171-585d1a2a-f7f5-4c7d-9c89-9491b06f2f5c.PNG)
 
 
-### Notebooks
-  * Users can create, read, update, or delete notes.
+### Autosave
+  * Never lose any of your work, every update is automatically saved.
+  ![Capture](https://user-images.githubusercontent.com/89158442/217090322-d59f0518-eb75-402a-9542-57446c7117de.PNG)
+
 
 # Installation Instructions
   * npm install
