@@ -2,7 +2,7 @@
 ![](https://imgur.com/d19tRV0.png)
 [Try Live Demo](https://note-keeper-2023.onrender.com/) | [Project Wiki](https://github.com/verduscos/NoteKeeper/wiki)
 
-NoteKeeper, an Evernote clone, is a platform where users can create notes and stay organized by storing them in notebooks.
+[NoteKeeper](https://note-keeper-2023.onrender.com/), an [Evernote](https://evernote.com/) clone, is a platform where users can create notes and stay organized by storing them in notebooks.
 
 ## Application Architecture
 NoteKeeper is build on a React frontend and an Express backend with a PostgreSQL database. This application utizlies React-Quill, a free, open source rich-text editor built for the modern web.
@@ -10,6 +10,9 @@ NoteKeeper is build on a React frontend and an Express backend with a PostgreSQL
 ## Features 
 ### Notes
   * Users can create, read, update, or delete notes.
+![Capture](https://user-images.githubusercontent.com/89158442/217089171-585d1a2a-f7f5-4c7d-9c89-9491b06f2f5c.PNG)
+
+
 ### Notebooks
   * Users can create, read, update, or delete notes.
 
