@@ -274,7 +274,7 @@
 
 /* MOBILE */
 body{
-  background: gray;
+  /* background: gray; */
 }
 @media screen and (max-width: 850px) {
   #notebooks {
