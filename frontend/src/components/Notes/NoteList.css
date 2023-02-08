@@ -55,36 +55,6 @@
   }
 }
 
-@media screen and (max-width: 850px) {
-  #bg {
-    background-color: red;
-    width: 90%;
-    margin: 0 auto;
-  }
-
-  #note-link-column {
-    position: relative;
-    left: auto;
-    margin: 0;
-    height: 250px;
-    overflow-y: scroll;
-    width: 100%;
-    max-width: 500px;
-  }
-
-  ::-webkit-scrollbar {
-    -webkit-appearance: none;
-    width: 8px;
-  }
-
-  ::-webkit-scrollbar-thumb {
-    border-radius: 5px;
-    background-color: rgba(0, 0, 0, 0.432);
-    -webkit-box-shadow: 0 0 1px rgba(0, 0, 0, 0.432);
-  }
-}
-
-
 #notes-header-container {
   display: flex;
   justify-content: space-between;
@@ -179,4 +149,34 @@
 #note-links > div > svg {
   font-size: 20px;
   display: flex;
+}
+
+
+@media screen and (max-width: 850px) {
+  #bg {
+    background-color: red;
+    width: 90%;
+    margin: 0 auto;
+  }
+
+  #note-link-column {
+    position: relative;
+    left: auto;
+    margin: 0;
+    height: 250px;
+    overflow-y: scroll;
+    width: 100%;
+    max-width: 500px;
+  }
+
+  ::-webkit-scrollbar {
+    -webkit-appearance: none;
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+    background-color: rgba(0, 0, 0, 0.432);
+    -webkit-box-shadow: 0 0 1px rgba(0, 0, 0, 0.432);
+  }
 }

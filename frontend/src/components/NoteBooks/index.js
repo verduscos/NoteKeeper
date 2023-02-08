@@ -89,6 +89,9 @@ function Notebooks() {
 
   return (
     <div id='notebooks'>
+      <div id="mobile-btn">
+        X
+      </div>
       <div id='user'>
         <ProfileButton user={currentUser} />
       </div>

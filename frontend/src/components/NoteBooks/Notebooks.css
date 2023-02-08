@@ -271,16 +271,17 @@
   margin-top: -130px;
 }
 
-
 /* MOBILE */
-body{
-  /* background: gray; */
+#mobile-btn {
+  background-color: red;
+  margin-top: -20px
 }
+
 @media screen and (max-width: 850px) {
   #notebooks {
   position: fixed;
   top: auto;
-  bottom: 0;
+  bottom: -25px;
   padding: 0;
   width: 100%;
   height: 25px;
@@ -292,7 +293,3 @@ body{
   font-size: 12px;
 }
 }
-
-/* @media screen and (max-width: 550px) {
-
-} */
