@@ -55,6 +55,20 @@
   }
 }
 
+@media screen and (max-width: 850px) {
+  #bg {
+    background-color: red;
+    width: fit-content;
+  }
+
+  #note-link-column {
+    background-color: gray;
+    position: relative;
+    left: auto;
+    margin: 0;
+  }
+}
+
 
 #notes-header-container {
   display: flex;
