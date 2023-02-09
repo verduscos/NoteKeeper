@@ -33,6 +33,8 @@ function Notebooks() {
   const [showEditNotebook, setShowEditNotebook] = useState(false)
   const [displayDisabled, setDisplayDisabled] = useState(false)
   const [dashboard, setDashboard] = useState("notebooks");
+  const [notebooksInner, setNotebooksInner] = useState("");
+
 
   const getNotebookNotes = (e, notebookId) => {
     e.preventDefault();
@@ -90,100 +92,110 @@ function Notebooks() {
 
   console.log(dashboard, "----------")
   return (
-    <div id="notebooks" className={dashboard} onBlur={() => setDashboard("")}>
-      <div id="mobile-btn"onClick={() => setDashboard("display-dash")}>
-        X
-      </div>
-      <div id='user'>
-        <ProfileButton user={currentUser} />
-      </div>
+    <div id="notebooks" className={dashboard} onClick={() => {
+      if (dashboard.length) {
+        setDashboard("");
+        setNotebooksInner("");
+      }
+    }}>
+      <div id={notebooksInner}>
+        <div id="mobile-btn" onClick={() => {
+          setDashboard("display-dash")
+          setNotebooksInner("notebooks-inner");
+          }}>
+          X
+        </div>
+        <div id='user'>
+          <ProfileButton user={currentUser} />
+        </div>
 
-      <CreateNotebook user={currentUser} />
+        <CreateNotebook user={currentUser} />
 
-      <div>
-        {notebooks?.map(notebook => (
-          <div
-          onClick={(e) => {
-            filterByNotebook(e, notebook?.id);
-          }}
-          id="notebook-container" className={notebookId == notebook?.id ? highlight : ""} >
-            <Link
-              // to={`/mynotes/notebook/${notebook?.id}`}
-              // onClick={(e) => {
-              //   getNotebookNotes(e, notebook.id)
-              // }}
-              id='notebook-links'>{notebook?.title}</Link>
-
-
-            {notebookId == notebook?.id ? <BiDotsVerticalRounded
+        <div>
+          {notebooks?.map(notebook => (
+            <div
               onClick={(e) => {
-                e.preventDefault();
-                setShowEditNotebook(!showEditNotebook);
-              }} id="notebook-edit-btn" /> : null}
+                filterByNotebook(e, notebook?.id);
+              }}
+              id="notebook-container" className={notebookId == notebook?.id ? highlight : ""} >
+              <Link
+                // to={`/mynotes/notebook/${notebook?.id}`}
+                // onClick={(e) => {
+                //   getNotebookNotes(e, notebook.id)
+                // }}
+                id='notebook-links'>{notebook?.title}</Link>
 
 
-            {showEditNotebook && notebookId == notebook?.id ?
-              <div id="notebook-edit-container"
+              {notebookId == notebook?.id ? <BiDotsVerticalRounded
                 onClick={(e) => {
                   e.preventDefault();
-                }}>
+                  setShowEditNotebook(!showEditNotebook);
+                }} id="notebook-edit-btn" /> : null}
 
-                <div id="close-delete-btns">
-                  <div onClick={(e) => setShowEditNotebook(false)} id="delete-notebook-btn" className="close-edit-form" ><AiFillCloseSquare /></div>
+
+              {showEditNotebook && notebookId == notebook?.id ?
+                <div id="notebook-edit-container"
+                  onClick={(e) => {
+                    e.preventDefault();
+                  }}>
+
+                  <div id="close-delete-btns">
+                    <div onClick={(e) => setShowEditNotebook(false)} id="delete-notebook-btn" className="close-edit-form" ><AiFillCloseSquare /></div>
+                  </div>
+
+                  {errors.length ?
+                    <p className="errors-modal">*{errors}</p>
+                    : null}
+                  <form onSubmit={(e) => {
+                    updateNotebook(e, notebook.id)
+                  }} id="notebook-edit-form">
+
+                    {/* <p>Update notebook title</p> */}
+                    <input value={notebookName} onChange={(e) => {
+                      e.preventDefault()
+                      setNotebookName(e.target.value)
+                    }} type="text" placeholder="Edit notebook title..." id="edit-notebook-input" />
+
+                    <div id="edit-notebook-btn" onClick={(e) => {
+                      e.preventDefault();
+                      updateNotebook(e, notebook.id)
+                    }}><RiSave3Fill /></div>
+
+
+
+                    {notes?.length ?
+                      <>
+                        {displayDisabled ? <p id="disabled-msg">Unable to delete a non-empty notebooks.</p> : null}
+                        <div
+                          onMouseOver={() => {
+                            setDisplayDisabled(true);
+                          }}
+                          onMouseLeave={() => setDisplayDisabled(false)}
+                          onClick={(e) => {
+                            e.preventDefault()
+                            deleteNotebook(e, notebook.id)
+                          }} id="delete-notebook-btn-disabled"  ><RiDeleteBin5Fill /></div>
+                      </>
+                      :
+                      <div onClick={(e) => {
+                        e.preventDefault()
+                        deleteNotebook(e, notebook.id)
+                      }} id="delete-notebook-btn" ><RiDeleteBin5Fill /></div>
+                    }
+
+
+                  </form>
+
                 </div>
 
-                {errors.length ?
-                  <p className="errors-modal">*{errors}</p>
-                  : null}
-                <form onSubmit={(e) => {
-                  updateNotebook(e, notebook.id)
-                }} id="notebook-edit-form">
+                : null}
 
-                  {/* <p>Update notebook title</p> */}
-                  <input value={notebookName} onChange={(e) => {
-                    e.preventDefault()
-                    setNotebookName(e.target.value)
-                  }} type="text" placeholder="Edit notebook title..." id="edit-notebook-input" />
+            </div>
+          ))}
 
-                  <div id="edit-notebook-btn" onClick={(e) => {
-                    e.preventDefault();
-                    updateNotebook(e, notebook.id)
-                  }}><RiSave3Fill /></div>
-
-
-
-                  {notes?.length ?
-                    <>
-                      {displayDisabled ? <p id="disabled-msg">Unable to delete a non-empty notebooks.</p> : null}
-                      <div
-                        onMouseOver={() => {
-                          setDisplayDisabled(true);
-                        }}
-                        onMouseLeave={() => setDisplayDisabled(false)}
-                        onClick={(e) => {
-                          e.preventDefault()
-                          deleteNotebook(e, notebook.id)
-                        }} id="delete-notebook-btn-disabled"  ><RiDeleteBin5Fill /></div>
-                    </>
-                    :
-                    <div onClick={(e) => {
-                      e.preventDefault()
-                      deleteNotebook(e, notebook.id)
-                    }} id="delete-notebook-btn" ><RiDeleteBin5Fill /></div>
-                  }
-
-
-                </form>
-
-              </div>
-
-              : null}
-
-          </div>
-        ))}
+        </div>
 
       </div>
-
     </div>
   )
 
