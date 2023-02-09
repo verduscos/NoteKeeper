@@ -32,6 +32,7 @@ function Notebooks() {
   const [errors, setErrors] = useState("");
   const [showEditNotebook, setShowEditNotebook] = useState(false)
   const [displayDisabled, setDisplayDisabled] = useState(false)
+  const [dashboard, setDashboard] = useState("notebooks");
 
   const getNotebookNotes = (e, notebookId) => {
     e.preventDefault();
@@ -87,9 +88,10 @@ function Notebooks() {
     setNotebookName("");
   }, [dispatch, notebookId])
 
+  console.log(dashboard, "----------")
   return (
-    <div id='notebooks'>
-      <div id="mobile-btn">
+    <div id="notebooks" className={dashboard} onBlur={() => setDashboard("")}>
+      <div id="mobile-btn"onClick={() => setDashboard("display-dash")}>
         X
       </div>
       <div id='user'>
