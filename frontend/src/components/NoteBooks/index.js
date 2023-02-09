@@ -92,17 +92,16 @@ function Notebooks() {
 
   console.log(dashboard, "----------")
   return (
-    <div id="notebooks" className={dashboard} onClick={() => {
-      if (dashboard.length) {
+    <div id="notebooks" className={dashboard}>
+      <div id="dash-off" onClick={() => {
         setDashboard("");
         setNotebooksInner("");
-      }
-    }}>
+      }}></div>
       <div id={notebooksInner}>
         <div id="mobile-btn" onClick={() => {
           setDashboard("display-dash")
           setNotebooksInner("notebooks-inner");
-          }}>
+        }}>
           X
         </div>
         <div id='user'>

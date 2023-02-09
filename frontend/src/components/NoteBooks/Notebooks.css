@@ -273,7 +273,7 @@
 
 /* MOBILE */
 #mobile-btn {
-  background-color: red;
+  background-color: #1a1a1a;
   margin-top: -20px;
   display: none;
 }
@@ -281,12 +281,21 @@
 .display-dash {
   top: 0 !important;
   height: 100% !important;
+  background-color: transparent !important;
+}
+
+#dash-off {
+  background-color: rgba(0, 0, 0, 0.51);
+  position: absolute;
+  right: 0;
+  height: 100%;
 }
 
 #notebooks-inner {
+  background-color: #1a1a1a;
  max-width: 70% !important;
- background-color: gray;
  height: 100%;
+ z-index: 100;
 }
 
 @media screen and (max-width: 850px) {
@@ -309,7 +318,6 @@
   }
 
   #mobile-btn {
-    background-color: red;
     margin-top: -20px;
     display: block;
   }
