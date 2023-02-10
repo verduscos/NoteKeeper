@@ -4,10 +4,8 @@ import 'react-quill/dist/quill.snow.css';
 import { useSelector, useDispatch } from 'react-redux';
 import * as sessionActions from '../../store/notes';
 import { AiOutlineReload } from "react-icons/ai";
-import { useParams, useHistory, Link } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 import './CurrentNote.css';
-
-
 
 function CurrentNote() {
   const history = useHistory();
@@ -26,7 +24,6 @@ function CurrentNote() {
   const [date, setDate] = useState("");
   const [spin, setSpin] = useState("");
   const [updated, setUpdated] = useState(false);
-  // const [deleted, setDeleted] = useState(false);
   const [value, setValue] = useState('');
   var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
   const lastSaved = new Date(date);
@@ -59,11 +56,6 @@ function CurrentNote() {
   }
 
 
-
-
-
-
-
   let notifcation;
   if (updated) {
     notifcation = (
@@ -76,19 +68,6 @@ function CurrentNote() {
       null
     )
   }
-
-  // let deletion;
-  // if (deleted) {
-  //     deletion = (
-  //         <div className='notification'>
-  //             <p>Note Deleted! </p> <i id='notification-check' class="fas fa-check-square"></i>
-  //         </div>
-  //     )
-  // } else {
-  //     deletion = (
-  //         null
-  //     )
-  // }
 
   if (updated) {
     setTimeout(() => {
@@ -139,18 +118,11 @@ function CurrentNote() {
         history.push(`/mynotes/notebook/default/notes/${note.id}`);
       }
     }
-
-
-    // .catch(async (res) => {
-    //   const data = await res.json();
-    //   if (data && data.errors) setErrors(data.errors);
-    // })
   }
 
   // DELETE
   const handleDelete = async (e, id) => {
     e.preventDefault();
-    // setDeleted(true);
 
     const res = await dispatch(sessionActions.removeNoteThunk(id))
   }
@@ -165,17 +137,10 @@ function CurrentNote() {
 
 
   useEffect(() => {
-    // dispatch(sessionActions.getNotesThunk(currentUser?.id))
-
-    // const { title, body } = userNotes?.find(note =>
-    //     note?.id === +noteId
-    // )
-
     let title = userNotes1[noteId]?.title;
     let body = userNotes1[noteId]?.body;
     let notebookId = userNotes1[noteId]?.notebookId;
     let updatedAt = userNotes1[noteId]?.updatedAt;
-
 
     setcurrTitle(title)
     setValue(body)

@@ -85,10 +85,11 @@ font-size: 12px !important;
 
 @media screen and (max-width: 850px) {
   .form {
-    background-color: red;
-    margin: 0 !important;
+    background-color: gray;
+    min-width: 90% !important;
+    margin: 25px  auto !important;
   }
   .displayNote {
-    width: inherit !important;
+    width: 100%;
   }
 }
