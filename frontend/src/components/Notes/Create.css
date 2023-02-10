@@ -82,3 +82,13 @@ margin-bottom: -5px;
 margin-right: 15px;
 font-size: 12px !important;
 }
+
+@media screen and (max-width: 850px) {
+  .form {
+    background-color: red;
+    margin: 0 !important;
+  }
+  .displayNote {
+    width: inherit !important;
+  }
+}
