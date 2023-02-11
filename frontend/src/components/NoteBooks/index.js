@@ -4,14 +4,13 @@ import CreateNotebook from './CreateNotebook';
 import * as notebookActions from '../../store/notebooks';
 import { getNotebookNotesThunk } from '../../store/notes';
 import ProfileButton from '../Navigation/ProfileButton';
-import { postNotebookThunk, deleteNotebookThunk, updateNotebookThunk } from '../../store/notebooks';
+import { deleteNotebookThunk, updateNotebookThunk } from '../../store/notebooks';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useHistory, useParams } from 'react-router-dom';
-import { IoIosArrowDown } from 'react-icons/io';
 import * as sessionActions from '../../store/notes';
 import { BiDotsVerticalRounded } from 'react-icons/bi';
 import { RiSave3Fill, RiDeleteBin5Fill } from 'react-icons/ri'
-import { AiFillCloseSquare } from 'react-icons/ai'
+import { AiFillCloseSquare, AiOutlineMenu } from 'react-icons/ai';
 import './Notebooks.css';
 
 function Notebooks() {
@@ -90,7 +89,6 @@ function Notebooks() {
     setNotebookName("");
   }, [dispatch, notebookId])
 
-  console.log(dashboard, "----------")
   return (
     <div id="notebooks" className={dashboard}>
       <div id="dash-off" onClick={() => {
@@ -102,7 +100,7 @@ function Notebooks() {
           setDashboard("display-dash")
           setNotebooksInner("notebooks-inner");
         }}>
-          X
+          <AiOutlineMenu />
         </div>
         <div id='user'>
           <ProfileButton user={currentUser} />
