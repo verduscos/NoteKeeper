@@ -96,13 +96,18 @@ function Notebooks() {
         setNotebooksInner("");
       }}></div>
       <div id={notebooksInner}>
-        <div id="mobile-btn" onClick={() => {
-          setDashboard("display-dash")
-          setNotebooksInner("notebooks-inner");
-        }}>
-          <AiOutlineMenu />
-          <AiOutlinePlus id="nav-create-btn" />
+        <div id="mobile-btn">
+          <AiOutlineMenu onClick={() => {
+            setDashboard("display-dash")
+            setNotebooksInner("notebooks-inner");
+          }} />
+
+          <div id="nav-create">
+            <AiOutlinePlus id="nav-create-btn" />
+            New
+          </div>
         </div>
+
         <div id='user'>
           <ProfileButton user={currentUser} />
         </div>

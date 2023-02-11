@@ -301,6 +301,20 @@
  z-index: 100;
 }
 
+#nav-create {
+  background-color: green;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px 10px;
+  border-radius: 15px;
+  width: 65px;
+}
+#nav-create-btn {
+  /* margin-right: 5px; */
+}
+
 @media screen and (max-width: 850px) {
   #notebooks {
     position: fixed;
