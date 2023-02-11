@@ -10,7 +10,7 @@ import { Link, useHistory, useParams } from 'react-router-dom';
 import * as sessionActions from '../../store/notes';
 import { BiDotsVerticalRounded } from 'react-icons/bi';
 import { RiSave3Fill, RiDeleteBin5Fill } from 'react-icons/ri'
-import { AiFillCloseSquare, AiOutlineMenu } from 'react-icons/ai';
+import { AiFillCloseSquare, AiOutlineMenu, AiOutlinePlus } from 'react-icons/ai';
 import './Notebooks.css';
 
 function Notebooks() {
@@ -101,6 +101,7 @@ function Notebooks() {
           setNotebooksInner("notebooks-inner");
         }}>
           <AiOutlineMenu />
+          <AiOutlinePlus id="nav-create-btn" />
         </div>
         <div id='user'>
           <ProfileButton user={currentUser} />

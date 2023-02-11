@@ -277,8 +277,8 @@
   background-color: #1a1a1a;
   margin-top: -20px;
   display: none;
-  min-height: 50px !important;
-  background-color: red;
+  /* min-height: 50px !important; */
+  /* background-color: red; */
 }
 
 .display-dash {
@@ -322,8 +322,10 @@
 
   #mobile-btn {
     margin-top: -50px;
+    height: 50px;
     display: block;
     display: flex;
     align-items: center;
+    justify-content: space-around;
   }
 }
