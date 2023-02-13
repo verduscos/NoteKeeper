@@ -154,7 +154,6 @@
 
 @media screen and (max-width: 850px) {
   #bg {
-    background-color: red;
     width: 90%;
     margin: 0 auto;
   }
