@@ -111,7 +111,7 @@ function Notes() {
           <div id='note-link-column'>
             <div id="notes-header-container">
               <MdStickyNote2 />
-              <h1 id="notes-header">{ notebookId ? `Notes for ${notebooks[notebookId].title}`: "Notes"}</h1>
+              <h1 id="notes-header">{ notebookId ? `${notebooks[notebookId].title}`: "All Notes"}</h1>
             </div>
             <p id="notes-length">{notes?.length} notes</p>
 

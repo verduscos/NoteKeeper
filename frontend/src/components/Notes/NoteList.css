@@ -60,7 +60,7 @@
   justify-content: space-between;
   align-items: center;
   padding: 15px 15px;
-  width: 200px;
+  width: fit-content;
   margin-right: auto;
 }
 
@@ -68,7 +68,7 @@
 #notes-header-container > svg {
   text-align: left;
   margin: 0;
-  font-size: 20px;
+  font-size: 16px;
   letter-spacing: 0.03em;
   line-height: 28px;
   font-weight: lighter;
