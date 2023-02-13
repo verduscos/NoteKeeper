@@ -9,12 +9,14 @@ import { useParams, useHistory } from "react-router-dom";
 
 function Notes() {
   const currentUser = useSelector(state => state.session.user);
+  const notebooks = useSelector(state => state.notebooks);
   const params = useParams();
   const { noteId, notebookId } = params;
   const dispatch = useDispatch()
   const [created, setCreated] = useState(false);
   const history = useHistory();
 
+  console.log("N-0-0--", notebooks)
   let notifcation;
   if (created) {
     notifcation = (
@@ -109,7 +111,7 @@ function Notes() {
           <div id='note-link-column'>
             <div id="notes-header-container">
               <MdStickyNote2 />
-              <h1 id="notes-header">Notes</h1>
+              <h1 id="notes-header">{ notebookId ? `Notes for ${notebooks[notebookId].title}`: "Notes"}</h1>
             </div>
             <p id="notes-length">{notes?.length} notes</p>
 

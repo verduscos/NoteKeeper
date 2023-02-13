@@ -22,10 +22,7 @@ function Notebooks() {
   const notebooksObj = useSelector(state => state.notebooks);
   const notes1 = useSelector(state => state.notes);
   let notes = Object.values(notes1);
-  console.log(notes.length)
   let notebooks = Object.values(notebooksObj);
-  console.log(notebooks.length)
-  console.log(notebooks)
   const [notebookName, setNotebookName] = useState("");
   const [highlight, setHighlight] = useState("highlight-notebook")
   const [errors, setErrors] = useState("");
@@ -119,6 +116,9 @@ function Notebooks() {
             <div
               onClick={(e) => {
                 filterByNotebook(e, notebook?.id);
+                // close nav
+                setDashboard("");
+                setNotebooksInner("");
               }}
               id="notebook-container" className={notebookId == notebook?.id ? highlight : ""} >
               <Link
