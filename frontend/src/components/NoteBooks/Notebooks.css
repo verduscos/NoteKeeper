@@ -342,4 +342,15 @@
     align-items: center;
     justify-content: space-around;
   }
+  #date-container {
+    background-color: red !important;
+    flex-direction: column !important;
+    width: 100% !important;
+    margin-bottom: 25px !important;
+  }
+
+  #select-notebook, #note-date {
+    margin-bottom: 0 !important;
+    margin-right: 0 !important;
+  }
 }

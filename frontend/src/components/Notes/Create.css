@@ -85,7 +85,7 @@ font-size: 12px !important;
 
 @media screen and (max-width: 850px) {
   .form {
-    background-color: gray;
+    /* background-color: gray; */
     min-width: 90% !important;
     margin: 25px  auto !important;
   }
