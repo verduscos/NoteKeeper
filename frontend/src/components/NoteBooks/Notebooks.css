@@ -277,8 +277,6 @@
   background-color: #1a1a1a;
   margin-top: -20px;
   display: none;
-  /* min-height: 50px !important; */
-  /* background-color: red; */
 }
 
 .display-dash {
@@ -311,9 +309,6 @@
   border-radius: 15px;
   width: 65px;
 }
-#nav-create-btn {
-  /* margin-right: 5px; */
-}
 
 @media screen and (max-width: 850px) {
   #notebooks {
@@ -341,10 +336,11 @@
     display: flex;
     align-items: center;
     justify-content: space-around;
+    z-index: 13 !important;
   }
   #date-container {
-    background-color: red !important;
     flex-direction: column !important;
+    align-items: flex-start !important;
     width: 100% !important;
     margin-bottom: 25px !important;
   }
