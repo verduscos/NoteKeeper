@@ -41,7 +41,7 @@
     transition-duration: .2;
     margin-top: 10px;
     font-family: 'Roboto', sans-serif;
-    z-index: 12;
+    z-index: 9;
     align-self: flex-end;
     border:none;
 }

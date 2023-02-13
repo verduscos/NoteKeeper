@@ -137,7 +137,7 @@
   width: 100%;
 }
 
-#notebook-edit-form > * {
+#notebook-edit-form>* {
   padding: 0;
   margin: 0;
 }
@@ -171,7 +171,7 @@
   cursor: not-allowed;
 }
 
-.close-edit-form > svg {
+.close-edit-form>svg {
   font-size: 19px !important;
 }
 
@@ -208,12 +208,12 @@
   align-items: center;
 }
 
-#notebook-text-container > * {
+#notebook-text-container>* {
   margin-left: 5px;
   font-size: 20px;
 }
 
-#notebook-text-container > p {
+#notebook-text-container>p {
   margin-left: 5px;
   font-size: 15px;
 }
@@ -271,28 +271,82 @@
   margin-top: -130px;
 }
 
-
 /* MOBILE */
-body{
-  /* background: gray; */
+/* mobile nav */
+#mobile-btn {
+  background-color: #1a1a1a;
+  margin-top: -20px;
+  display: none;
 }
+
+.display-dash {
+  top: 0 !important;
+  height: 100% !important;
+  background-color: transparent !important;
+}
+
+#dash-off {
+  background-color: rgba(0, 0, 0, 0.51);
+  position: absolute;
+  right: 0;
+  height: 100%;
+}
+
+#notebooks-inner {
+  background-color: #1a1a1a;
+ max-width: 70% !important;
+ height: 100%;
+ z-index: 100;
+}
+
+#nav-create {
+  background-color: green;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px 10px;
+  border-radius: 15px;
+  width: 65px;
+}
+
 @media screen and (max-width: 850px) {
   #notebooks {
-  position: fixed;
-  top: auto;
-  bottom: 0;
-  padding: 0;
-  width: 100%;
-  height: 25px;
-}
-  #notebooks > *, #notebook-container {
-  width: inherit !important;
-}
-#notebook-text-container > p {
-  font-size: 12px;
-}
-}
+    position: fixed;
+    top: auto;
+    bottom: -25px;
+    padding: 0;
+    width: 100%;
+    height: 25px;
+  }
 
-/* @media screen and (max-width: 550px) {
+  #notebooks>*,
+  #notebook-container {
+    width: inherit !important;
+  }
 
-} */
+  #notebook-text-container>p {
+    font-size: 12px;
+  }
+
+  #mobile-btn {
+    margin-top: -50px;
+    height: 50px;
+    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    z-index: 13 !important;
+  }
+  #date-container {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    width: 100% !important;
+    margin-bottom: 25px !important;
+  }
+
+  #select-notebook, #note-date {
+    margin-bottom: 0 !important;
+    margin-right: 0 !important;
+  }
+}
